@@ -1,12 +1,6 @@
-import { useState } from 'react'
 import './App.css'
+import AppRouting from './AppRouting'
 
-function App() {
-  return (
-    <>
-      <h1>Astro</h1>
-    </>
-  )
-}
+const App = () => <AppRouting />
 
 export default App
