@@ -1,0 +1,130 @@
+{
+    "usuarios": [
+        {
+            "datos_personales": {
+                "id": 1,
+                "primer_nombre": "Victor",
+                "segundo_nombre": "Alfonso",
+                "primer_apellido": "Pinedo",
+                "segundo_apellido": "Martinez",
+                "documento_identificacion": "cc",
+                "numero_documento_identificacion": "17827282",
+                "sexo": "m",
+                "nacionalidad": "colombiano",
+                "pais": "Colombia",
+                "libreta_militar": {
+                    "tipo": "segunda_clase",
+                    "numero": "17827282",
+                    "distrito": "45"
+                },
+                "fecha_lugar_nacimiento": {
+                    "dia": "30",
+                    "mes": "08",
+                    "anio": "1982",
+                    "pais": "Colombia",
+                    "departamento": "La Guajira",
+                    "municipio": "Uribia"
+                },
+                "direccion_correspondencia": {
+                    "direccion": "Calle 18# 7A - 147",
+                    "pais": "Colombia",
+                    "departamento": "La Guajira",
+                    "municipio": "Uribia",
+                    "telefono": "3004546799",
+                    "email": "victorpinedomartinez@gmail.com"
+                }
+            },
+            "formacion_academica": {
+                "educacion_basica_y_media": {
+                    "grado_escolar": "11",
+                    "titulo_obtenido": "Bachiller Academico",
+                    "mes_grado": "12",
+                    "anio_grado": "1999"
+                },
+                "educacion_superior": [
+                    {
+                        "modalidad_academica": "un",
+                        "numero_semestres_aprobados": "10",
+                        "graduado": "si",
+                        "nombre_estudios_o_titulo_obtenido": "Ingeniero de Sistemas",
+                        "mes_terminacion": "11",
+                        "anio_terminacion": "2013",
+                        "numero_tarjeta_profesional": "GVJ-223-458-55"
+                    },
+                    {
+                        "modalidad_academica": "mg",
+                        "numero_semestres_aprobados": "4",
+                        "graduado": "no",
+                        "nombre_estudios_o_titulo_obtenido": "Magister en Gobierno de Tecnologías Informaticas",
+                        "mes_terminacion": "07",
+                        "anio_terminacion": "2017",
+                        "numero_tarjeta_profesional": ""
+                    }
+                ],
+                "idiomas": [
+                    {
+                        "idioma": "español",
+                        "lo_habla": "mb",
+                        "lo_lee": "mb",
+                        "lo_escribe": "mb"
+                    },
+                    {
+                        "idioma": "ingles",
+                        "lo_habla": "mb",
+                        "lo_lee": "mb",
+                        "lo_escribe": "mb"
+                    }
+                ]
+            },
+            "experiencia_laboral": [
+                {
+                    "empresa_entidad": "Softserve",
+                    "tipo": "privada",
+                    "pais": "Ucrania",
+                    "departamento": "",
+                    "municipio": "",
+                    "correo_electronico_entidad": "hhrr@softserve.com",
+                    "telefono": "",
+                    "fecha_ingreso": {
+                        "dia": "01",
+                        "mes": "08",
+                        "anio": "2022"
+                    },
+                    "fecha_retiro": {
+                        "dia": "01",
+                        "mes": "12",
+                        "anio": "2023"
+                    },
+                    "cargo": "Software Engineer",
+                    "dependencia": "IT",
+                    "direccion": ""
+                }
+            ],
+            "tiempo_total_experiencia": {
+                "servidor_publico": {
+                    "anios": "5",
+                    "meses": "2"
+                },
+                "sector_privado": {
+                    "anios": "7",
+                    "meses": "5"
+                },
+                "independiente": {
+                    "anios": "",
+                    "meses": ""
+                },
+                "total_tiempo_experiencia": {
+                    "anios": "12",
+                    "meses": "2"
+                }
+            },
+            "causal_inhabilidad": "si",
+            "diligenciamiento": {
+                "ciudad": "Riohacha", 
+                "dia": "12",
+                "mes": "05",
+                "anio": "2023"
+            }
+        }
+    ]
+}
