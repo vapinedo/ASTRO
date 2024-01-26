@@ -1,23 +1,22 @@
 {
     "usuarios": [
         {
-            "datos_personales": {
+            "datosPersonales": {
                 "id": 1,
-                "primer_nombre": "Victor",
-                "segundo_nombre": "Alfonso",
-                "primer_apellido": "Pinedo",
-                "segundo_apellido": "Martinez",
-                "documento_identificacion": "cc",
-                "numero_documento_identificacion": "17827282",
+                "nombres": "Victor Alfonso",
+                "primerApellido": "Pinedo",
+                "segundoApellido": "Martinez",
+                "documentoIdentificacion": "cc",
+                "numeroDocumentoIdentificacion": "17827282",
                 "sexo": "m",
                 "nacionalidad": "colombiano",
                 "pais": "Colombia",
-                "libreta_militar": {
+                "libretaMilitar": {
                     "tipo": "segunda_clase",
                     "numero": "17827282",
                     "distrito": "45"
                 },
-                "fecha_lugar_nacimiento": {
+                "fechaLugarNacimiento": {
                     "dia": "30",
                     "mes": "08",
                     "anio": "1982",
@@ -25,7 +24,7 @@
                     "departamento": "La Guajira",
                     "municipio": "Uribia"
                 },
-                "direccion_correspondencia": {
+                "direccionCorrespondencia": {
                     "direccion": "Calle 18# 7A - 147",
                     "pais": "Colombia",
                     "departamento": "La Guajira",
@@ -34,63 +33,63 @@
                     "email": "victorpinedomartinez@gmail.com"
                 }
             },
-            "formacion_academica": {
-                "educacion_basica_y_media": {
-                    "grado_escolar": "11",
-                    "titulo_obtenido": "Bachiller Academico",
-                    "mes_grado": "12",
-                    "anio_grado": "1999"
+            "formacionAcademica": {
+                "educacionBasicaYMedia": {
+                    "gradoEscolar": "11",
+                    "tituloObtenido": "Bachiller Academico",
+                    "mesGrado": "12",
+                    "anioGrado": "1999"
                 },
-                "educacion_superior": [
+                "educacionSuperior": [
                     {
-                        "modalidad_academica": "un",
-                        "numero_semestres_aprobados": "10",
+                        "modalidadAcademica": "un",
+                        "numeroSemestresAprobados": "10",
                         "graduado": "si",
-                        "nombre_estudios_o_titulo_obtenido": "Ingeniero de Sistemas",
-                        "mes_terminacion": "11",
-                        "anio_terminacion": "2013",
-                        "numero_tarjeta_profesional": "GVJ-223-458-55"
+                        "nombreEstudiosOTituloObtenido": "Ingeniero de Sistemas",
+                        "mesTerminacion": "11",
+                        "anioTerminacion": "2013",
+                        "numeroTarjetaProfesional": "GVJ-223-458-55"
                     },
                     {
-                        "modalidad_academica": "mg",
-                        "numero_semestres_aprobados": "4",
+                        "modalidadAcademica": "mg",
+                        "numeroSemestresAprobados": "4",
                         "graduado": "no",
-                        "nombre_estudios_o_titulo_obtenido": "Magister en Gobierno de Tecnologías Informaticas",
-                        "mes_terminacion": "07",
-                        "anio_terminacion": "2017",
-                        "numero_tarjeta_profesional": ""
+                        "nombreEstudiosOTituloObtenido": "Magister en Gobierno de Tecnologías Informaticas",
+                        "mesTerminacion": "07",
+                        "anioTerminacion": "2017",
+                        "numeroTarjetaProfesional": ""
                     }
                 ],
                 "idiomas": [
                     {
                         "idioma": "español",
-                        "lo_habla": "mb",
-                        "lo_lee": "mb",
-                        "lo_escribe": "mb"
+                        "loHabla": "mb",
+                        "loLee": "mb",
+                        "loEscribe": "mb"
                     },
                     {
                         "idioma": "ingles",
-                        "lo_habla": "mb",
-                        "lo_lee": "mb",
-                        "lo_escribe": "mb"
+                        "loHabla": "mb",
+                        "loLee": "mb",
+                        "loEscribe": "mb"
                     }
                 ]
             },
-            "experiencia_laboral": [
+            "experienciaLaboral": [
                 {
-                    "empresa_entidad": "Softserve",
+                    "empresaEntidad": "Softserve",
                     "tipo": "privada",
                     "pais": "Ucrania",
                     "departamento": "",
                     "municipio": "",
-                    "correo_electronico_entidad": "hhrr@softserve.com",
+                    "correoElectronicoEntidad": "hhrr@softserve.com",
                     "telefono": "",
-                    "fecha_ingreso": {
+                    "fechaIngreso": {
                         "dia": "01",
                         "mes": "08",
                         "anio": "2022"
                     },
-                    "fecha_retiro": {
+                    "fechaRetiro": {
                         "dia": "01",
                         "mes": "12",
                         "anio": "2023"
@@ -100,12 +99,12 @@
                     "direccion": ""
                 }
             ],
-            "tiempo_total_experiencia": {
-                "servidor_publico": {
+            "tiempoTotalExperiencia": {
+                "servidorPublico": {
                     "anios": "5",
                     "meses": "2"
                 },
-                "sector_privado": {
+                "sectorPrivado": {
                     "anios": "7",
                     "meses": "5"
                 },
@@ -113,12 +112,12 @@
                     "anios": "",
                     "meses": ""
                 },
-                "total_tiempo_experiencia": {
+                "totalTiempoExperiencia": {
                     "anios": "12",
                     "meses": "2"
                 }
             },
-            "causal_inhabilidad": "si",
+            "causalInhabilidad": "si",
             "diligenciamiento": {
                 "ciudad": "Riohacha", 
                 "dia": "12",
