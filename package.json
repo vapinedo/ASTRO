@@ -11,6 +11,8 @@
     "start-backend": "json-server db.json --port 3030"
   },
   "dependencies": {
+    "dotenv": "^16.4.1",
+    "firebase": "^10.7.2",
     "formik": "^2.4.5",
     "pdf-lib": "^1.17.1",
     "react": "^18.2.0",

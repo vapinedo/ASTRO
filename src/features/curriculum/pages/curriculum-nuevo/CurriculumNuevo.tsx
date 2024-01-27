@@ -1,4 +1,6 @@
 import { Formik, Form } from 'formik'
+import '../../../../firebaseConfig'; // prevent firebase not loading error
+import { getFirestore, addDoc, collection } from 'firebase/firestore';
 import FormikControl from '../../../../shared/components/formik/FormikControl'
 
 const documentoIdentidadOptions = [
@@ -35,31 +37,59 @@ const libretaMilitarOptions = [
 export default function CurriculumNuevo() {
 
   const initialValues = {
-    nombres: '',
-    primerApellido: '',
-    segundoApellido: '',
-    tipoDocumentoIdentidad: '',
-    numeroDocumentoIdentidad: '',
-    genero: '',
-    nacionalidad: '',
     pais: '',
-    tipoLibretaMilitar: '',
-    numeroLibretaMilitar: '',
-    distritoLibretaMilitar: '',
-    fechaNacimiento: '',
-    paisNacimiento: '',
-    departamentoNacimiento: '',
-    municipioNacimiento: '',
-    direccionCorrespondencia: '',
-    paisCorrespondencia: '',
-    departamentoCorrespondencia: '',
-    municipioCorrespondencia: '',
-    telefono: '',
     email: '',
+    genero: '',
+    nombres: '',
+    telefono: '',
+    nacionalidad: '',
+    paisNacimiento: '',
+    primerApellido: '',
+    fechaNacimiento: '',
+    segundoApellido: '',
+    tipoLibretaMilitar: '',
+    paisCorrespondencia: '',
+    municipioNacimiento: '',
+    numeroLibretaMilitar: '',
+    tipoDocumentoIdentidad: '',
+    departamentoNacimiento: '',
+    distritoLibretaMilitar: '',
+    numeroDocumentoIdentidad: '',
+    municipioCorrespondencia: '',
+    direccionCorrespondencia: '',
+    departamentoCorrespondencia: '',
   }
 
   const onSubmit = values => {
     console.log('Form data', values)
+    const db = getFirestore();
+
+    const saveDataToFirestore = async () => {
+      const docRef = await addDoc(collection(db, "curriculums"), {
+        pais: values.pais,
+        email: values.email,
+        genero: values.genero,
+        nombres: values.nombres,
+        telefono: values.telefono,
+        nacionalidad: values.nacionalidad,
+        paisNacimiento: values.paisNacimiento,
+        primerApellido: values.primerApellido,
+        segundoApellido: values.segundoApellido,
+        fechaNacimiento: values.fechaNacimiento,
+        tipoLibretaMilitar: values.tipoLibretaMilitar,
+        paisCorrespondencia: values.paisCorrespondencia,
+        municipioNacimiento: values.municipioNacimiento,
+        numeroLibretaMilitar: values.numeroLibretaMilitar,
+        distritoLibretaMilitar: values.distritoLibretaMilitar,
+        departamentoNacimiento: values.departamentoNacimiento,
+        tipoDocumentoIdentidad: values.tipoDocumentoIdentidad,
+        municipioCorrespondencia: values.municipioCorrespondencia,
+        direccionCorrespondencia: values.direccionCorrespondencia,
+        numeroDocumentoIdentidad: values.numeroDocumentoIdentidad,
+        departamentoCorrespondencia: values.departamentoCorrespondencia,
+      });
+    };
+    saveDataToFirestore(); 
   }
 
   return (
