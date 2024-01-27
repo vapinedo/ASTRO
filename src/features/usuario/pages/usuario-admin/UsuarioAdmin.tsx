@@ -1,15 +1,18 @@
-import "./UsuariosAdmin.css"
+import { Link } from "react-router-dom"
+import "./UsuarioAdmin.css"
 
-export default function UsuariosAdmin() {
+export default function UsuarioAdmin() {
     return (
       <section>
           <header className="page-header">
               <h2>Lista de Usuarios</h2>
 
               <div>
-                <button className="btn btn-primary mx-3">
-                    <span>Crear nuevo</span>
-                </button>
+                <Link to="/usuario-nuevo">
+                    <button className="btn btn-primary mx-3">
+                        <span>Crear nuevo</span>
+                    </button>
+                </Link>
                 <button className="btn btn-outline-danger">Ir Atrás</button>
               </div>
           </header>
