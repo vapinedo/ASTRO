@@ -20,6 +20,10 @@ export default function Navbar() {
                         <li className="nav-item">
                             <Link to="/usuarios" className="nav-link">Usuarios</Link>
                         </li>
+
+                        <li className="nav-item">
+                            <Link to="/curriculums" className="nav-link">Curriculums</Link>
+                        </li>
                     </ul>
 
                     <form className="d-flex" role="search">
