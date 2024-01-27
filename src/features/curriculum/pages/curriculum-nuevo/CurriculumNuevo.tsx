@@ -61,7 +61,6 @@ export default function CurriculumNuevo() {
   }
 
   const onSubmit = values => {
-    console.log('Form data', values)
     const db = getFirestore();
 
     const saveDataToFirestore = async () => {

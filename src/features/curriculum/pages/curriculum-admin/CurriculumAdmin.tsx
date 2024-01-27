@@ -1,7 +1,26 @@
-import { Link } from "react-router-dom"
 import "./CurriculumAdmin.css"
+import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { collection, getDocs, getFirestore } from "firebase/firestore"
 
 export default function CurriculumAdmin() {
+
+    const [curriculums, setCurriculums] = useState([]);
+
+    const getCurriculums = async () => {
+        const db = getFirestore();
+        const querySnapshot = await getDocs(collection(db, "curriculums"));
+        const temporaryArr = [];
+        querySnapshot.forEach((doc) => {
+            temporaryArr.push(doc.data());
+        });
+        setCurriculums(temporaryArr);
+    };
+
+    useEffect(() => {
+        getCurriculums();
+    }, [])
+    
     return (
       <section>
           <header className="page-header">
@@ -20,33 +39,28 @@ export default function CurriculumAdmin() {
           <table className="table">
               <thead>
                   <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">First</th>
-                  <th scope="col">Last</th>
-                  <th scope="col">Handle</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Primer Apellido</th>
+                    <th scope="col">Segundo Apellido</th>
+                    <th scope="col">Tipo de identidad</th>
+                    <th scope="col">Número identidad</th>
                   </tr>
               </thead>
   
               <tbody>
-                  <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                  </tr>
-  
-                  <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                  </tr>
-  
-                  <tr>
-                      <th scope="row">3</th>
-                      <td colSpan={2}>Larry the Bird</td>
-                      <td>@twitter</td>
-                  </tr>
+                {
+                    curriculums?.map((curriculum, index) => (
+                    <tr key={curriculum.nombres}>
+                        <th scope="row">{index + 1}</th>
+                        <td>{curriculum.nombres}</td>
+                        <td>{curriculum.primerApellido}</td>
+                        <td>{curriculum.segundoApellido}</td>
+                        <td>{curriculum.tipoDocumentoIdentidad}</td>
+                        <td>{curriculum.numeroDocumentoIdentidad}</td>
+                    </tr>
+                    ))
+                }
               </tbody>
           </table>
       </section>
