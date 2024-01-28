@@ -1,4 +1,5 @@
-import FormikControl from "../../../../shared/components/formik/FormikControl";
+import FormikControl from '../../../../shared/components/formik/FormikControl';
+import Box from '../../../../shared/containers/Box/Box';
 
 const modalidadAcademicaOptions = [
     { key: 'tc', value: 'Técnica' },
@@ -16,29 +17,25 @@ const graduadoOptions = [
 
 export default function FormacionSuperior() {
     return (
-        <section>
-            <h4>Formación Superior</h4>
+        <Box title="Formación Superior">
             <article className='row align-items-start'>
-                <div className="col">
+                <div className='col'>
                     <FormikControl
                         control='select'
-                        label='Modalidad académica'
+                        label='Modalidad'
                         name='modalidadAcademica'
                         options={modalidadAcademicaOptions}
                     />
                 </div>
-                <div className="col">
+                <div className='col'>
                     <FormikControl
                         control='input'
                         type='text'
-                        label='Número semestres aprobados'
+                        label='Semestres aprobados'
                         name='numeroSemestresAprobados'
                     />
                 </div>
-            </article>
-
-            <article className='row align-items-start'>
-                <div className="col">
+                <div className='col'>
                     <FormikControl
                         control='select'
                         label='Graduado'
@@ -46,7 +43,10 @@ export default function FormacionSuperior() {
                         options={graduadoOptions}
                     />
                 </div>
-                <div className="col">
+            </article>
+
+            <article className='row align-items-start'>
+                <div className='col'>
                     <FormikControl
                         control='input'
                         type='text'
@@ -54,25 +54,22 @@ export default function FormacionSuperior() {
                         name='tituloObtenido'
                     />
                 </div>
-            </article>
-
-            <article className='row align-items-start'>
-                <div className="col">
+                <div className='col'>
                     <FormikControl
                         control='date'
-                        label='Fecha de terminación'
+                        label='Fecha terminación'
                         name='fechaTerminacion'
                     />
                 </div>
-                <div className="col">
+                <div className='col'>
                     <FormikControl
                         control='input'
                         type='text'
-                        label='Número tarjeta profesional'
+                        label='Nro tarjeta prof.'
                         name='numeroTarjetaProfesional'
                     />
                 </div>
             </article>
-        </section>
+        </Box>
     )
 }

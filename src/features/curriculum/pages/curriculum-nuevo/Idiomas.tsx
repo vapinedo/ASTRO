@@ -1,4 +1,5 @@
-import FormikControl from "../../../../shared/components/formik/FormikControl";
+import FormikControl from '../../../../shared/components/formik/FormikControl';
+import Box from '../../../../shared/containers/Box/Box';
 
 const idiomaOptions = [
     { key: 'r', value: 'Regular' },
@@ -8,10 +9,9 @@ const idiomaOptions = [
 
 export default function Idiomas() {
     return (
-        <section>
-            <h4>Idiomas</h4>
+        <Box title='Idiomas'>
             <article className='row align-items-start'>
-                <div className="col">
+                <div className='col'>
                     <FormikControl
                         control='input'
                         type='text'
@@ -19,7 +19,7 @@ export default function Idiomas() {
                         name='idioma'
                     />
                 </div>
-                <div className="col">
+                <div className='col'>
                     <FormikControl
                         control='select'
                         label='Lo Habla'
@@ -27,7 +27,7 @@ export default function Idiomas() {
                         options={idiomaOptions}
                     />
                 </div>
-                <div className="col">
+                <div className='col'>
                     <FormikControl
                         control='select'
                         label='Lo lee'
@@ -35,7 +35,7 @@ export default function Idiomas() {
                         options={idiomaOptions}
                     />
                 </div>
-                <div className="col">
+                <div className='col'>
                     <FormikControl
                         control='select'
                         label='Lo Escribe'
@@ -44,6 +44,6 @@ export default function Idiomas() {
                     />
                 </div>
             </article>
-        </section>
+        </Box>
     )
 }

@@ -15,3 +15,19 @@ iframe {
     align-items: center;
     justify-content: space-between;
 }
+.btn-plus-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-plus-icon i {
+    margin-right: 5px;
+} 
+.btn-plus-icon span {
+    margin-bottom: 3px;
+}
+.inline-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

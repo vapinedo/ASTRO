@@ -1,4 +1,5 @@
-import FormikControl from "../../../../shared/components/formik/FormikControl";
+import FormikControl from '../../../../shared/components/formik/FormikControl';
+import Box from '../../../../shared/containers/Box/Box';
 
 const nivelEscolaridadBasicaOptions = [
     { key: '1', value: 'Primero' },
@@ -16,10 +17,9 @@ const nivelEscolaridadBasicaOptions = [
 
 export default function FormacionBasica() {
     return (
-        <section>
-            <h4>Formación Básica</h4>
+        <Box title='Formación Básica'>
             <article className='row align-items-start'>
-                <div className="col">
+                <div className='col'>
                     <FormikControl
                         control='select'
                         label='Nivel escolaridad'
@@ -27,7 +27,7 @@ export default function FormacionBasica() {
                         options={nivelEscolaridadBasicaOptions}
                     />
                 </div>
-                <div className="col">
+                <div className='col'>
                     <FormikControl
                         control='input'
                         type='text'
@@ -35,7 +35,7 @@ export default function FormacionBasica() {
                         name='tituloObtenidoBasica'
                     />
                 </div>
-                <div className="col">
+                <div className='col'>
                     <FormikControl
                         control='date'
                         label='Fecha de grado'
@@ -43,6 +43,6 @@ export default function FormacionBasica() {
                     />
                 </div>
             </article>
-        </section>
+        </Box>
     )
 }
