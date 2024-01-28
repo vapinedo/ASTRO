@@ -4,6 +4,7 @@ import FormacionSuperior from './FormacionSuperior';
 import { getFirestore, addDoc, collection } from 'firebase/firestore';
 import '../../../../firebaseConfig'; // prevent firebase not loading error
 import FormikControl from '../../../../shared/components/formik/FormikControl'
+import Idiomas from './Idiomas';
 
 const documentoIdentidadOptions = [
   { key: 'cc', value: 'Cedula de Ciudadanía' },
@@ -267,6 +268,7 @@ export default function CurriculumNuevo() {
 
             <FormacionBasica />
             <FormacionSuperior />
+            <Idiomas />
 
             <button className='btn btn-primary' type='submit'>Crear</button>
           </Form>
