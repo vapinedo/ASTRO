@@ -11,7 +11,7 @@ const AppRouting = () => {
     return (
         <>
             <Navbar />
-            <section className="container py-5">
+            <section className="container main-container">
                 <Routes>
                     <Route path="/" element={<DatosPersonales />} />
                     <Route path="/usuarios" element={<UsuarioAdmin />} />
