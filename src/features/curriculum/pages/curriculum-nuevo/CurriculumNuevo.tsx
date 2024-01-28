@@ -1,6 +1,8 @@
 import { Formik, Form } from 'formik'
-import '../../../../firebaseConfig'; // prevent firebase not loading error
+import FormacionBasica from './FormacionBasica';
+import FormacionSuperior from './FormacionSuperior';
 import { getFirestore, addDoc, collection } from 'firebase/firestore';
+import '../../../../firebaseConfig'; // prevent firebase not loading error
 import FormikControl from '../../../../shared/components/formik/FormikControl'
 
 const documentoIdentidadOptions = [
@@ -58,10 +60,20 @@ export default function CurriculumNuevo() {
     municipioCorrespondencia: '',
     direccionCorrespondencia: '',
     departamentoCorrespondencia: '',
+    nivelEscolaridadBasica: '',
+    tituloObtenidoBasica: '',
+    fechaGradoBasica: '',
+    modalidadAcademica: '',
+    numeroSemestresAprobados: '',
+    graduado: '',
+    tituloObtenido: '',
+    fechaTerminacion: '',
+    numeroTarjetaProfesional: '',
   }
 
   const onSubmit = values => {
     const db = getFirestore();
+    console.log(values);
 
     const saveDataToFirestore = async () => {
       const docRef = await addDoc(collection(db, "curriculums"), {
@@ -86,6 +98,15 @@ export default function CurriculumNuevo() {
         direccionCorrespondencia: values.direccionCorrespondencia,
         numeroDocumentoIdentidad: values.numeroDocumentoIdentidad,
         departamentoCorrespondencia: values.departamentoCorrespondencia,
+        nivelEscolaridadBasica: values.nivelEscolaridadBasica,
+        tituloObtenidoBasica: values.tituloObtenidoBasica,
+        fechaGradoBasica: values.fechaGradoBasica,
+        modalidadAcademica: values.modalidadAcademica,
+        numeroSemestresAprobados: values.numeroSemestresAprobados,
+        graduado: values.graduado,
+        tituloObtenido: values.tituloObtenido,
+        fechaTerminacion: values.fechaTerminacion,
+        numeroTarjetaProfesional: values.numeroTarjetaProfesional,
       });
     };
     saveDataToFirestore(); 
@@ -107,140 +128,145 @@ export default function CurriculumNuevo() {
       >
         {formik => (
           <Form>
-            <h4>Datos Personales</h4>
+            <section>
+              <h4>Datos Personales</h4>
 
-            <article className='row align-items-start'>
-              <article className='col'>
-                <FormikControl
-                  control='input'
-                  type='text'
-                  label='Primer apellido'
-                  name='primerApellido'
-                />
-                <FormikControl
-                  control='input'
-                  type='text'
-                  label='Segundo apellido'
-                  name='segundoApellido'
-                />
-                <FormikControl
-                  control='input'
-                  type='text'
-                  label='Nombres'
-                  name='nombres'
-                />
-                <FormikControl
-                  control='select'
-                  label='Documento identidad'
-                  name='tipoDocumentoIdentidad'
-                  options={documentoIdentidadOptions}
-                />
-                <FormikControl
-                  control='input'
-                  type='text'
-                  label='Número documento identidad'
-                  name='numeroDocumentoIdentidad'
-                />
-                <FormikControl
-                  control='select'
-                  label='Sexo'
-                  name='genero'
-                  options={generoOptions}
-                />
-                <FormikControl
-                  control='select'
-                  label='Nacionalidad'
-                  name='nacionalidad'
-                  options={nacionalidadOptions}
-                />
-                <FormikControl
-                  control='select'
-                  label='País'
-                  name='pais'
-                  options={paisOptions}
-                />
-                <FormikControl
-                  control='select'
-                  label='Tipo de libreta militar'
-                  name='tipoLibretaMilitar'
-                  options={libretaMilitarOptions}
-                />
-                <FormikControl
-                  control='input'
-                  type='text'
-                  label='Número libreta militar'
-                  name='numeroLibretaMilitar'
-                />
-                <FormikControl
-                  control='input'
-                  type='text'
-                  label='Distrito libreta militar'
-                  name='distritoLibretaMilitar'
-                />
-              </article>
+              <article className='row align-items-start'>
+                <div className='col'>
+                  <FormikControl
+                    control='input'
+                    type='text'
+                    label='Primer apellido'
+                    name='primerApellido'
+                  />
+                  <FormikControl
+                    control='input'
+                    type='text'
+                    label='Segundo apellido'
+                    name='segundoApellido'
+                  />
+                  <FormikControl
+                    control='input'
+                    type='text'
+                    label='Nombres'
+                    name='nombres'
+                  />
+                  <FormikControl
+                    control='select'
+                    label='Documento identidad'
+                    name='tipoDocumentoIdentidad'
+                    options={documentoIdentidadOptions}
+                  />
+                  <FormikControl
+                    control='input'
+                    type='text'
+                    label='Número documento identidad'
+                    name='numeroDocumentoIdentidad'
+                  />
+                  <FormikControl
+                    control='select'
+                    label='Sexo'
+                    name='genero'
+                    options={generoOptions}
+                  />
+                  <FormikControl
+                    control='select'
+                    label='Nacionalidad'
+                    name='nacionalidad'
+                    options={nacionalidadOptions}
+                  />
+                  <FormikControl
+                    control='select'
+                    label='País'
+                    name='pais'
+                    options={paisOptions}
+                  />
+                  <FormikControl
+                    control='select'
+                    label='Tipo de libreta militar'
+                    name='tipoLibretaMilitar'
+                    options={libretaMilitarOptions}
+                  />
+                  <FormikControl
+                    control='input'
+                    type='text'
+                    label='Número libreta militar'
+                    name='numeroLibretaMilitar'
+                  />
+                  <FormikControl
+                    control='input'
+                    type='text'
+                    label='Distrito libreta militar'
+                    name='distritoLibretaMilitar'
+                  />
+                </div>
 
-              <article className='col'>
-                <FormikControl
-                  control='date'
-                  label='Fecha de nacimiento'
-                  name='fechaNacimiento'
-                />
-                <FormikControl
-                  control='select'
-                  label='País de nacimiento'
-                  name='paisNacimiento'
-                  options={paisOptions}
-                />
-                <FormikControl
-                  control='select'
-                  label='Departamento de nacimiento'
-                  name='departamentoNacimiento'
-                  options={departamentoOptions}
-                />
-                <FormikControl
-                  control='select'
-                  label='Municipio de nacimiento'
-                  name='municipioNacimiento'
-                  options={municipioOptions}
-                />
-                <FormikControl
-                  control='input'
-                  type='text'
-                  label='Dirección de correspondencia'
-                  name='direccionCorrespondencia'
-                />
-                <FormikControl
-                  control='select'
-                  label='País de correspondencia'
-                  name='paisCorrespondencia'
-                  options={paisOptions}
-                />
-                <FormikControl
-                  control='select'
-                  label='Departamento de correspondencia'
-                  name='departamentoCorrespondencia'
-                  options={departamentoOptions}
-                />
-                <FormikControl
-                  control='select'
-                  label='Municipio de correspondencia'
-                  name='municipioCorrespondencia'
-                  options={municipioOptions}
-                />
-                <FormikControl
-                  control='input'
-                  type='text'
-                  label='Telefono'
-                  name='telefono'
-                />
-                <FormikControl
-                  control='input'
-                  type='email'
-                  label='Email'
-                  name='email'
-                />
+                <div className='col'>
+                  <FormikControl
+                    control='date'
+                    label='Fecha de nacimiento'
+                    name='fechaNacimiento'
+                  />
+                  <FormikControl
+                    control='select'
+                    label='País de nacimiento'
+                    name='paisNacimiento'
+                    options={paisOptions}
+                  />
+                  <FormikControl
+                    control='select'
+                    label='Departamento de nacimiento'
+                    name='departamentoNacimiento'
+                    options={departamentoOptions}
+                  />
+                  <FormikControl
+                    control='select'
+                    label='Municipio de nacimiento'
+                    name='municipioNacimiento'
+                    options={municipioOptions}
+                  />
+                  <FormikControl
+                    control='input'
+                    type='text'
+                    label='Dirección de correspondencia'
+                    name='direccionCorrespondencia'
+                  />
+                  <FormikControl
+                    control='select'
+                    label='País de correspondencia'
+                    name='paisCorrespondencia'
+                    options={paisOptions}
+                  />
+                  <FormikControl
+                    control='select'
+                    label='Departamento de correspondencia'
+                    name='departamentoCorrespondencia'
+                    options={departamentoOptions}
+                  />
+                  <FormikControl
+                    control='select'
+                    label='Municipio de correspondencia'
+                    name='municipioCorrespondencia'
+                    options={municipioOptions}
+                  />
+                  <FormikControl
+                    control='input'
+                    type='text'
+                    label='Telefono'
+                    name='telefono'
+                  />
+                  <FormikControl
+                    control='input'
+                    type='email'
+                    label='Email'
+                    name='email'
+                  />
+                </div>
               </article>
-            </article>
+            </section>
+
+            <FormacionBasica />
+            <FormacionSuperior />
 
             <button className='btn btn-primary' type='submit'>Crear</button>
           </Form>
