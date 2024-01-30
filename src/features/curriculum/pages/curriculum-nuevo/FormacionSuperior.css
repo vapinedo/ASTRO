@@ -1,0 +1,20 @@
+.formacion-item {
+    padding-top: 24px;
+    position: relative;
+    padding-right: 70px;
+    border-top: 1px solid rgb(241, 237, 237);
+}
+.formacion-item i {
+    top: 42%;
+    right: 10px;
+    color: red;
+    padding: 5px;
+    font-size: 25px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: absolute;
+}
+.formacion-item i:hover {
+    color: white;
+    background-color: red;
+}

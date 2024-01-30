@@ -1,15 +1,16 @@
 import './Box.css';
 
-export default function Box({ title, children }) {
+export default function Box({ children }) {
+
+    // function handleDelete(uuid) {
+    //     // const newComponentInstances = componentInstances.filter();
+    //     console.log(componentInstances);
+    //     console.log(uuid);
+    // }
+
     return (
         <section className='box'>
-            <header className='box-header'>
-                <h4>{ title }</h4>
-            </header>
-
-            <div className="box-body">
-                {children}
-            </div>
+            {children}
         </section>
     )
 }

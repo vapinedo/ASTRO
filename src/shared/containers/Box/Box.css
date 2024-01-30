@@ -1,14 +1,9 @@
 .box {
     border-radius: 5px;
+    padding: 20px 30px;
     margin-bottom: 30px;
     background-color: #fff;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-.box-header {
-    padding: 16px 30px;
-}
-.box-body {
-    padding: 10px 30px;
 }
 .mb-3 {
     display: flex;
