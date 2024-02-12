@@ -1,5 +1,5 @@
 import { Formik, Form } from 'formik'
-import FormikControl from '../../../../shared/components/formik/FormikControl'
+import FormikControl from '../../../../shared/components/form/FormikControl'
 
 export default function UsuarioNuevo() {
 
