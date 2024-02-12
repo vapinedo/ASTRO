@@ -1,4 +1,3 @@
-
 import { ReactNode, InputHTMLAttributes } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -11,12 +10,11 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export default function Input(props: InputProps): ReactNode {
-
     const {
-        register,
         name,
         error,
         label,
+        register,
         wrapperClass,
         ...rest
     } = props;
@@ -28,14 +26,4 @@ export default function Input(props: InputProps): ReactNode {
             <small className="text-danger">{error}</small>
         </article>
     );
-
-    // return (
-    //     <article className="mb-3">
-    //         <label className="form-label">{label}</label>
-    //         <input type="text" className="form-control" {...register(fieldName)} />
-    //         <small className="text-danger">
-    //             {errors["datosPersonales"]?.fieldName?.message}
-    //         </small>
-    //     </article>
-    // )
 }

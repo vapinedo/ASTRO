@@ -1,20 +1,42 @@
-import TextError from './TextError';
-import { Field, ErrorMessage } from 'formik'
+import { ReactNode, InputHTMLAttributes } from "react";
 
-export default function Select({ label, name, options, ...rest }) {
+interface SelectOption {
+    key: string;
+    value: string;
+}
+
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+    name: string;
+    register?: any;
+    label?: string;
+    error?: string;
+    className?: string;
+    wrapperClass?: string;
+    options?: SelectOption[];
+}
+
+export default function Select(props: InputProps): ReactNode {
+    const {
+        name,
+        error,
+        label,
+        options,
+        register,
+        wrapperClass,
+        ...rest
+    } = props;
+
     return (
-        <div className='mb-3 row'>
-            <label htmlFor={name} className='col-sm-7 col-form-label'>{label}</label>
-            <div className='col-sm-5'>
-                <Field as='select' id={name} name={name} {...rest} className='form-select form-select-sm'>
-                    {options.map(option => (
-                        <option key={option.key} value={option.key}>
-                            {option.value}
-                        </option>
-                    ))}
-                </Field>
-            </div>
-            <ErrorMessage name={name} component={TextError} />
-        </div>
-    )
+        <article className="mb-3">
+            <label htmlFor={name} className="form-label">{label}</label>
+            <select className="form-select" {...register(name)} {...rest}>
+                {options?.map(option => (
+                    <option key={option.key} value={option.key}>
+                        {option.value}
+                    </option>
+                ))}
+            </select>
+            <small className="text-danger">{error}</small>
+        </article>
+    );
 }
