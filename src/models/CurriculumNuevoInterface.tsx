@@ -1,5 +1,6 @@
 export interface CurriculumNuevoInterface {
     datosPersonales: DatosPersonales;
+    formacionBasica: FormacionBasica;
 };
 
 export interface DatosPersonales {
@@ -24,3 +25,9 @@ export interface DatosPersonales {
     municipioCorrespondencia: string;
     email: string;
 };
+
+export interface FormacionBasica {
+    educacionBasica: string;
+    tituloObtenido: string;
+    fechaGraduacion: Date;
+}

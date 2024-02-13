@@ -3,37 +3,38 @@ import { ReactNode } from "react";
 import Box from "../../../shared/containers/Box/Box";
 import Input from "../../../shared/components/form/Input";
 import Select from "../../../shared/components/form/Select";
+import { DatosPersonales } from "../../../models/CurriculumNuevoInterface";
 import CustomDatePicker from "../../../shared/components/form/CustomDatePicker";
 
 const tipoIdentificacionOptions = [
-    { key: 'cc', value: 'Cedula de ciudadanía' },
-    { key: 'ce', value: 'Cedula de exntranjería' },
-    { key: 'pas', value: 'Pasaporte' },
+    { key: "cc", value: "Cedula de ciudadanía" },
+    { key: "ce", value: "Cedula de exntranjería" },
+    { key: "pas", value: "Pasaporte" },
 ];
 const sexoOptions = [
-    { key: 'm', value: 'Hombre' },
-    { key: 'f', value: 'Mujer' },
+    { key: "m", value: "Hombre" },
+    { key: "f", value: "Mujer" },
 ];
 const nacionalidadOptions = [
-    { key: 'col', value: 'Colombiano' },
-    { key: 'ext', value: 'Extranjero' },
+    { key: "col", value: "Colombiano" },
+    { key: "ext", value: "Extranjero" },
 ];
 const paisOptions = [
-    { key: 'Colombia', value: 'Colombia' },
-    { key: 'Venezuela', value: 'Venezuela' },
+    { key: "Colombia", value: "Colombia" },
+    { key: "Venezuela", value: "Venezuela" },
 ];
 const departamentoOptions = [
-    { key: 'La Guajira', value: 'La Guajira' },
-    { key: 'Atlantico', value: 'Atlantico' },
+    { key: "La Guajira", value: "La Guajira" },
+    { key: "Atlantico", value: "Atlantico" },
 ];
 const municipioOptions = [
-    { key: 'Uribia', value: 'Uribia' },
-    { key: 'Manure', value: 'Manaure' },
-    { key: 'Soledad', value: 'Soledad' },
+    { key: "Uribia", value: "Uribia" },
+    { key: "Manure", value: "Manaure" },
+    { key: "Soledad", value: "Soledad" },
 ];
 const tipoLibretaOptions = [
-    { key: 'primera', value: 'Primera clase' },
-    { key: 'segunda', value: 'Segunda clase' },
+    { key: "primera", value: "Primera clase" },
+    { key: "segunda", value: "Segunda clase" },
 ];
 
 interface InputProps {
@@ -43,7 +44,7 @@ interface InputProps {
     register: any;
 }
 
-export const datosPersonalesDefaultValues = {
+export const datosPersonalesDefaultValues: DatosPersonales = {
     primerApellido: "",
     segundoApellido: "",
     nombres: "",

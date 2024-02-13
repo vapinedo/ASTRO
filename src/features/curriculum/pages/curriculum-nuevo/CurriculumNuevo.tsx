@@ -4,13 +4,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Form from "../../../../shared/components/form/Form";
 import { CurriculumNuevoInterface } from "../../../../models/CurriculumNuevoInterface";
 import DatosPersonalesForm, { datosPersonalesDefaultValues, datosPersonalesSchema } from "../../components/DatosPersonalesForm";
+import FormacionBasicaForm, { formacionBasicaDefaultValues, formacionBasicaSchema } from "../../components/FormacionBasicaForm";
 
 let defaultValues: CurriculumNuevoInterface = {
-    datosPersonales: datosPersonalesDefaultValues
+    datosPersonales: datosPersonalesDefaultValues,
+    formacionBasica: formacionBasicaDefaultValues,
 };
 
 const validationSchema = yup.object().shape({
-    datosPersonales: datosPersonalesSchema
+    datosPersonales: datosPersonalesSchema,
+    formacionBasica: formacionBasicaSchema,
 });
 
 export default function CurriculumNuevo() {
@@ -44,6 +47,12 @@ export default function CurriculumNuevo() {
                 handleSubmit={handleSubmit}
             >
                 <DatosPersonalesForm 
+                    errors={errors} 
+                    control={control}
+                    register={register}
+                    setValue={setValue}
+                />
+                <FormacionBasicaForm 
                     errors={errors} 
                     control={control}
                     register={register}
