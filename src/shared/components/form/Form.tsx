@@ -27,19 +27,21 @@ export default function Form(props: IFormProps): ReactNode {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} {...rest} noValidate>
-      {Array.isArray(children)
-        ? children.map((child) => {
-          return child.props.name
-            ? createElement(child.type, {
-              ...{
-                ...child.props,
-                register,
-                key: child.props.name
-              }
-            })
-            : child;
-        })
-        : children}
+      <div className="row">
+        {Array.isArray(children)
+          ? children.map((child) => {
+            return child.props.name
+              ? createElement(child.type, {
+                ...{
+                  ...child.props,
+                  register,
+                  key: child.props.name
+                }
+              })
+              : child;
+          })
+          : children}
+      </div>
 
       <button className="btn btn-primary">{buttonLabel}</button>
     </form>

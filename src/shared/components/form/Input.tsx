@@ -20,9 +20,9 @@ export default function Input(props: InputProps): ReactNode {
     } = props;
 
     return (
-        <article className="mb-3">
+        <article className={wrapperClass}>
             <label className="form-label">{label}</label>
-            <input className="form-control" {...register(name)} {...rest} />
+            <input className="form-control form-control-sm" {...register(name)} {...rest} />
             <small className="text-danger">{error}</small>
         </article>
     );

@@ -1,6 +1,7 @@
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Box from "../../../../shared/containers/Box/Box";
 import Form from "../../../../shared/components/form/Form";
 import Input from "../../../../shared/components/form/Input";
 import Select from "../../../../shared/components/form/Select";
@@ -98,7 +99,7 @@ export default function CurriculumNuevo() {
     }
 
     return (
-        <section>
+        <>
             <header className='page-header'>
                 <h2>Curriculum nuevo</h2>
                 <div>
@@ -106,135 +107,159 @@ export default function CurriculumNuevo() {
                 </div>
             </header>
 
-            <Form
-                buttonLabel="Crear"
-                register={register}
-                onSubmit={onSubmit}
-                handleSubmit={handleSubmit}
-            >
-                <Input
-                    autoFocus
-                    type="text"
-                    label="Primer apellido"
-                    name="datosPersonales.primerApellido"
-                    error={errors.datosPersonales?.primerApellido?.message}
-                />
-                <Input
-                    type="text"
-                    label="Segundo apellido"
-                    name="datosPersonales.segundoApellido"
-                    error={errors.datosPersonales?.segundoApellido?.message}
-                />
-                <Input
-                    type="text"
-                    label="Nombres"
-                    name="datosPersonales.nombres"
-                    error={errors.datosPersonales?.nombres?.message}
-                />
-                <Select
-                    label="Tipo de identificación"
-                    options={tipoIdentificacionOptions}
-                    name="datosPersonales.tipoIdentificacion"
-                    error={errors.datosPersonales?.tipoIdentificacion?.message}
-                />
-                <Input
-                    type="text"
-                    label="Número de identificación"
-                    name="datosPersonales.numeroIdentificacion"
-                    error={errors.datosPersonales?.numeroIdentificacion?.message}
-                />
-                <Select
-                    label="Sexo"
-                    options={sexoOptions}
-                    name="datosPersonales.sexo"
-                    error={errors.datosPersonales?.sexo?.message}
-                />
-                <Select
-                    label="Nacionalidad"
-                    options={nacionalidadOptions}
-                    name="datosPersonales.nacionalidad"
-                    error={errors.datosPersonales?.nacionalidad?.message}
-                />
-                <Select
-                    label="País"
-                    options={paisOptions}
-                    name="datosPersonales.pais"
-                    error={errors.datosPersonales?.pais?.message}
-                />
-                <Select
-                    label="Tipo libreta militar"
-                    options={tipoLibretaOptions}
-                    name="datosPersonales.TipolibretaMilitar"
-                    error={errors.datosPersonales?.TipolibretaMilitar?.message}
-                />
-                <Input
-                    type="text"
-                    label="Número libreta militar"
-                    name="datosPersonales.numeroLibretaMilitar"
-                    error={errors.datosPersonales?.numeroLibretaMilitar?.message}
-                />
-                <Input
-                    type="text"
-                    label="Distrito libreta militar"
-                    name="datosPersonales.distritoLibretaMilitar"
-                    error={errors.datosPersonales?.distritoLibretaMilitar?.message}
-                />
-                <CustomDatePicker
-                    control={control}
-                    setValue={setValue}
-                    label="Fecha de nacimiento"
-                    name="datosPersonales.fechaNacimiento"
-                    error={errors.datosPersonales?.fechaNacimiento?.message}
-                />
-                <Select
-                    label="País de nacimiento"
-                    options={paisOptions}
-                    name="datosPersonales.paisNacimiento"
-                    error={errors.datosPersonales?.paisNacimiento?.message}
-                />
-                <Select
-                    label="Departamento de nacimiento"
-                    options={departamentoOptions}
-                    name="datosPersonales.departamentoNacimiento"
-                    error={errors.datosPersonales?.departamentoNacimiento?.message}
-                />
-                <Select
-                    label="Municipio de nacimiento"
-                    options={municipioOptions}
-                    name="datosPersonales.municipioNacimiento"
-                    error={errors.datosPersonales?.municipioNacimiento?.message}
-                />
-                <Input
-                    type="text"
-                    label="Dirección de correspondencia"
-                    name="datosPersonales.direccionCorrespondencia"
-                    error={errors.datosPersonales?.direccionCorrespondencia?.message}
-                />
-                <Select
-                    label="País de nacimiento"
-                    options={paisOptions}
-                    name="datosPersonales.paisCorrespondencia"
-                    error={errors.datosPersonales?.paisCorrespondencia?.message}
-                />
-                <Select
-                    label="Departamento de nacimiento"
-                    options={departamentoOptions}
-                    name="datosPersonales.departamentoCorrespondencia"
-                    error={errors.datosPersonales?.departamentoCorrespondencia?.message}
-                />
-                <Select
-                    label="Municipio de nacimiento"
-                    options={municipioOptions}
-                    name="datosPersonales.municipioCorrespondencia"
-                    error={errors.datosPersonales?.municipioCorrespondencia?.message}
-                />
-                 <Input
-                    type="email"
-                    label="Email"
-                    name="datosPersonales.email"
-                    error={errors.datosPersonales?.email?.message}
-                />
-            </Form>
-        </section>
+            <Box>
+                <h4>Datos Personales</h4>
+
+                <Form
+                    buttonLabel="Crear"
+                    register={register}
+                    onSubmit={onSubmit}
+                    handleSubmit={handleSubmit}
+                >
+                    <Input
+                        autoFocus
+                        type="text"
+                        label="Primer apellido"
+                        name="datosPersonales.primerApellido"
+                        wrapperClass="mb-3 col-md-3"
+                        error={errors.datosPersonales?.primerApellido?.message}
+                    />
+                    <Input
+                        type="text"
+                        wrapperClass="mb-3 col-md-3"
+                        label="Segundo apellido"
+                        name="datosPersonales.segundoApellido"
+                        error={errors.datosPersonales?.segundoApellido?.message}
+                    />
+                    <Input
+                        type="text"
+                        label="Nombres"
+                        wrapperClass="mb-3 col-md-3"
+                        name="datosPersonales.nombres"
+                        error={errors.datosPersonales?.nombres?.message}
+                    />
+                    <Select
+                        wrapperClass="mb-3 col-md-3"
+                        label="Tipo de identificación"
+                        options={tipoIdentificacionOptions}
+                        name="datosPersonales.tipoIdentificacion"
+                        error={errors.datosPersonales?.tipoIdentificacion?.message}
+                    />
+                    <Input
+                        type="text"
+                        wrapperClass="mb-3 col-md-3"
+                        label="Número de identificación"
+                        name="datosPersonales.numeroIdentificacion"
+                        error={errors.datosPersonales?.numeroIdentificacion?.message}
+                    />
+                    <Select
+                        label="Sexo"
+                        wrapperClass="mb-3 col-md-3"
+                        options={sexoOptions}
+                        name="datosPersonales.sexo"
+                        error={errors.datosPersonales?.sexo?.message}
+                    />
+                    <Select
+                        wrapperClass="mb-3 col-md-3"
+                        label="Nacionalidad"
+                        options={nacionalidadOptions}
+                        name="datosPersonales.nacionalidad"
+                        error={errors.datosPersonales?.nacionalidad?.message}
+                    />
+                    <Select
+                        label="País"
+                        wrapperClass="mb-3 col-md-3"
+                        options={paisOptions}
+                        name="datosPersonales.pais"
+                        error={errors.datosPersonales?.pais?.message}
+                    />
+                    <Select
+                        wrapperClass="mb-3 col-md-3"
+                        label="Tipo libreta militar"
+                        options={tipoLibretaOptions}
+                        name="datosPersonales.TipolibretaMilitar"
+                        error={errors.datosPersonales?.TipolibretaMilitar?.message}
+                    />
+                    <Input
+                        type="text"
+                        wrapperClass="mb-3 col-md-3"
+                        label="Número libreta militar"
+                        name="datosPersonales.numeroLibretaMilitar"
+                        error={errors.datosPersonales?.numeroLibretaMilitar?.message}
+                    />
+                    <Input
+                        type="text"
+                        wrapperClass="mb-3 col-md-3"
+                        label="Distrito libreta militar"
+                        name="datosPersonales.distritoLibretaMilitar"
+                        error={errors.datosPersonales?.distritoLibretaMilitar?.message}
+                    />
+                    <CustomDatePicker
+                        control={control}
+                        wrapperClass="mb-3 col-md-3"
+                        setValue={setValue}
+                        label="Fecha de nacimiento"
+                        name="datosPersonales.fechaNacimiento"
+                        error={errors.datosPersonales?.fechaNacimiento?.message}
+                    />
+                    <Select
+                        wrapperClass="mb-3 col-md-3"
+                        label="País de nacimiento"
+                        options={paisOptions}
+                        name="datosPersonales.paisNacimiento"
+                        error={errors.datosPersonales?.paisNacimiento?.message}
+                    />
+                    <Select
+                        wrapperClass="mb-3 col-md-3"
+                        label="Departamento de nacimiento"
+                        options={departamentoOptions}
+                        name="datosPersonales.departamentoNacimiento"
+                        error={errors.datosPersonales?.departamentoNacimiento?.message}
+                    />
+                    <Select
+                        wrapperClass="mb-3 col-md-3"
+                        label="Municipio de nacimiento"
+                        options={municipioOptions}
+                        name="datosPersonales.municipioNacimiento"
+                        error={errors.datosPersonales?.municipioNacimiento?.message}
+                    />
+                    <Input
+                        type="text"
+                        wrapperClass="mb-3 col-md-3"
+                        label="Dirección de correspondencia"
+                        name="datosPersonales.direccionCorrespondencia"
+                        error={errors.datosPersonales?.direccionCorrespondencia?.message}
+                    />
+                    <Select
+                        wrapperClass="mb-3 col-md-3"
+                        label="País de nacimiento"
+                        options={paisOptions}
+                        name="datosPersonales.paisCorrespondencia"
+                        error={errors.datosPersonales?.paisCorrespondencia?.message}
+                    />
+                    <Select
+                        wrapperClass="mb-3 col-md-3"
+                        label="Departamento de nacimiento"
+                        options={departamentoOptions}
+                        name="datosPersonales.departamentoCorrespondencia"
+                        error={errors.datosPersonales?.departamentoCorrespondencia?.message}
+                    />
+                    <Select
+                        wrapperClass="mb-3 col-md-3"
+                        options={municipioOptions}
+                        label="Municipio de nacimiento"
+                        name="datosPersonales.municipioCorrespondencia"
+                        error={errors.datosPersonales?.municipioCorrespondencia?.message}
+                    />
+                    <Input
+                        type="email"
+                        label="Email"
+                        wrapperClass="mb-3 col-md-3"
+                        name="datosPersonales.email"
+                        error={errors.datosPersonales?.email?.message}
+                    />
+                </Form>
+            </Box>
+        </>
     );
 };

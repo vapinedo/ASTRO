@@ -27,9 +27,9 @@ export default function Select(props: InputProps): ReactNode {
     } = props;
 
     return (
-        <article className="mb-3">
+        <article className={wrapperClass}>
             <label htmlFor={name} className="form-label">{label}</label>
-            <select className="form-select" {...register(name)} {...rest}>
+            <select className="form-select form-select-sm" {...register(name)} {...rest}>
                 {options?.map(option => (
                     <option key={option.key} value={option.key}>
                         {option.value}

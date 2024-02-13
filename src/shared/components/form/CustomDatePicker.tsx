@@ -41,9 +41,9 @@ export default function CustomDatePicker(props: InputProps): ReactNode {
   };
 
   return (
-    <article className="mb-3">
+    <article className={wrapperClass}>
       <label className="form-label">{label}</label>
-      <div className="form-control">
+      <div className="form-control form-control-sm">
         <Controller
           name="datosPersonales.fechaNacimiento"
           control={control}
