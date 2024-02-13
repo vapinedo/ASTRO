@@ -24,6 +24,15 @@ let paisOptions = [
     { key: 'colombia', value: 'Colombia' },
     { key: 'venezuela', value: 'Venezuela' },
 ];
+let departamentoOptions = [
+    { key: 'la guajira', value: 'La Guajira' },
+    { key: 'atlantico', value: 'Atlantico' },
+];
+let municipioOptions = [
+    { key: 'uribia', value: 'Uribia' },
+    { key: 'manure', value: 'Manaure' },
+    { key: 'soledad', value: 'Soledad' },
+];
 let tipoLibretaOptions = [
     { key: 'primera', value: 'Primera clase' },
     { key: 'segunda', value: 'Segunda clase' },
@@ -176,6 +185,54 @@ export default function CurriculumNuevo() {
                     label="Fecha de nacimiento"
                     name="datosPersonales.fechaNacimiento"
                     error={errors.datosPersonales?.fechaNacimiento?.message}
+                />
+                <Select
+                    label="País de nacimiento"
+                    options={paisOptions}
+                    name="datosPersonales.paisNacimiento"
+                    error={errors.datosPersonales?.paisNacimiento?.message}
+                />
+                <Select
+                    label="Departamento de nacimiento"
+                    options={departamentoOptions}
+                    name="datosPersonales.departamentoNacimiento"
+                    error={errors.datosPersonales?.departamentoNacimiento?.message}
+                />
+                <Select
+                    label="Municipio de nacimiento"
+                    options={municipioOptions}
+                    name="datosPersonales.municipioNacimiento"
+                    error={errors.datosPersonales?.municipioNacimiento?.message}
+                />
+                <Input
+                    type="text"
+                    label="Dirección de correspondencia"
+                    name="datosPersonales.direccionCorrespondencia"
+                    error={errors.datosPersonales?.direccionCorrespondencia?.message}
+                />
+                <Select
+                    label="País de nacimiento"
+                    options={paisOptions}
+                    name="datosPersonales.paisCorrespondencia"
+                    error={errors.datosPersonales?.paisCorrespondencia?.message}
+                />
+                <Select
+                    label="Departamento de nacimiento"
+                    options={departamentoOptions}
+                    name="datosPersonales.departamentoCorrespondencia"
+                    error={errors.datosPersonales?.departamentoCorrespondencia?.message}
+                />
+                <Select
+                    label="Municipio de nacimiento"
+                    options={municipioOptions}
+                    name="datosPersonales.municipioCorrespondencia"
+                    error={errors.datosPersonales?.municipioCorrespondencia?.message}
+                />
+                 <Input
+                    type="email"
+                    label="Email"
+                    name="datosPersonales.email"
+                    error={errors.datosPersonales?.email?.message}
                 />
             </Form>
         </section>
