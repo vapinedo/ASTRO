@@ -5,15 +5,18 @@ import Form from "../../../../shared/components/form/Form";
 import { CurriculumNuevoInterface } from "../../../../models/CurriculumNuevoInterface";
 import DatosPersonalesForm, { datosPersonalesDefaultValues, datosPersonalesSchema } from "../../components/DatosPersonalesForm";
 import FormacionBasicaForm, { formacionBasicaDefaultValues, formacionBasicaSchema } from "../../components/FormacionBasicaForm";
+import FormacionSuperiorForm, { formacionSuperiorDefaultValues, formacionSuperiorSchema } from "../../components/FormacionSuperiorForm";
 
 let defaultValues: CurriculumNuevoInterface = {
     datosPersonales: datosPersonalesDefaultValues,
     formacionBasica: formacionBasicaDefaultValues,
+    formacionSuperior: formacionSuperiorDefaultValues,
 };
 
 const validationSchema = yup.object().shape({
     datosPersonales: datosPersonalesSchema,
     formacionBasica: formacionBasicaSchema,
+    formacionSuperior: formacionSuperiorSchema,
 });
 
 export default function CurriculumNuevo() {
@@ -53,6 +56,12 @@ export default function CurriculumNuevo() {
                     setValue={setValue}
                 />
                 <FormacionBasicaForm 
+                    errors={errors} 
+                    control={control}
+                    register={register}
+                    setValue={setValue}
+                />
+                <FormacionSuperiorForm 
                     errors={errors} 
                     control={control}
                     register={register}

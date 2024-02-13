@@ -1,6 +1,7 @@
 export interface CurriculumNuevoInterface {
     datosPersonales: DatosPersonales;
     formacionBasica: FormacionBasica;
+    formacionSuperior: FormacionSuperior;
 };
 
 export interface DatosPersonales {
@@ -30,4 +31,13 @@ export interface FormacionBasica {
     educacionBasica: string;
     tituloObtenido: string;
     fechaGraduacion: Date;
+}
+
+export interface FormacionSuperior {
+    modalidadAcademica: string;
+    numeroSemestresAprobados: string;
+    graduado: string;
+    tituloObtenido: string;
+    fechaTerminacion: Date;
+    numeroTarjetaProfesional?: string;
 }
