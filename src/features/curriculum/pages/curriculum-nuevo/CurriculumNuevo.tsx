@@ -22,17 +22,17 @@ let nacionalidadOptions = [
     { key: 'ext', value: 'Extranjero' },
 ];
 let paisOptions = [
-    { key: 'colombia', value: 'Colombia' },
-    { key: 'venezuela', value: 'Venezuela' },
+    { key: 'Colombia', value: 'Colombia' },
+    { key: 'Venezuela', value: 'Venezuela' },
 ];
 let departamentoOptions = [
-    { key: 'la guajira', value: 'La Guajira' },
-    { key: 'atlantico', value: 'Atlantico' },
+    { key: 'La Guajira', value: 'La Guajira' },
+    { key: 'Atlantico', value: 'Atlantico' },
 ];
 let municipioOptions = [
-    { key: 'uribia', value: 'Uribia' },
-    { key: 'manure', value: 'Manaure' },
-    { key: 'soledad', value: 'Soledad' },
+    { key: 'Uribia', value: 'Uribia' },
+    { key: 'Manure', value: 'Manaure' },
+    { key: 'Soledad', value: 'Soledad' },
 ];
 let tipoLibretaOptions = [
     { key: 'primera', value: 'Primera clase' },
@@ -134,6 +134,7 @@ export default function CurriculumNuevo() {
 
     const form = useForm<CurriculumNuevoInterface>({
         defaultValues,
+        mode: "onTouched",
         resolver: yupResolver(validationSchema)
     });
 
