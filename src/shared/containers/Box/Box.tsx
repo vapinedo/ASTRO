@@ -1,16 +1,12 @@
-import './Box.css';
+import "./Box.css";
 
-export default function Box({ children }) {
+export default function Box(props) {
 
-    // function handleDelete(uuid) {
-    //     // const newComponentInstances = componentInstances.filter();
-    //     console.log(componentInstances);
-    //     console.log(uuid);
-    // }
-
+    const { wrapperClass, children } = props;
+    
     return (
-        <section className='box'>
+        <article className={"box " + wrapperClass}>
             {children}
-        </section>
+        </article>
     )
 }
