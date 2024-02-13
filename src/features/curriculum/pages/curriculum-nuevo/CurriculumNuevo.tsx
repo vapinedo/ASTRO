@@ -64,31 +64,77 @@ let defaultValues: CurriculumNuevoInterface = {
     }
 };
 
-// const validationSchema = yup.object().shape({
-//     datosPersonales: yup.object().shape({
-//         primerApellido: yup
-//             .string()
-//             .required("Primer apellido es requerido"),
-//         segundoApellido: yup
-//             .string()
-//             .required("Segundo apellido es requerido"),
-//         nombres: yup
-//             .string()
-//             .required("Nombres es requerido"),
-//         tipoIdentificacion: yup
-//             .string()
-//             .required("Documento de identificacion es requerido"),
-//         numeroIdentificacion: yup
-//             .string()
-//             .required("Número de identificacion es requerido"),
-//     })
-// });
+const validationSchema = yup.object().shape({
+    datosPersonales: yup.object().shape({
+        primerApellido: yup
+            .string()
+            .required("Primer apellido es requerido"),
+        segundoApellido: yup
+            .string()
+            .required("Segundo apellido es requerido"),
+        nombres: yup
+            .string()
+            .required("Nombres es requerido"),
+        tipoIdentificacion: yup
+            .string()
+            .required("Documento de identificacion es requerido"),
+        numeroIdentificacion: yup
+            .string()
+            .required("Número de identificacion es requerido"),
+        sexo: yup
+            .string()
+            .required("Sexo es requerido"),
+        nacionalidad: yup
+            .string()
+            .required("Nacionalidad es requerido"),
+        pais: yup
+            .string()
+            .required("País es requerido"),
+        TipolibretaMilitar: yup
+            .string()
+            .required("Tipo libreta militar es requerido"),
+        numeroLibretaMilitar: yup
+            .string()
+            .required("Número libreta militar es requerido"),
+        distritoLibretaMilitar: yup
+            .string()
+            .required("Distrito libreta militar es requerido"),
+        fechaNacimiento: yup
+            .string()
+            .required("Fecha nacimiento es requerido"),
+        paisNacimiento: yup
+            .string()
+            .required("País nacimiento es requerido"),
+        departamentoNacimiento: yup
+            .string()
+            .required("Departamento nacimiento es requerido"),
+        municipioNacimiento: yup
+            .string()
+            .required("Município nacimiento es requerido"),
+        direccionCorrespondencia: yup
+            .string()
+            .required("Dirección correspondencia es requerido"),
+        paisCorrespondencia: yup
+            .string()
+            .required("País correspondencia es requerido"),
+        departamentoCorrespondencia: yup
+            .string()
+            .required("Departamento correspondencia es requerido"),
+        municipioCorrespondencia: yup
+            .string()
+            .required("município correspondencia es requerido"),
+        email: yup
+            .string()
+            .email("Email es inválido")
+            .required("Email es requerido"),       
+    })
+});
 
 export default function CurriculumNuevo() {
 
     const form = useForm<CurriculumNuevoInterface>({
         defaultValues,
-        // resolver: yupResolver(validationSchema)
+        resolver: yupResolver(validationSchema)
     });
 
     const { register, formState, handleSubmit, control, setValue } = form;
@@ -108,7 +154,7 @@ export default function CurriculumNuevo() {
             </header>
 
             <Box>
-                <h4>Datos Personales</h4>
+                <h4 className="mb-4">Datos Personales</h4>
 
                 <Form
                     buttonLabel="Crear"
