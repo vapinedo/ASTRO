@@ -14,7 +14,7 @@ export interface DatosPersonales {
     TipolibretaMilitar: string;
     numeroLibretaMilitar: string;
     distritoLibretaMilitar: string;
-    fechaNacimiento: string;
+    fechaNacimiento: Date;
     paisNacimiento: string;
     departamentoNacimiento: string;
     municipioNacimiento: string;

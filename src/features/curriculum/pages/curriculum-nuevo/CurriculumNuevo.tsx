@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Form from "../../../../shared/components/form/Form";
 import Input from "../../../../shared/components/form/Input";
 import Select from "../../../../shared/components/form/Select";
+import CustomDatePicker from "../../../../shared/components/form/CustomDatePicker";
 import { CurriculumNuevoInterface } from "../../../../models/CurriculumNuevoInterface";
 
 let tipoIdentificacionOptions = [
@@ -41,7 +42,7 @@ let defaultValues: CurriculumNuevoInterface = {
         TipolibretaMilitar: "",
         numeroLibretaMilitar: "",
         distritoLibretaMilitar: "",
-        fechaNacimiento: "",
+        fechaNacimiento: new Date(),
         paisNacimiento: "",
         departamentoNacimiento: "",
         municipioNacimiento: "",
@@ -80,7 +81,7 @@ export default function CurriculumNuevo() {
         // resolver: yupResolver(validationSchema)
     });
 
-    const { register, formState, handleSubmit } = form;
+    const { register, formState, handleSubmit, control, setValue } = form;
     const { errors } = formState;
 
     function onSubmit(data: CurriculumNuevoInterface) {
@@ -168,6 +169,13 @@ export default function CurriculumNuevo() {
                     label="Distrito libreta militar"
                     name="datosPersonales.distritoLibretaMilitar"
                     error={errors.datosPersonales?.distritoLibretaMilitar?.message}
+                />
+                <CustomDatePicker
+                    control={control}
+                    setValue={setValue}
+                    label="Fecha de nacimiento"
+                    name="datosPersonales.fechaNacimiento"
+                    error={errors.datosPersonales?.fechaNacimiento?.message}
                 />
             </Form>
         </section>
