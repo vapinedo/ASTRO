@@ -1,3 +1,4 @@
+import "./Form.css";
 import es from "date-fns/locale/es";
 import { Controller } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
@@ -52,7 +53,7 @@ export default function CustomDatePicker(props: InputProps): ReactNode {
               locale={"es"}
               selected={date}
               onChange={handleChange}
-              dateFormat="yyyy/MM/dd"
+              dateFormat="dd/MM/yyyy"
               {...rest}
             />
           )}
