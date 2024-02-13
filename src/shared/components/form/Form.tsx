@@ -27,7 +27,7 @@ export default function Form(props: IFormProps): ReactNode {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} {...rest} noValidate>
-      <div className="row">
+      <section className="row">
         {Array.isArray(children)
           ? children.map((child) => {
             return child.props.name
@@ -41,7 +41,7 @@ export default function Form(props: IFormProps): ReactNode {
               : child;
           })
           : children}
-      </div>
+      </section>
 
       <button className="btn btn-primary">{buttonLabel}</button>
     </form>
