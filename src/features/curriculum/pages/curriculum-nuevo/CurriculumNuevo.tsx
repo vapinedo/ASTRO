@@ -8,14 +8,14 @@ import FormacionSuperiorForm, { formacionSuperiorDefaultValues, formacionSuperio
 
 let defaultValues: CurriculumNuevoInterface = {
     datosPersonales: datosPersonalesDefaultValues,
-    // formacionBasica: formacionBasicaDefaultValues,
-    // formacionSuperior: formacionSuperiorDefaultValues,
+    formacionBasica: formacionBasicaDefaultValues,
+    formacionSuperior: formacionSuperiorDefaultValues,
 };
 
 const validationSchema = yup.object().shape({
     datosPersonales: datosPersonalesSchema,
-    // formacionBasica: formacionBasicaSchema,
-    // formacionSuperior: formacionSuperiorSchema,
+    formacionBasica: formacionBasicaSchema,
+    formacionSuperior: formacionSuperiorSchema,
 });
 
 export default function CurriculumNuevo() {
@@ -53,7 +53,7 @@ export default function CurriculumNuevo() {
                     register={register}
                     setValue={setValue}
                 />
-                {/* <FormacionBasicaForm 
+                <FormacionBasicaForm 
                     errors={errors} 
                     control={control}
                     register={register}
@@ -64,7 +64,7 @@ export default function CurriculumNuevo() {
                     control={control}
                     register={register}
                     setValue={setValue}
-                /> */}
+                />
 
                 <button type="submit" className="btn btn-primary">Crear</button>
             </form>

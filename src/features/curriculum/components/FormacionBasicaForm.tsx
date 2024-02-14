@@ -41,7 +41,7 @@ export const formacionBasicaSchema = yup.object().shape({
         .string()
         .required("Título obtenido es requerido"),
     fechaGraduacion: yup
-        .string()
+        .date()
         .required("Fecha graduación es requerido"),
 });
 

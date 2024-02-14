@@ -50,7 +50,7 @@ export const formacionSuperiorSchema = yup.object().shape({
         .string()
         .required("Título obtenido es requerido"),
     fechaTerminacion: yup
-        .string()
+        .date()
         .required("Fecha terminación es requerido"),
     numeroTarjetaProfesional: yup
         .string()
