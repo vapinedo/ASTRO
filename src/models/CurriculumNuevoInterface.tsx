@@ -1,7 +1,7 @@
 export interface CurriculumNuevoInterface {
     datosPersonales: DatosPersonales;
-    formacionBasica: FormacionBasica;
-    formacionSuperior: FormacionSuperior;
+    // formacionBasica: FormacionBasica;
+    // formacionSuperior: FormacionSuperior;
 };
 
 export interface DatosPersonales {
@@ -13,7 +13,7 @@ export interface DatosPersonales {
     sexo: string;
     nacionalidad: string;
     pais: string;
-    TipolibretaMilitar: string;
+    tipolibretaMilitar: string;
     numeroLibretaMilitar: string;
     distritoLibretaMilitar: string;
     fechaNacimiento: Date;

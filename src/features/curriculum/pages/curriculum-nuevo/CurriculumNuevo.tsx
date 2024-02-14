@@ -1,7 +1,6 @@
 import * as yup from "yup";
-import { useForm } from "react-hook-form";
+import { FieldError, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Form from "../../../../shared/components/form/Form";
 import { CurriculumNuevoInterface } from "../../../../models/CurriculumNuevoInterface";
 import DatosPersonalesForm, { datosPersonalesDefaultValues, datosPersonalesSchema } from "../../components/DatosPersonalesForm";
 import FormacionBasicaForm, { formacionBasicaDefaultValues, formacionBasicaSchema } from "../../components/FormacionBasicaForm";
@@ -9,14 +8,14 @@ import FormacionSuperiorForm, { formacionSuperiorDefaultValues, formacionSuperio
 
 let defaultValues: CurriculumNuevoInterface = {
     datosPersonales: datosPersonalesDefaultValues,
-    formacionBasica: formacionBasicaDefaultValues,
-    formacionSuperior: formacionSuperiorDefaultValues,
+    // formacionBasica: formacionBasicaDefaultValues,
+    // formacionSuperior: formacionSuperiorDefaultValues,
 };
 
 const validationSchema = yup.object().shape({
     datosPersonales: datosPersonalesSchema,
-    formacionBasica: formacionBasicaSchema,
-    formacionSuperior: formacionSuperiorSchema,
+    // formacionBasica: formacionBasicaSchema,
+    // formacionSuperior: formacionSuperiorSchema,
 });
 
 export default function CurriculumNuevo() {
@@ -30,7 +29,11 @@ export default function CurriculumNuevo() {
     const { register, formState, handleSubmit, control, setValue } = form;
     const { errors } = formState;
 
-    function onSubmit(data: CurriculumNuevoInterface) {
+    function onError(errors: any) {
+        console.log(errors);
+    }
+
+    function onSubmit(data: any) {
         console.log(data);
     }
 
@@ -43,19 +46,14 @@ export default function CurriculumNuevo() {
                 </div>
             </header>
 
-            <Form
-                buttonLabel="Crear"
-                register={register}
-                onSubmit={onSubmit}
-                handleSubmit={handleSubmit}
-            >
+            <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
                 <DatosPersonalesForm 
                     errors={errors} 
                     control={control}
                     register={register}
                     setValue={setValue}
                 />
-                <FormacionBasicaForm 
+                {/* <FormacionBasicaForm 
                     errors={errors} 
                     control={control}
                     register={register}
@@ -66,8 +64,10 @@ export default function CurriculumNuevo() {
                     control={control}
                     register={register}
                     setValue={setValue}
-                />
-            </Form>
+                /> */}
+
+                <button type="submit" className="btn btn-primary">Crear</button>
+            </form>
         </>
     );
 };

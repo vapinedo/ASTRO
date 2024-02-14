@@ -53,7 +53,7 @@ export const datosPersonalesDefaultValues: DatosPersonales = {
     sexo: "",
     nacionalidad: "",
     pais: "",
-    TipolibretaMilitar: "",
+    tipolibretaMilitar: "",
     numeroLibretaMilitar: "",
     distritoLibretaMilitar: "",
     fechaNacimiento: new Date(),
@@ -79,10 +79,10 @@ export const datosPersonalesSchema = yup.object().shape({
         .required("Nombres es requerido"),
     tipoIdentificacion: yup
         .string()
-        .required("Documento de identificacion es requerido"),
+        .required("Tipo ocumento es requerido"),
     numeroIdentificacion: yup
         .string()
-        .required("Número de identificacion es requerido"),
+        .required("Número documento es requerido"),
     sexo: yup
         .string()
         .required("Sexo es requerido"),
@@ -92,39 +92,39 @@ export const datosPersonalesSchema = yup.object().shape({
     pais: yup
         .string()
         .required("País es requerido"),
-    TipolibretaMilitar: yup
+    tipolibretaMilitar: yup
         .string()
-        .required("Tipo libreta militar es requerido"),
+        .required("Tipo libreta es requerido"),
     numeroLibretaMilitar: yup
         .string()
-        .required("Número libreta militar es requerido"),
+        .required("Número libreta es requerido"),
     distritoLibretaMilitar: yup
         .string()
-        .required("Distrito libreta militar es requerido"),
+        .required("Distrito libreta es requerido"),
     fechaNacimiento: yup
-        .string()
-        .required("Fecha nacimiento es requerido"),
+        .date()
+        .required("Fecha es requerido"),
     paisNacimiento: yup
         .string()
-        .required("País nacimiento es requerido"),
+        .required("País es requerido"),
     departamentoNacimiento: yup
         .string()
-        .required("Departamento nacimiento es requerido"),
+        .required("Departamento es requerido"),
     municipioNacimiento: yup
         .string()
-        .required("Município nacimiento es requerido"),
+        .required("Município es requerido"),
     direccionCorrespondencia: yup
         .string()
-        .required("Dirección correspondencia es requerido"),
+        .required("Dirección requerido"),
     paisCorrespondencia: yup
         .string()
-        .required("País correspondencia es requerido"),
+        .required("País es requerido"),
     departamentoCorrespondencia: yup
         .string()
-        .required("Departamento correspondencia es requerido"),
+        .required("Departamento es requerido"),
     municipioCorrespondencia: yup
         .string()
-        .required("município correspondencia es requerido"),
+        .required("município es requerido"),
     email: yup
         .string()
         .email("Email es inválido")
@@ -209,8 +209,8 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 label="Tipo libreta militar"
                 wrapperClass="mb-3 col-md-3"
                 options={tipoLibretaOptions}
-                name="datosPersonales.TipolibretaMilitar"
-                error={errors.datosPersonales?.TipolibretaMilitar?.message}
+                name="datosPersonales.tipolibretaMilitar"
+                error={errors.datosPersonales?.tipolibretaMilitar?.message}
             />
             <Input
                 type="text"
