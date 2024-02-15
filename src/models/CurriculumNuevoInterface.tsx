@@ -1,7 +1,7 @@
 export interface CurriculumNuevoInterface {
     datosPersonales: DatosPersonales;
     formacionBasica: FormacionBasica;
-    formacionSuperior: FormacionSuperior;
+    formacionSuperior: FormacionSuperior[];
 };
 
 export interface DatosPersonales {

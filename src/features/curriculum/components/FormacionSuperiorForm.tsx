@@ -1,6 +1,5 @@
 import * as yup from "yup";
 import { ReactNode } from "react";
-import Box from "../../../shared/containers/Box/Box";
 import Input from "../../../shared/components/form/Input";
 import Select from "../../../shared/components/form/Select";
 import { FormacionSuperior } from "../../../models/CurriculumNuevoInterface";
@@ -25,6 +24,7 @@ interface InputProps {
     control: any;
     setValue: any;
     register: any;
+    index: any;
 }
 
 export const formacionSuperiorDefaultValues: FormacionSuperior = {
@@ -59,61 +59,59 @@ export const formacionSuperiorSchema = yup.object().shape({
 
 export default function FormacionSuperiorForm(props: InputProps): ReactNode {
 
-    const { errors, control, setValue, register } = props;
+    const { errors, control, setValue, register, index } = props;
 
     return (
-        <Box  wrapperClass="row">
-            <h4 className="mb-4">Formación Superior</h4>
-
+        <article className="row">
             <Select
                 register={register}
-                wrapperClass="mb-3 col-md-4"
                 label="Modalidad académica"
+                wrapperClass="mb-3 col-md-4"
                 options={modalidadAcademicaOptions}
-                name="formacionSuperior.modalidadAcademica"
-                error={errors.formacionSuperior?.modalidadAcademica?.message}
+                name={`formacionSuperior.${index}.modalidadAcademica`}
+                error={errors.formacionSuperior && errors.formacionSuperior[index]?.modalidadAcademica?.message}
             />
             <Input
                 type="text"
                 register={register}
                 wrapperClass="mb-3 col-md-4"
                 label="Número semestres aprobados"
-                name="formacionSuperior.numeroSemestresAprobados"
-                error={errors.formacionSuperior?.numeroSemestresAprobados?.message}
+                name={`formacionSuperior.${index}.numeroSemestresAprobados`}
+                error={errors.formacionSuperior && errors.formacionSuperior[index]?.numeroSemestresAprobados?.message}
             />
             <Select
                 register={register}
-                wrapperClass="mb-3 col-md-4"
                 label="Graduado"
                 options={SiNoOptions}
-                name="formacionSuperior.graduado"
-                error={errors.formacionSuperior?.graduado?.message}
+                wrapperClass="mb-3 col-md-4"
+                name={`formacionSuperior.${index}.graduado`}
+                error={errors.formacionSuperior && errors.formacionSuperior[index]?.graduado?.message}               
             />
             <Input
                 type="text"
                 register={register}
-                wrapperClass="mb-3 col-md-4"
                 label="Título obtenido"
-                name="formacionSuperior.tituloObtenido"
-                error={errors.formacionSuperior?.tituloObtenido?.message}
+                wrapperClass="mb-3 col-md-4"
+                name={`formacionSuperior.${index}.tituloObtenido`}
+                error={errors.formacionSuperior && errors.formacionSuperior[index]?.tituloObtenido?.message}
             />
             <CustomDatePicker
                 control={control}
                 register={register}
-                wrapperClass="mb-3 col-md-4"
                 setValue={setValue}
+                wrapperClass="mb-3 col-md-4"
                 label="Fecha de terminación"
-                name="formacionSuperior.fechaTerminacion"
-                error={errors.formacionSuperior?.fechaTerminacion?.message}
+                name={`formacionSuperior.${index}.fechaTerminacion`}
+                error={errors.formacionSuperior && errors.formacionSuperior[index]?.fechaTerminacion?.message}                
             />
             <Input
                 type="text"
                 register={register}
                 wrapperClass="mb-3 col-md-4"
                 label="Número tarjeta profesional"
-                name="formacionSuperior.numeroTarjetaProfesional"
-                error={errors.formacionSuperior?.numeroTarjetaProfesional?.message}
+                name={`formacionSuperior.${index}.numeroTarjetaProfesional`}
+                error={errors.formacionSuperior && errors.formacionSuperior[index]?.numeroTarjetaProfesional?.message}                                
             />
-        </Box>
+        </article>
     )
 }
