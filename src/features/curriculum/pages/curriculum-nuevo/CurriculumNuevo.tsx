@@ -1,11 +1,11 @@
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Box from "../../../../shared/containers/Box/Box";
 import { FieldErrors, useForm, useFieldArray } from "react-hook-form";
 import { CurriculumNuevoInterface } from "../../../../models/CurriculumNuevoInterface";
 import DatosPersonalesForm, { datosPersonalesDefaultValues, datosPersonalesSchema } from "../../components/DatosPersonalesForm";
 import FormacionBasicaForm, { formacionBasicaDefaultValues, formacionBasicaSchema } from "../../components/FormacionBasicaForm";
 import FormacionSuperiorForm, { formacionSuperiorDefaultValues, formacionSuperiorSchema } from "../../components/FormacionSuperiorForm";
-import Box from "../../../../shared/containers/Box/Box";
 
 let defaultValues: CurriculumNuevoInterface = {
     datosPersonales: datosPersonalesDefaultValues,
@@ -16,28 +16,7 @@ let defaultValues: CurriculumNuevoInterface = {
 const validationSchema = yup.object().shape({
     datosPersonales: datosPersonalesSchema,
     formacionBasica: formacionBasicaSchema,
-    formacionSuperior: yup.array().of(
-        yup.object().shape({
-            modalidadAcademica: yup
-                .string()
-                .required("Modalidad académica es requerido"),
-            numeroSemestresAprobados: yup
-                .string()
-                .required("Numero semestres es requerido"),
-            graduado: yup
-                .string()
-                .required("Graduado es requerido"),
-            tituloObtenido: yup
-                .string()
-                .required("Título obtenido es requerido"),
-            fechaTerminacion: yup
-                .date()
-                .required("Fecha terminación es requerido"),
-            numeroTarjetaProfesional: yup
-                .string()
-                .required("Tarjeta profesional es requerido"),
-        })
-    )
+    formacionSuperior: yup.array().of(formacionSuperiorSchema)
 });
 
 export default function CurriculumNuevo() {
@@ -78,10 +57,10 @@ export default function CurriculumNuevo() {
 
     return (
         <>
-            <header className='page-header'>
+            <header className="page-header">
                 <h2>Curriculum nuevo</h2>
                 <div>
-                    <button className='btn btn-outline-danger'>Ir Atrás</button>
+                    <button className="btn btn-outline-danger">Ir Atrás</button>
                 </div>
             </header>
 
@@ -99,19 +78,23 @@ export default function CurriculumNuevo() {
                     setValue={setValue}
                 />
 
-                <Box>
-                    <button onClick={handleAppend} className="btn btn-sm btn-success">Add</button>
-                    <h4 className="mb-4">Formación Superior</h4>
+                <Box wrapperClass="row">
+                    <header className="inline-flex">
+                        <h4 className="mb-4">Formación Superior</h4>
+                        <button onClick={handleAppend} className="btn btn-sm btn-success">Add</button>
+                    </header>
 
                     {fields.map((field, index) => (
-                        <FormacionSuperiorForm
-                            index={index}
-                            key={field.id}
-                            errors={errors}
-                            control={control}
-                            register={register}
-                            setValue={setValue}
-                        />
+                        <div key={field.id} className={index > 0 ? "dynamic-fields" : ""}>
+                            <FormacionSuperiorForm
+                                index={index}
+                                errors={errors}
+                                control={control}
+                                register={register}
+                                setValue={setValue}
+                            />
+                            {index > 0 && <i onClick={() => remove(index)} className="icon bx bx-trash-alt" title="Eliminar"></i>}
+                        </div>
                     ))}
                 </Box>
 

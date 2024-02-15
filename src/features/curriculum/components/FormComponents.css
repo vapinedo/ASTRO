@@ -1,0 +1,20 @@
+.dynamic-fields {
+    gap: 30px;
+    display: flex;
+    margin-top: 15px;
+    padding-top: 18px;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 2px dashed rgb(233, 227, 227);
+}
+.dynamic-fields .icon {
+    color: red;
+    padding: 10px;
+    font-size: 26px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.dynamic-fields .icon:hover {
+    color: white;
+    background-color: red;
+}

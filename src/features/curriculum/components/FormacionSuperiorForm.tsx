@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import "./FormComponents.css";
 import { ReactNode } from "react";
 import Input from "../../../shared/components/form/Input";
 import Select from "../../../shared/components/form/Select";
@@ -62,7 +63,7 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
     const { errors, control, setValue, register, index } = props;
 
     return (
-        <article className="row">
+        <div className="row">
             <Select
                 register={register}
                 label="Modalidad académica"
@@ -112,6 +113,6 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
                 name={`formacionSuperior.${index}.numeroTarjetaProfesional`}
                 error={errors.formacionSuperior && errors.formacionSuperior[index]?.numeroTarjetaProfesional?.message}                                
             />
-        </article>
+        </div>
     )
 }
