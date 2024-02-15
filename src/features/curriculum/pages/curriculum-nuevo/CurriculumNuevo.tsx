@@ -1,6 +1,7 @@
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldErrors, useForm } from "react-hook-form";
+import IdiomaForm, { idiomasDefaultValues } from "../../components/IdiomaForm";
 import { CurriculumNuevoInterface } from "../../../../models/CurriculumNuevoInterface";
 import DatosPersonalesForm, { datosPersonalesDefaultValues, datosPersonalesSchema } from "../../components/DatosPersonalesForm";
 import FormacionBasicaForm, { formacionBasicaDefaultValues, formacionBasicaSchema } from "../../components/FormacionBasicaForm";
@@ -10,12 +11,13 @@ let defaultValues: CurriculumNuevoInterface = {
     datosPersonales: datosPersonalesDefaultValues,
     formacionBasica: formacionBasicaDefaultValues,
     formacionSuperior: [formacionSuperiorDefaultValues],
+    idiomas: [idiomasDefaultValues],
 };
 
 const validationSchema = yup.object().shape({
     datosPersonales: datosPersonalesSchema,
     formacionBasica: formacionBasicaSchema,
-    formacionSuperior: yup.array().of(formacionSuperiorSchema)
+    formacionSuperior: yup.array().of(formacionSuperiorSchema),
 });
 
 export default function CurriculumNuevo() {
@@ -64,6 +66,11 @@ export default function CurriculumNuevo() {
                     control={control}
                     register={register}
                     setValue={setValue}
+                />
+                <IdiomaForm
+                    errors={errors}
+                    control={control}
+                    register={register}
                 />
                 <button type="submit" className="btn btn-primary">Crear</button>
             </form>

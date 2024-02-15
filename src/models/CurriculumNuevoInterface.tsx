@@ -2,6 +2,7 @@ export interface CurriculumNuevoInterface {
     datosPersonales: DatosPersonales;
     formacionBasica: FormacionBasica;
     formacionSuperior: FormacionSuperior[];
+    idiomas: Idioma[];
 };
 
 export interface DatosPersonales {
@@ -40,4 +41,11 @@ export interface FormacionSuperior {
     tituloObtenido: string;
     fechaTerminacion: Date;
     numeroTarjetaProfesional: string;
+}
+
+export interface Idioma {
+    idioma: string;
+    loHabla: string;
+    loLee: string;
+    loEscribie: string;
 }
