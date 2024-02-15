@@ -3,6 +3,7 @@ export interface CurriculumNuevoInterface {
     formacionBasica: FormacionBasica;
     formacionSuperior: FormacionSuperior[];
     idiomas: Idioma[];
+    experienciaLaboral: ExperienciaLaboral[];
 };
 
 export interface DatosPersonales {
@@ -48,4 +49,19 @@ export interface Idioma {
     loHabla: string;
     loLee: string;
     loEscribie: string;
+}
+
+export interface ExperienciaLaboral {
+    empresa: string;
+    tipoEmpresa: string;
+    pais: string;
+    departamento: string;
+    municipio: string;
+    email: string;
+    telefono: string;
+    fechaIngreso: Date;
+    fechaRetiro: Date;
+    cargo: string;
+    dependencia: string;
+    direccion: string;
 }

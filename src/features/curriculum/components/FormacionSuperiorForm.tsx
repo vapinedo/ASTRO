@@ -56,9 +56,6 @@ export const formacionSuperiorSchema = yup.object().shape({
     fechaTerminacion: yup
         .date()
         .required("Fecha terminación es requerido"),
-    numeroTarjetaProfesional: yup
-        .string()
-        .required("Tarjeta profesional es requerido"),
 });
 
 export default function FormacionSuperiorForm(props: InputProps): ReactNode {

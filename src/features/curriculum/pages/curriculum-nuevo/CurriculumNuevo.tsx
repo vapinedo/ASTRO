@@ -6,18 +6,21 @@ import { CurriculumNuevoInterface } from "../../../../models/CurriculumNuevoInte
 import DatosPersonalesForm, { datosPersonalesDefaultValues, datosPersonalesSchema } from "../../components/DatosPersonalesForm";
 import FormacionBasicaForm, { formacionBasicaDefaultValues, formacionBasicaSchema } from "../../components/FormacionBasicaForm";
 import FormacionSuperiorForm, { formacionSuperiorDefaultValues, formacionSuperiorSchema } from "../../components/FormacionSuperiorForm";
+import ExperienciaLaboralForm, { experienciaLaboralDefaultValues, experienciaLaboralSchema } from "../../components/ExperienciaLaboralForm";
 
 let defaultValues: CurriculumNuevoInterface = {
     datosPersonales: datosPersonalesDefaultValues,
     formacionBasica: formacionBasicaDefaultValues,
     formacionSuperior: [formacionSuperiorDefaultValues],
     idiomas: [idiomasDefaultValues],
+    experienciaLaboral: [experienciaLaboralDefaultValues],
 };
 
 const validationSchema = yup.object().shape({
     datosPersonales: datosPersonalesSchema,
     formacionBasica: formacionBasicaSchema,
     formacionSuperior: yup.array().of(formacionSuperiorSchema),
+    // experienciaLaboral: yup.array().of(experienciaLaboralSchema)
 });
 
 export default function CurriculumNuevo() {
@@ -71,6 +74,12 @@ export default function CurriculumNuevo() {
                     errors={errors}
                     control={control}
                     register={register}
+                />
+                <ExperienciaLaboralForm
+                    errors={errors}
+                    control={control}
+                    register={register}
+                    setValue={setValue}
                 />
                 <button type="submit" className="btn btn-primary">Crear</button>
             </form>
