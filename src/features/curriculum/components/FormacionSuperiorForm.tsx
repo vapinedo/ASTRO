@@ -29,6 +29,8 @@ interface InputProps {
     register: any;
 }
 
+const MAXIMUMS_INSTANCES = 5;
+
 export const formacionSuperiorDefaultValues: FormacionSuperior = {
     modalidadAcademica: "",
     numeroSemestresAprobados: "",
@@ -69,6 +71,8 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
     });
 
     function handleAppend(event: any) {
+        if (fields.length === 5) return;
+        
         event.preventDefault();
         append({
             modalidadAcademica: "",
@@ -84,7 +88,7 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
         <Box wrapperClass="row">
             <header className="inline-flex">
                 <h4 className="mb-4">Formación Superior</h4>
-                <button onClick={handleAppend} className="btn btn-sm btn-success">Add</button>
+                {(fields.length < 5) && <button onClick={handleAppend} className="btn btn-sm btn-success">Add</button>}
             </header>
 
             {fields.map((field, index) => (
