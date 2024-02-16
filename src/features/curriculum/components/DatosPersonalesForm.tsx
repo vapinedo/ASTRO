@@ -71,18 +71,22 @@ export const datosPersonalesDefaultValues: DatosPersonales = {
 export const datosPersonalesSchema = yup.object().shape({
     primerApellido: yup
         .string()
+        .min(3, "Mínimo 3 caracteres")
         .required("Primer apellido es requerido"),
     segundoApellido: yup
         .string()
+        .min(3, "Mínimo 3 caracteres")
         .required("Segundo apellido es requerido"),
     nombres: yup
         .string()
+        .min(3, "Mínimo 3 caracteres")
         .required("Nombres es requerido"),
     tipoIdentificacion: yup
         .string()
         .required("Tipo ocumento es requerido"),
     numeroIdentificacion: yup
-        .string()
+        .number()
+        .typeError("Solo ingrese números")
         .required("Número documento es requerido"),
     sexo: yup
         .string()
@@ -125,6 +129,7 @@ export const datosPersonalesSchema = yup.object().shape({
         .required("Município es requerido"),
     direccionCorrespondencia: yup
         .string()
+        .min(7, "Mínimo 7 caracteres")
         .required("Dirección requerido"),
     paisCorrespondencia: yup
         .string()
