@@ -53,6 +53,7 @@ export const experienciaLaboralDefaultValues: ExperienciaLaboral = {
 export const experienciaLaboralSchema = yup.object().shape({
     empresa: yup
         .string()
+        .min(3, "Mínimo 3 caracteres")
         .required("Empresa es requerido"),
     tipoEmpresa: yup
         .string()
@@ -80,12 +81,15 @@ export const experienciaLaboralSchema = yup.object().shape({
         .required("Fecha retiro es requerido"),
     cargo: yup
         .string()
+        .min(6, "Mínimo 6 caracteres")
         .required("Cargo es requerido"),
     dependencia: yup
         .string()
+        .min(4, "Mínimo 4 caracteres")
         .required("Dependencia es requerido"),
     direccion: yup
         .string()
+        .min(4, "Mínimo 4 caracteres")
         .required("Dirección es requerido"),
 });
 
