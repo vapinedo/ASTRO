@@ -39,6 +39,7 @@ export const formacionBasicaSchema = yup.object().shape({
         .required("Educación básica es requerido"),
     tituloObtenido: yup
         .string()
+        .min(9, "Mínimo 9 caracteres")
         .required("Título obtenido es requerido"),
     fechaGraduacion: yup
         .date()
