@@ -31,7 +31,7 @@ export default function CurriculumNuevo() {
         resolver: yupResolver(validationSchema)
     });
 
-    const { register, formState, handleSubmit, control, setValue } = form;
+    const { register, formState, handleSubmit, control, setValue, watch } = form;
     const { errors } = formState;
 
     function onError(errors: FieldErrors<CurriculumNuevoInterface>) {
@@ -53,6 +53,7 @@ export default function CurriculumNuevo() {
 
             <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
                 <DatosPersonalesForm
+                    watch={watch}
                     errors={errors}
                     control={control}
                     register={register}

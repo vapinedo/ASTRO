@@ -12,8 +12,8 @@ const tipoIdentificacionOptions = [
     { key: "pas", value: "Pasaporte" },
 ];
 const sexoOptions = [
-    { key: "m", value: "Hombre" },
-    { key: "f", value: "Mujer" },
+    { key: "h", value: "Hombre" },
+    { key: "m", value: "Mujer" },
 ];
 const nacionalidadOptions = [
     { key: "col", value: "Colombiano" },
@@ -38,6 +38,7 @@ const tipoLibretaOptions = [
 ];
 
 interface InputProps {
+    watch: any;
     errors: any;
     control: any;
     setValue: any;
@@ -94,13 +95,22 @@ export const datosPersonalesSchema = yup.object().shape({
         .required("País es requerido"),
     tipolibretaMilitar: yup
         .string()
-        .required("Tipo libreta es requerido"),
+        .when("sexo", {
+            is: "h",
+            then: (datosPersonalesSchema) => datosPersonalesSchema.required("Tipo libreta es requerido"),
+        }),
     numeroLibretaMilitar: yup
         .string()
-        .required("Número libreta es requerido"),
+        .when("sexo", {
+            is: "h",
+            then: (datosPersonalesSchema) => datosPersonalesSchema.required("Número libreta es requerido")
+        }),
     distritoLibretaMilitar: yup
         .string()
-        .required("Distrito libreta es requerido"),
+        .when("sexo", {
+            is: "h",
+            then: (datosPersonalesSchema) => datosPersonalesSchema.required("Distrito libreta es requerido")
+        }),
     fechaNacimiento: yup
         .date()
         .required("Fecha es requerido"),
@@ -128,15 +138,15 @@ export const datosPersonalesSchema = yup.object().shape({
     email: yup
         .string()
         .email("Email es inválido")
-        .required("Email es requerido"),       
+        .required("Email es requerido"),
 });
 
 export default function DatosPersonalesForm(props: InputProps): ReactNode {
 
-    const { errors, control, setValue, register } = props;
+    const { errors, control, setValue, register, watch } = props;
 
     return (
-        <Box  wrapperClass="row">
+        <Box wrapperClass="row">
             <h4 className="mb-4">Datos Personales</h4>
 
             <Input
@@ -204,30 +214,30 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 wrapperClass="mb-3 col-md-3"
                 error={errors.datosPersonales?.pais?.message}
             />
-            <Select
+            {(watch("datosPersonales.sexo") === "h") && (<Select
                 register={register}
                 label="Tipo libreta militar"
                 wrapperClass="mb-3 col-md-3"
                 options={tipoLibretaOptions}
                 name="datosPersonales.tipolibretaMilitar"
                 error={errors.datosPersonales?.tipolibretaMilitar?.message}
-            />
-            <Input
+            />)}
+            {(watch("datosPersonales.sexo") === "h") && (<Input
                 type="text"
                 register={register}
                 wrapperClass="mb-3 col-md-3"
                 label="Número libreta militar"
                 name="datosPersonales.numeroLibretaMilitar"
                 error={errors.datosPersonales?.numeroLibretaMilitar?.message}
-            />
-            <Input
+            />)}
+            {(watch("datosPersonales.sexo") === "h") && (<Input
                 type="text"
                 register={register}
                 wrapperClass="mb-3 col-md-3"
                 label="Distrito libreta militar"
                 name="datosPersonales.distritoLibretaMilitar"
                 error={errors.datosPersonales?.distritoLibretaMilitar?.message}
-            />
+            />)}
             <CustomDatePicker
                 control={control}
                 register={register}
