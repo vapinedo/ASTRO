@@ -45,13 +45,16 @@ export const formacionSuperiorSchema = yup.object().shape({
         .string()
         .required("Modalidad académica es requerido"),
     numeroSemestresAprobados: yup
-        .string()
+        .number()
+        .typeError("Solo ingrese números")
+        .moreThan(0, "Debe ser mayor que cero")
         .required("Numero semestres es requerido"),
     graduado: yup
         .string()
         .required("Graduado es requerido"),
     tituloObtenido: yup
         .string()
+        .min(6, "Mínimo 6 caracteres")
         .required("Título obtenido es requerido"),
     fechaTerminacion: yup
         .date()
