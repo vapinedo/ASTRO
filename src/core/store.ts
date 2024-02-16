@@ -5,6 +5,9 @@ const store = configureStore({
     reducer: {
         curriculum: curriculumReducer,
     },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: false,
+    }),
 })
 
 export default store
