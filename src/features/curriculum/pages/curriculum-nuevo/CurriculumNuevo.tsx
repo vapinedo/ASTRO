@@ -1,14 +1,16 @@
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldErrors, useForm } from "react-hook-form";
+import { Curriculum } from "../../../../models/Curriculum";
 import IdiomaForm, { idiomasDefaultValues } from "../../components/IdiomaForm";
-import { CurriculumNuevoInterface } from "../../../../models/CurriculumNuevoInterface";
 import DatosPersonalesForm, { datosPersonalesDefaultValues, datosPersonalesSchema } from "../../components/DatosPersonalesForm";
 import FormacionBasicaForm, { formacionBasicaDefaultValues, formacionBasicaSchema } from "../../components/FormacionBasicaForm";
 import FormacionSuperiorForm, { formacionSuperiorDefaultValues, formacionSuperiorSchema } from "../../components/FormacionSuperiorForm";
 import ExperienciaLaboralForm, { experienciaLaboralDefaultValues, experienciaLaboralSchema } from "../../components/ExperienciaLaboralForm";
 
-let defaultValues: CurriculumNuevoInterface = {
+import { getFirestore, addDoc, collection } from 'firebase/firestore';
+
+let defaultValues: Curriculum = {
     datosPersonales: datosPersonalesDefaultValues,
     formacionBasica: formacionBasicaDefaultValues,
     formacionSuperior: [formacionSuperiorDefaultValues],
@@ -25,7 +27,7 @@ const validationSchema = yup.object().shape({
 
 export default function CurriculumNuevo() {
 
-    const form = useForm<CurriculumNuevoInterface>({
+    const form = useForm<Curriculum>({
         defaultValues,
         mode: "onTouched",
         resolver: yupResolver(validationSchema)
@@ -34,12 +36,19 @@ export default function CurriculumNuevo() {
     const { register, formState, handleSubmit, control, setValue, watch } = form;
     const { errors } = formState;
 
-    function onError(errors: FieldErrors<CurriculumNuevoInterface>) {
+    function onError(errors: FieldErrors<Curriculum>) {
         console.log(errors);
     }
 
     function onSubmit(data: any) {
+        const db = getFirestore();
         console.log(data);
+
+        const saveDataToFirestore = async () => {
+            const docRef = await addDoc(collection(db, "curriculums"), data);
+            console.log("docRef", docRef);
+        };
+        saveDataToFirestore();
     }
 
     return (

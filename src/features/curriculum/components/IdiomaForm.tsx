@@ -4,7 +4,7 @@ import { useFieldArray } from "react-hook-form";
 import Box from "../../../shared/containers/Box/Box";
 import Input from "../../../shared/components/form/Input";
 import Select from "../../../shared/components/form/Select";
-import { Idioma } from "../../../models/CurriculumNuevoInterface";
+import { Idioma } from "../../../models/Curriculum";
 
 const idiomaOptions = [
     { key: "r", value: "Regular" },

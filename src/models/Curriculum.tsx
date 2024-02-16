@@ -1,4 +1,4 @@
-export interface CurriculumNuevoInterface {
+export interface Curriculum {
     datosPersonales: DatosPersonales;
     formacionBasica: FormacionBasica;
     formacionSuperior: FormacionSuperior[];

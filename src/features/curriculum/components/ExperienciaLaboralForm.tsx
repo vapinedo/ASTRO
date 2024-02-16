@@ -5,7 +5,7 @@ import { useFieldArray } from "react-hook-form";
 import Box from "../../../shared/containers/Box/Box";
 import Input from "../../../shared/components/form/Input";
 import Select from "../../../shared/components/form/Select";
-import { ExperienciaLaboral } from "../../../models/CurriculumNuevoInterface";
+import { ExperienciaLaboral } from "../../../models/Curriculum";
 import CustomDatePicker from "../../../shared/components/form/CustomDatePicker";
 
 const paisOptions = [
