@@ -48,7 +48,7 @@ export interface Idioma {
     idioma: string;
     loHabla: string;
     loLee: string;
-    loEscribie: string;
+    loEscribe: string;
 }
 
 export interface ExperienciaLaboral {

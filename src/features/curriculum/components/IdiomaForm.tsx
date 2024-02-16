@@ -1,4 +1,3 @@
-import * as yup from "yup";
 import "./FormComponents.css";
 import { ReactNode } from "react";
 import { useFieldArray } from "react-hook-form";
@@ -25,7 +24,7 @@ export const idiomasDefaultValues: Idioma = {
     idioma: "",
     loHabla: "",
     loLee: "",
-    loEscribie: "",
+    loEscribe: "",
 };
 
 export default function IdiomaForm(props: InputProps): ReactNode {
@@ -46,7 +45,7 @@ export default function IdiomaForm(props: InputProps): ReactNode {
             idioma: "",
             loHabla: "",
             loLee: "",
-            loEscribie: "",
+            loEscribe: "",
         });
     }
 
