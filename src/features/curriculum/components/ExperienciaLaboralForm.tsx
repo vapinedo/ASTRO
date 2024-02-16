@@ -5,7 +5,7 @@ import { useFieldArray } from "react-hook-form";
 import Box from "../../../shared/containers/Box/Box";
 import Input from "../../../shared/components/form/Input";
 import Select from "../../../shared/components/form/Select";
-import { experienciaLaboral } from "../../../models/CurriculumNuevoInterface";
+import { ExperienciaLaboral } from "../../../models/CurriculumNuevoInterface";
 import CustomDatePicker from "../../../shared/components/form/CustomDatePicker";
 
 const paisOptions = [
@@ -35,7 +35,7 @@ interface InputProps {
 
 const MAXIMUM_INSTANCES = 4;
 
-export const experienciaLaboralDefaultValues: experienciaLaboral = {
+export const experienciaLaboralDefaultValues: ExperienciaLaboral = {
     empresa: "",
     tipoEmpresa: "",
     pais: "",
@@ -64,7 +64,7 @@ export const experienciaLaboralSchema = yup.object().shape({
         .string()
         .required("Departamento es requerido"),
     municipio: yup
-        .date()
+        .string()
         .required("Municipio es requerido"),
     email: yup
         .string()
@@ -73,10 +73,10 @@ export const experienciaLaboralSchema = yup.object().shape({
         .string()
         .required("Teléfono es requerido"),
     fechaIngreso: yup
-        .string()
+        .date()
         .required("Fecha ingreso es requerido"),
     fechaRetiro: yup
-        .string()
+        .date()
         .required("Fecha retiro es requerido"),
     cargo: yup
         .string()

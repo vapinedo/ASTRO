@@ -20,14 +20,14 @@ const validationSchema = yup.object().shape({
     datosPersonales: datosPersonalesSchema,
     formacionBasica: formacionBasicaSchema,
     formacionSuperior: yup.array().of(formacionSuperiorSchema),
-    // experienciaLaboral: yup.array().of(experienciaLaboralSchema)
+    experienciaLaboral: yup.array().of(experienciaLaboralSchema)
 });
 
 export default function CurriculumNuevo() {
 
     const form = useForm<CurriculumNuevoInterface>({
         defaultValues,
-        mode: "onTouched",
+        mode: "onBlur",
         resolver: yupResolver(validationSchema)
     });
 
