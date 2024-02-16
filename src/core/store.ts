@@ -6,7 +6,7 @@ const store = configureStore({
         curriculum: curriculumReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-        serializableCheck: false,
+        serializableCheck: true,
     }),
 })
 

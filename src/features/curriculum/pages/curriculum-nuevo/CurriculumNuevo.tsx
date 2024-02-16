@@ -42,11 +42,8 @@ export default function CurriculumNuevo() {
 
     function onSubmit(data: any) {
         const db = getFirestore();
-        console.log(data);
-
         const saveDataToFirestore = async () => {
             const docRef = await addDoc(collection(db, "curriculums"), data);
-            console.log("docRef", docRef);
         };
         saveDataToFirestore();
     }
