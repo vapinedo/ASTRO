@@ -95,54 +95,57 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
 
             {fields.map((field, index) => (
                 <div key={field.id} className={index > 0 ? "dynamic-fields" : ""}>
-                    <Stack direction="row" spacing={4}>
-                        <SelectField
-                            register={register}
-                            label="Modalidad académica"
-                            options={modalidadAcademicaOptions}
-                            name={`formacionSuperior.${index}.modalidadAcademica`}
-                            error={errors.formacionSuperior && errors.formacionSuperior[index]?.modalidadAcademica?.message}
-                        />
-                        <InputField
-                            type="text"
-                            register={register}
-                            label="Número semestres aprobados"
-                            name={`formacionSuperior.${index}.numeroSemestresAprobados`}
-                            error={errors.formacionSuperior && errors.formacionSuperior[index]?.numeroSemestresAprobados?.message}
-                        />
-                        <SelectField
-                            register={register}
-                            label="Graduado"
-                            options={SiNoOptions}
-                            name={`formacionSuperior.${index}.graduado`}
-                            error={errors.formacionSuperior && errors.formacionSuperior[index]?.graduado?.message}
-                        />
-                    </Stack>
+                    <div className="inner">
+                        <Stack direction="row" spacing={4}>
+                            <SelectField
+                                register={register}
+                                label="Modalidad académica"
+                                options={modalidadAcademicaOptions}
+                                name={`formacionSuperior.${index}.modalidadAcademica`}
+                                error={errors.formacionSuperior && errors.formacionSuperior[index]?.modalidadAcademica?.message}
+                            />
+                            <InputField
+                                type="text"
+                                register={register}
+                                label="Número semestres aprobados"
+                                name={`formacionSuperior.${index}.numeroSemestresAprobados`}
+                                error={errors.formacionSuperior && errors.formacionSuperior[index]?.numeroSemestresAprobados?.message}
+                            />
+                            <SelectField
+                                register={register}
+                                label="Graduado"
+                                options={SiNoOptions}
+                                name={`formacionSuperior.${index}.graduado`}
+                                error={errors.formacionSuperior && errors.formacionSuperior[index]?.graduado?.message}
+                            />
+                        </Stack>
 
-                    <Stack direction="row" spacing={4} mt={4}>
-                        <InputField
-                            type="text"
-                            register={register}
-                            label="Título obtenido"
-                            name={`formacionSuperior.${index}.tituloObtenido`}
-                            error={errors.formacionSuperior && errors.formacionSuperior[index]?.tituloObtenido?.message}
-                        />
-                        <DatePickerField
-                            control={control}
-                            register={register}
-                            setValue={setValue}
-                            label="Fecha de terminación"
-                            name={`formacionSuperior.${index}.fechaTerminacion`}
-                            error={errors.formacionSuperior && errors.formacionSuperior[index]?.fechaTerminacion?.message}
-                        />
-                        <InputField
-                            type="text"
-                            register={register}
-                            label="Número tarjeta profesional"
-                            name={`formacionSuperior.${index}.numeroTarjetaProfesional`}
-                            error={errors.formacionSuperior && errors.formacionSuperior[index]?.numeroTarjetaProfesional?.message}
-                        />
-                    </Stack>
+                        <Stack direction="row" spacing={4} mt={4}>
+                            <InputField
+                                type="text"
+                                register={register}
+                                label="Título obtenido"
+                                name={`formacionSuperior.${index}.tituloObtenido`}
+                                error={errors.formacionSuperior && errors.formacionSuperior[index]?.tituloObtenido?.message}
+                            />
+                            <DatePickerField
+                                control={control}
+                                register={register}
+                                setValue={setValue}
+                                label="Fecha de terminación"
+                                name={`formacionSuperior.${index}.fechaTerminacion`}
+                                error={errors.formacionSuperior && errors.formacionSuperior[index]?.fechaTerminacion?.message}
+                            />
+                            <InputField
+                                type="text"
+                                register={register}
+                                label="Número tarjeta profesional"
+                                name={`formacionSuperior.${index}.numeroTarjetaProfesional`}
+                                error={errors.formacionSuperior && errors.formacionSuperior[index]?.numeroTarjetaProfesional?.message}
+                            />
+                        </Stack>
+                    </div>
+                    
                     {index > 0 && <i onClick={() => remove(index)} className="icon bx bx-trash-alt" title="Eliminar"></i>}
                 </div>
             ))}
