@@ -42,11 +42,12 @@ export default function CurriculumNuevo() {
     }
 
     function onSubmit(data: any) {
-        const db = getFirestore();
-        const saveDataToFirestore = async () => {
-            const docRef = await addDoc(collection(db, "curriculums"), data);
-        };
-        saveDataToFirestore();
+        console.log(data);
+        // const db = getFirestore();
+        // const saveDataToFirestore = async () => {
+        //     const docRef = await addDoc(collection(db, "curriculums"), data);
+        // };
+        // saveDataToFirestore();
     }
 
     return (
@@ -66,7 +67,7 @@ export default function CurriculumNuevo() {
                     register={register}
                     setValue={setValue}
                 />
-                {/* <FormacionBasicaForm
+                <FormacionBasicaForm
                     errors={errors}
                     control={control}
                     register={register}
@@ -88,7 +89,7 @@ export default function CurriculumNuevo() {
                     control={control}
                     register={register}
                     setValue={setValue}
-                /> */}
+                />
                 <Button type="submit" variant="contained">Crear</Button>
             </form>
         </>

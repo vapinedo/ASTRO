@@ -3,10 +3,10 @@ import "./FormComponents.css";
 import { ReactNode } from "react";
 import { useFieldArray } from "react-hook-form";
 import Box from "../../../shared/containers/Box/Box";
-import Input from "../../../shared/components/form/Input";
-import Select from "../../../shared/components/form/Select";
 import { FormacionSuperior } from "../../../models/Curriculum";
-import CustomDatePicker from "../../../shared/components/form/CustomDatePicker";
+import InputField from "../../../shared/components/form/InputField";
+import SelectField from "../../../shared/components/form/SelectField";
+import DatePickerField from "../../../shared/components/form/DatePickerField";
 
 const modalidadAcademicaOptions = [
     { key: "tecnica", value: "Técnica" },
@@ -95,7 +95,7 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
             {fields.map((field, index) => (
                 <div key={field.id} className={index > 0 ? "dynamic-fields" : ""}>
                     <div className="row">
-                        <Select
+                        <SelectField
                             register={register}
                             label="Modalidad académica"
                             wrapperClass="mb-3 col-md-4"
@@ -103,7 +103,7 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
                             name={`formacionSuperior.${index}.modalidadAcademica`}
                             error={errors.formacionSuperior && errors.formacionSuperior[index]?.modalidadAcademica?.message}
                         />
-                        <Input
+                        <InputField
                             type="text"
                             register={register}
                             wrapperClass="mb-3 col-md-4"
@@ -111,7 +111,7 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
                             name={`formacionSuperior.${index}.numeroSemestresAprobados`}
                             error={errors.formacionSuperior && errors.formacionSuperior[index]?.numeroSemestresAprobados?.message}
                         />
-                        <Select
+                        <SelectField
                             register={register}
                             label="Graduado"
                             options={SiNoOptions}
@@ -119,7 +119,7 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
                             name={`formacionSuperior.${index}.graduado`}
                             error={errors.formacionSuperior && errors.formacionSuperior[index]?.graduado?.message}
                         />
-                        <Input
+                        <InputField
                             type="text"
                             register={register}
                             label="Título obtenido"
@@ -127,7 +127,7 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
                             name={`formacionSuperior.${index}.tituloObtenido`}
                             error={errors.formacionSuperior && errors.formacionSuperior[index]?.tituloObtenido?.message}
                         />
-                        <CustomDatePicker
+                        <DatePickerField
                             control={control}
                             register={register}
                             setValue={setValue}
@@ -136,7 +136,7 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
                             name={`formacionSuperior.${index}.fechaTerminacion`}
                             error={errors.formacionSuperior && errors.formacionSuperior[index]?.fechaTerminacion?.message}
                         />
-                        <Input
+                        <InputField
                             type="text"
                             register={register}
                             wrapperClass="mb-3 col-md-4"

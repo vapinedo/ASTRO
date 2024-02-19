@@ -1,10 +1,10 @@
 import "./FormComponents.css";
 import { ReactNode } from "react";
 import { useFieldArray } from "react-hook-form";
-import Box from "../../../shared/containers/Box/Box";
-import Input from "../../../shared/components/form/Input";
-import Select from "../../../shared/components/form/Select";
 import { Idioma } from "../../../models/Curriculum";
+import Box from "../../../shared/containers/Box/Box";
+import InputField from "../../../shared/components/form/InputField";
+import SelectField from "../../../shared/components/form/SelectField";
 
 const idiomaOptions = [
     { key: "r", value: "Regular" },
@@ -59,7 +59,7 @@ export default function IdiomaForm(props: InputProps): ReactNode {
             {fields.map((field, index) => (
                 <div key={field.id} className={index > 0 ? "dynamic-fields" : ""}>
                     <div className="row">
-                        <Input
+                        <InputField
                             type="text"
                             register={register}
                             wrapperClass="mb-3 col-md-3"
@@ -67,7 +67,7 @@ export default function IdiomaForm(props: InputProps): ReactNode {
                             name={`idiomas.${index}.idioma`}
                             error={errors.idiomas && errors.idiomas[index]?.loHabla?.message}
                         />
-                        <Select
+                        <SelectField
                             register={register}
                             label="Lo habla"
                             options={idiomaOptions}
@@ -75,7 +75,7 @@ export default function IdiomaForm(props: InputProps): ReactNode {
                             name={`idiomas.${index}.loHabla`}
                             error={errors.idiomas && errors.idiomas[index]?.loHabla?.message}
                         />
-                        <Select
+                        <SelectField
                             register={register}
                             label="Lo lee"
                             wrapperClass="mb-3 col-md-3"
@@ -83,7 +83,7 @@ export default function IdiomaForm(props: InputProps): ReactNode {
                             name={`idiomas.${index}.loLee`}
                             error={errors.idiomas && errors.idiomas[index]?.loLee?.message}
                         />
-                        <Select
+                        <SelectField
                             register={register}
                             label="Lo escribe"
                             options={idiomaOptions}

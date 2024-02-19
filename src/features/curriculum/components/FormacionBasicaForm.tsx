@@ -1,10 +1,10 @@
 import * as yup from "yup";
 import { ReactNode } from "react";
 import Box from "../../../shared/containers/Box/Box";
-import Input from "../../../shared/components/form/Input";
-import Select from "../../../shared/components/form/Select";
 import { FormacionBasica } from "../../../models/Curriculum";
-import CustomDatePicker from "../../../shared/components/form/CustomDatePicker";
+import SelectField from "../../../shared/components/form/SelectField";
+import InputField from "../../../shared/components/form/InputField";
+import DatePickerField from "../../../shared/components/form/DatePickerField";
 
 const educacionBasicaOptions = [
     { key: "1", value: "Primero" },
@@ -54,7 +54,7 @@ export default function FormacionBasicaForm(props: InputProps): ReactNode {
         <Box  wrapperClass="row">
             <h4 className="mb-4">Formación Básica</h4>
 
-            <Select
+            <SelectField
                 register={register}
                 wrapperClass="mb-3 col-md-4"
                 label="Educación básica"
@@ -62,7 +62,7 @@ export default function FormacionBasicaForm(props: InputProps): ReactNode {
                 name="formacionBasica.educacionBasica"
                 error={errors.formacionBasica?.educacionBasica?.message}
             />
-            <Input
+            <InputField
                 type="text"
                 register={register}
                 wrapperClass="mb-3 col-md-4"
@@ -70,7 +70,7 @@ export default function FormacionBasicaForm(props: InputProps): ReactNode {
                 name="formacionBasica.tituloObtenido"
                 error={errors.formacionBasica?.tituloObtenido?.message}
             />
-            <CustomDatePicker
+            <DatePickerField
                 control={control}
                 register={register}
                 wrapperClass="mb-3 col-md-4"

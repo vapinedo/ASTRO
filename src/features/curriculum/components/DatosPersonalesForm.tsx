@@ -1,10 +1,10 @@
 import * as yup from "yup";
 import { ReactNode } from "react";
 import Box from "../../../shared/containers/Box/Box";
-import Input from "../../../shared/components/form/Input";
 import { DatosPersonales } from "../../../models/Curriculum";
-import SelectField from "../../../shared/components/form/Select";
-import CustomDatePicker from "../../../shared/components/form/CustomDatePicker";
+import InputField from "../../../shared/components/form/InputField";
+import SelectField from "../../../shared/components/form/SelectField";
+import CustomDatePicker from "../../../shared/components/form/DatePickerField";
 
 const tipoIdentificacionOptions = [
     { key: "cc", value: "Cedula de ciudadanía" },
@@ -154,7 +154,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
         <Box wrapperClass="row">
             <h4 className="mb-4">Datos Personales</h4>
 
-            <Input
+            <InputField
                 autoFocus
                 type="text"
                 register={register}
@@ -163,7 +163,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 name="datosPersonales.primerApellido"
                 error={errors.datosPersonales?.primerApellido?.message}
             />
-            <Input
+            <InputField
                 type="text"
                 register={register}
                 label="Segundo apellido"
@@ -171,7 +171,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 name="datosPersonales.segundoApellido"
                 error={errors.datosPersonales?.segundoApellido?.message}
             />
-            <Input
+            <InputField
                 type="text"
                 label="Nombres"
                 register={register}
@@ -187,7 +187,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 name="datosPersonales.tipoIdentificacion"
                 error={errors.datosPersonales?.tipoIdentificacion?.message}
             />
-            <Input
+            <InputField
                 type="text"
                 register={register}
                 wrapperClass="mb-3 col-md-3"
@@ -227,7 +227,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 name="datosPersonales.tipolibretaMilitar"
                 error={errors.datosPersonales?.tipolibretaMilitar?.message}
             />)}
-            {(watch("datosPersonales.sexo") === "h") && (<Input
+            {(watch("datosPersonales.sexo") === "h") && (<InputField
                 type="text"
                 register={register}
                 wrapperClass="mb-3 col-md-3"
@@ -235,7 +235,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 name="datosPersonales.numeroLibretaMilitar"
                 error={errors.datosPersonales?.numeroLibretaMilitar?.message}
             />)}
-            {(watch("datosPersonales.sexo") === "h") && (<Input
+            {(watch("datosPersonales.sexo") === "h") && (<InputField
                 type="text"
                 register={register}
                 wrapperClass="mb-3 col-md-3"
@@ -276,7 +276,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 name="datosPersonales.municipioNacimiento"
                 error={errors.datosPersonales?.municipioNacimiento?.message}
             />
-            <Input
+            <InputField
                 type="text"
                 register={register}
                 wrapperClass="mb-3 col-md-3"
@@ -308,7 +308,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 name="datosPersonales.municipioCorrespondencia"
                 error={errors.datosPersonales?.municipioCorrespondencia?.message}
             />
-            <Input
+            <InputField
                 type="email"
                 label="Email"
                 register={register}

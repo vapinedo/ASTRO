@@ -3,10 +3,10 @@ import "./FormComponents.css";
 import { ReactNode } from "react";
 import { useFieldArray } from "react-hook-form";
 import Box from "../../../shared/containers/Box/Box";
-import Input from "../../../shared/components/form/Input";
-import Select from "../../../shared/components/form/Select";
 import { ExperienciaLaboral } from "../../../models/Curriculum";
-import CustomDatePicker from "../../../shared/components/form/CustomDatePicker";
+import InputField from "../../../shared/components/form/InputField";
+import SelectField from "../../../shared/components/form/SelectField";
+import DatePickerField from "../../../shared/components/form/DatePickerField";
 
 const paisOptions = [
     { key: "Colombia", value: "Colombia" },
@@ -133,7 +133,7 @@ export default function experienciaLaboralForm(props: InputProps): ReactNode {
             {fields.map((field, index) => (
                 <div key={field.id} className={index > 0 ? "dynamic-fields" : ""}>
                     <div className="row">
-                        <Input
+                        <InputField
                             type="text"
                             register={register}
                             wrapperClass="mb-3 col-md-3"
@@ -141,7 +141,7 @@ export default function experienciaLaboralForm(props: InputProps): ReactNode {
                             name={`experienciaLaboral.${index}.empresa`}
                             error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.empresa?.message}
                         />
-                        <Select
+                        <SelectField
                             register={register}
                             label="Tipo empresa"
                             options={tipoEmpresaOptions}
@@ -149,7 +149,7 @@ export default function experienciaLaboralForm(props: InputProps): ReactNode {
                             name={`experienciaLaboral.${index}.tipoEmpresa`}
                             error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.tipoEmpresa?.message}
                         />
-                        <Select
+                        <SelectField
                             register={register}
                             label="País"
                             options={paisOptions}
@@ -157,7 +157,7 @@ export default function experienciaLaboralForm(props: InputProps): ReactNode {
                             name={`experienciaLaboral.${index}.pais`}
                             error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.pais?.message}
                         />
-                        <Select
+                        <SelectField
                             register={register}
                             label="Departamento"
                             options={departamentoOptions}
@@ -165,7 +165,7 @@ export default function experienciaLaboralForm(props: InputProps): ReactNode {
                             name={`experienciaLaboral.${index}.departamento`}
                             error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.departamento?.message}
                         />
-                        <Select
+                        <SelectField
                             register={register}
                             label="Municipio"
                             options={municipioOptions}
@@ -173,7 +173,7 @@ export default function experienciaLaboralForm(props: InputProps): ReactNode {
                             name={`experienciaLaboral.${index}.municipio`}
                             error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.municipio?.message}
                         />
-                        <Input
+                        <InputField
                             type="text"
                             register={register}
                             label="Email"
@@ -181,7 +181,7 @@ export default function experienciaLaboralForm(props: InputProps): ReactNode {
                             name={`experienciaLaboral.${index}.email`}
                             error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.email?.message}
                         />
-                        <Input
+                        <InputField
                             type="text"
                             register={register}
                             label="Teléfono"
@@ -189,7 +189,7 @@ export default function experienciaLaboralForm(props: InputProps): ReactNode {
                             name={`experienciaLaboral.${index}.telefono`}
                             error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.telefono?.message}
                         />
-                        <CustomDatePicker
+                        <DatePickerField
                             control={control}
                             register={register}
                             setValue={setValue}
@@ -198,7 +198,7 @@ export default function experienciaLaboralForm(props: InputProps): ReactNode {
                             name={`experienciaLaboral.${index}.fechaIngreso`}
                             error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.fechaIngreso?.message}
                         />
-                        <CustomDatePicker
+                        <DatePickerField
                             control={control}
                             register={register}
                             setValue={setValue}
@@ -207,7 +207,7 @@ export default function experienciaLaboralForm(props: InputProps): ReactNode {
                             name={`experienciaLaboral.${index}.fechaRetiro`}
                             error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.fechaRetiro?.message}
                         />
-                        <Input
+                        <InputField
                             type="text"
                             register={register}
                             wrapperClass="mb-3 col-md-3"
@@ -215,7 +215,7 @@ export default function experienciaLaboralForm(props: InputProps): ReactNode {
                             name={`experienciaLaboral.${index}.cargo`}
                             error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.cargo?.message}
                         />
-                        <Input
+                        <InputField
                             type="text"
                             register={register}
                             wrapperClass="mb-3 col-md-3"
@@ -223,7 +223,7 @@ export default function experienciaLaboralForm(props: InputProps): ReactNode {
                             name={`experienciaLaboral.${index}.dependencia`}
                             error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.dependencia?.message}
                         />
-                        <Input
+                        <InputField
                             type="text"
                             register={register}
                             wrapperClass="mb-3 col-md-3"

@@ -10,7 +10,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     wrapperClass?: string;
 }
 
-export default function Input(props: InputProps): ReactNode {
+export default function InputField(props: InputProps): ReactNode {
     const {
         name,
         error,
