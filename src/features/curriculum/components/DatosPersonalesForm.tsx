@@ -153,7 +153,9 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
 
     return (
         <Box>
-            <h4 className="mb-4">Datos Personales</h4>
+            <header className="section-header">
+                <h4>Datos Personales</h4>
+            </header>
 
             <Stack direction="row" spacing={4}>
                 <InputField

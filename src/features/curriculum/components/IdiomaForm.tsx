@@ -51,9 +51,9 @@ export default function IdiomaForm(props: InputProps): ReactNode {
     }
 
     return (
-        <Box wrapperClass="row">
-            <header className="inline-flex">
-                <h4 className="mb-4">Idiomas</h4>
+        <Box>
+            <header className="section-header">
+                <h4>Idiomas</h4>
                 {(fields.length < MAXIMUM_INSTANCES) && <button onClick={handleAppend} className="btn btn-sm btn-success">Agregar</button>}
             </header>
 
@@ -64,7 +64,6 @@ export default function IdiomaForm(props: InputProps): ReactNode {
                             <InputField
                                 type="text"
                                 register={register}
-                                wrapperClass="mb-3 col-md-3"
                                 label="Idioma"
                                 name={`idiomas.${index}.idioma`}
                                 error={errors.idiomas && errors.idiomas[index]?.loHabla?.message}
@@ -73,14 +72,12 @@ export default function IdiomaForm(props: InputProps): ReactNode {
                                 register={register}
                                 label="Lo habla"
                                 options={idiomaOptions}
-                                wrapperClass="mb-3 col-md-3"
                                 name={`idiomas.${index}.loHabla`}
                                 error={errors.idiomas && errors.idiomas[index]?.loHabla?.message}
                             />
                             <SelectField
                                 register={register}
                                 label="Lo lee"
-                                wrapperClass="mb-3 col-md-3"
                                 options={idiomaOptions}
                                 name={`idiomas.${index}.loLee`}
                                 error={errors.idiomas && errors.idiomas[index]?.loLee?.message}
@@ -89,7 +86,6 @@ export default function IdiomaForm(props: InputProps): ReactNode {
                                 register={register}
                                 label="Lo escribe"
                                 options={idiomaOptions}
-                                wrapperClass="mb-3 col-md-3"
                                 name={`idiomas.${index}.loEscribe`}
                                 error={errors.idiomas && errors.idiomas[index]?.loEscribe?.message}
                             />

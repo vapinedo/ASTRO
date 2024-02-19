@@ -88,8 +88,8 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
 
     return (
         <Box>
-            <header className="inline-flex">
-                <h4 className="mb-4">Formación Superior</h4>
+            <header className="section-header">
+                <h4>Formación Superior</h4>
                 {(fields.length < MAXIMUM_INSTANCES) && <button onClick={handleAppend} className="btn btn-sm btn-success">Agregar</button>}
             </header>
 

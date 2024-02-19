@@ -53,7 +53,9 @@ export default function FormacionBasicaForm(props: InputProps): ReactNode {
 
     return (
         <Box>
-            <h4 className="mb-4">Formación Básica</h4>
+            <header className="section-header">
+                <h4>Formación Básica</h4>
+            </header>
 
             <Stack direction="row" spacing={4}>
                 <SelectField
