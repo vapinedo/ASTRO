@@ -2,8 +2,8 @@ import * as yup from "yup";
 import { ReactNode } from "react";
 import Box from "../../../shared/containers/Box/Box";
 import Input from "../../../shared/components/form/Input";
-import Select from "../../../shared/components/form/Select";
 import { DatosPersonales } from "../../../models/Curriculum";
+import SelectField from "../../../shared/components/form/Select";
 import CustomDatePicker from "../../../shared/components/form/CustomDatePicker";
 
 const tipoIdentificacionOptions = [
@@ -179,7 +179,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 name="datosPersonales.nombres"
                 error={errors.datosPersonales?.nombres?.message}
             />
-            <Select
+            <SelectField
                 register={register}
                 wrapperClass="mb-3 col-md-3"
                 label="Tipo de identificación"
@@ -195,7 +195,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 name="datosPersonales.numeroIdentificacion"
                 error={errors.datosPersonales?.numeroIdentificacion?.message}
             />
-            <Select
+            <SelectField
                 label="Sexo"
                 register={register}
                 options={sexoOptions}
@@ -203,7 +203,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 wrapperClass="mb-3 col-md-3"
                 error={errors.datosPersonales?.sexo?.message}
             />
-            <Select
+            <SelectField
                 register={register}
                 label="Nacionalidad"
                 wrapperClass="mb-3 col-md-3"
@@ -211,7 +211,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 name="datosPersonales.nacionalidad"
                 error={errors.datosPersonales?.nacionalidad?.message}
             />
-            <Select
+            <SelectField
                 label="País"
                 register={register}
                 options={paisOptions}
@@ -219,7 +219,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 wrapperClass="mb-3 col-md-3"
                 error={errors.datosPersonales?.pais?.message}
             />
-            {(watch("datosPersonales.sexo") === "h") && (<Select
+            {(watch("datosPersonales.sexo") === "h") && (<SelectField
                 register={register}
                 label="Tipo libreta militar"
                 wrapperClass="mb-3 col-md-3"
@@ -252,7 +252,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 name="datosPersonales.fechaNacimiento"
                 error={errors.datosPersonales?.fechaNacimiento?.message}
             />
-            <Select
+            <SelectField
                 register={register}
                 options={paisOptions}
                 label="País de nacimiento"
@@ -260,7 +260,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 name="datosPersonales.paisNacimiento"
                 error={errors.datosPersonales?.paisNacimiento?.message}
             />
-            <Select
+            <SelectField
                 register={register}
                 wrapperClass="mb-3 col-md-3"
                 options={departamentoOptions}
@@ -268,7 +268,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 name="datosPersonales.departamentoNacimiento"
                 error={errors.datosPersonales?.departamentoNacimiento?.message}
             />
-            <Select
+            <SelectField
                 register={register}
                 options={municipioOptions}
                 wrapperClass="mb-3 col-md-3"
@@ -284,7 +284,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 name="datosPersonales.direccionCorrespondencia"
                 error={errors.datosPersonales?.direccionCorrespondencia?.message}
             />
-            <Select
+            <SelectField
                 register={register}
                 options={paisOptions}
                 label="País de nacimiento"
@@ -292,7 +292,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 name="datosPersonales.paisCorrespondencia"
                 error={errors.datosPersonales?.paisCorrespondencia?.message}
             />
-            <Select
+            <SelectField
                 register={register}
                 wrapperClass="mb-3 col-md-3"
                 options={departamentoOptions}
@@ -300,7 +300,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 name="datosPersonales.departamentoCorrespondencia"
                 error={errors.datosPersonales?.departamentoCorrespondencia?.message}
             />
-            <Select
+            <SelectField
                 register={register}
                 options={municipioOptions}
                 wrapperClass="mb-3 col-md-3"

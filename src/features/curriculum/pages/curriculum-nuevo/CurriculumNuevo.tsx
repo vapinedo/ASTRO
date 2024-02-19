@@ -66,7 +66,7 @@ export default function CurriculumNuevo() {
                     register={register}
                     setValue={setValue}
                 />
-                <FormacionBasicaForm
+                {/* <FormacionBasicaForm
                     errors={errors}
                     control={control}
                     register={register}
@@ -88,7 +88,7 @@ export default function CurriculumNuevo() {
                     control={control}
                     register={register}
                     setValue={setValue}
-                />
+                /> */}
                 <Button type="submit" variant="contained">Crear</Button>
             </form>
         </>
