@@ -8,7 +8,7 @@ export default function AppRouting() {
     return (
         <>
             <Navbar />
-            <Container maxWidth="xl">
+            <Container sx={{ marginTop: 10 }} maxWidth="xl">
                 <Routes>
                     <Route path="/" element={<CurriculumAdmin />} />
                     <Route path="/curriculums" element={<CurriculumAdmin />} />
