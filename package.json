@@ -11,11 +11,17 @@
     "start-backend": "json-server db.json --port 3030"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.3.4",
+    "@mui/icons-material": "^5.15.10",
+    "@mui/material": "^5.15.10",
+    "@mui/x-date-pickers": "^6.19.4",
     "@reduxjs/toolkit": "^2.2.1",
     "axios": "^1.6.7",
+    "dayjs": "^1.11.10",
     "dotenv": "^16.4.1",
-    "firebase": "^10.7.2",
+    "firebase": "^10.6.0",
     "pdf-lib": "^1.17.1",
     "react": "^18.2.0",
     "react-datepicker": "^5.1.0",

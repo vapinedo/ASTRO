@@ -1,10 +1,11 @@
 import * as yup from "yup";
 import { ReactNode } from "react";
 import Box from "../../../shared/containers/Box/Box";
-import Input from "../../../shared/components/form/Input";
-import Select from "../../../shared/components/form/Select";
 import { DatosPersonales } from "../../../models/Curriculum";
-import CustomDatePicker from "../../../shared/components/form/CustomDatePicker";
+import InputField from "../../../shared/components/form/InputField";
+import SelectField from "../../../shared/components/form/SelectField";
+import CustomDatePicker from "../../../shared/components/form/DatePickerField";
+import { Stack } from "@mui/material";
 
 const tipoIdentificacionOptions = [
     { key: "cc", value: "Cedula de ciudadanía" },
@@ -151,171 +152,167 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
     const { errors, control, setValue, register, watch } = props;
 
     return (
-        <Box wrapperClass="row">
-            <h4 className="mb-4">Datos Personales</h4>
+        <Box>
+            <header className="section-header">
+                <h4>Datos Personales</h4>
+            </header>
 
-            <Input
-                autoFocus
-                type="text"
-                register={register}
-                label="Primer apellido"
-                wrapperClass="mb-3 col-md-3"
-                name="datosPersonales.primerApellido"
-                error={errors.datosPersonales?.primerApellido?.message}
-            />
-            <Input
-                type="text"
-                register={register}
-                label="Segundo apellido"
-                wrapperClass="mb-3 col-md-3"
-                name="datosPersonales.segundoApellido"
-                error={errors.datosPersonales?.segundoApellido?.message}
-            />
-            <Input
-                type="text"
-                label="Nombres"
-                register={register}
-                wrapperClass="mb-3 col-md-3"
-                name="datosPersonales.nombres"
-                error={errors.datosPersonales?.nombres?.message}
-            />
-            <Select
-                register={register}
-                wrapperClass="mb-3 col-md-3"
-                label="Tipo de identificación"
-                options={tipoIdentificacionOptions}
-                name="datosPersonales.tipoIdentificacion"
-                error={errors.datosPersonales?.tipoIdentificacion?.message}
-            />
-            <Input
-                type="text"
-                register={register}
-                wrapperClass="mb-3 col-md-3"
-                label="Número de identificación"
-                name="datosPersonales.numeroIdentificacion"
-                error={errors.datosPersonales?.numeroIdentificacion?.message}
-            />
-            <Select
-                label="Sexo"
-                register={register}
-                options={sexoOptions}
-                name="datosPersonales.sexo"
-                wrapperClass="mb-3 col-md-3"
-                error={errors.datosPersonales?.sexo?.message}
-            />
-            <Select
-                register={register}
-                label="Nacionalidad"
-                wrapperClass="mb-3 col-md-3"
-                options={nacionalidadOptions}
-                name="datosPersonales.nacionalidad"
-                error={errors.datosPersonales?.nacionalidad?.message}
-            />
-            <Select
-                label="País"
-                register={register}
-                options={paisOptions}
-                name="datosPersonales.pais"
-                wrapperClass="mb-3 col-md-3"
-                error={errors.datosPersonales?.pais?.message}
-            />
-            {(watch("datosPersonales.sexo") === "h") && (<Select
-                register={register}
-                label="Tipo libreta militar"
-                wrapperClass="mb-3 col-md-3"
-                options={tipoLibretaOptions}
-                name="datosPersonales.tipolibretaMilitar"
-                error={errors.datosPersonales?.tipolibretaMilitar?.message}
-            />)}
-            {(watch("datosPersonales.sexo") === "h") && (<Input
-                type="text"
-                register={register}
-                wrapperClass="mb-3 col-md-3"
-                label="Número libreta militar"
-                name="datosPersonales.numeroLibretaMilitar"
-                error={errors.datosPersonales?.numeroLibretaMilitar?.message}
-            />)}
-            {(watch("datosPersonales.sexo") === "h") && (<Input
-                type="text"
-                register={register}
-                wrapperClass="mb-3 col-md-3"
-                label="Distrito libreta militar"
-                name="datosPersonales.distritoLibretaMilitar"
-                error={errors.datosPersonales?.distritoLibretaMilitar?.message}
-            />)}
-            <CustomDatePicker
-                control={control}
-                register={register}
-                wrapperClass="mb-3 col-md-3"
-                setValue={setValue}
-                label="Fecha de nacimiento"
-                name="datosPersonales.fechaNacimiento"
-                error={errors.datosPersonales?.fechaNacimiento?.message}
-            />
-            <Select
-                register={register}
-                options={paisOptions}
-                label="País de nacimiento"
-                wrapperClass="mb-3 col-md-3"
-                name="datosPersonales.paisNacimiento"
-                error={errors.datosPersonales?.paisNacimiento?.message}
-            />
-            <Select
-                register={register}
-                wrapperClass="mb-3 col-md-3"
-                options={departamentoOptions}
-                label="Departamento de nacimiento"
-                name="datosPersonales.departamentoNacimiento"
-                error={errors.datosPersonales?.departamentoNacimiento?.message}
-            />
-            <Select
-                register={register}
-                options={municipioOptions}
-                wrapperClass="mb-3 col-md-3"
-                label="Municipio de nacimiento"
-                name="datosPersonales.municipioNacimiento"
-                error={errors.datosPersonales?.municipioNacimiento?.message}
-            />
-            <Input
-                type="text"
-                register={register}
-                wrapperClass="mb-3 col-md-3"
-                label="Dirección de correspondencia"
-                name="datosPersonales.direccionCorrespondencia"
-                error={errors.datosPersonales?.direccionCorrespondencia?.message}
-            />
-            <Select
-                register={register}
-                options={paisOptions}
-                label="País de nacimiento"
-                wrapperClass="mb-3 col-md-3"
-                name="datosPersonales.paisCorrespondencia"
-                error={errors.datosPersonales?.paisCorrespondencia?.message}
-            />
-            <Select
-                register={register}
-                wrapperClass="mb-3 col-md-3"
-                options={departamentoOptions}
-                label="Departamento de nacimiento"
-                name="datosPersonales.departamentoCorrespondencia"
-                error={errors.datosPersonales?.departamentoCorrespondencia?.message}
-            />
-            <Select
-                register={register}
-                options={municipioOptions}
-                wrapperClass="mb-3 col-md-3"
-                label="Municipio de nacimiento"
-                name="datosPersonales.municipioCorrespondencia"
-                error={errors.datosPersonales?.municipioCorrespondencia?.message}
-            />
-            <Input
-                type="email"
-                label="Email"
-                register={register}
-                name="datosPersonales.email"
-                wrapperClass="mb-3 col-md-3"
-                error={errors.datosPersonales?.email?.message}
-            />
+            <Stack direction="row" spacing={4}>
+                <InputField
+                    autoFocus
+                    type="text"
+                    register={register}
+                    label="Primer apellido"
+                    name="datosPersonales.primerApellido"
+                    error={errors.datosPersonales?.primerApellido?.message}
+                />
+                <InputField
+                    type="text"
+                    register={register}
+                    label="Segundo apellido"
+                    name="datosPersonales.segundoApellido"
+                    error={errors.datosPersonales?.segundoApellido?.message}
+                />
+                <InputField
+                    type="text"
+                    label="Nombres"
+                    register={register}
+                    name="datosPersonales.nombres"
+                    error={errors.datosPersonales?.nombres?.message}
+                />
+                <InputField
+                    type="email"
+                    label="Email"
+                    register={register}
+                    name="datosPersonales.email"
+                    error={errors.datosPersonales?.email?.message}
+                />
+            </Stack>
+
+            <Stack direction="row" spacing={4} mt={4}>
+                <SelectField
+                    register={register}
+                    label="Tipo de identificación"
+                    options={tipoIdentificacionOptions}
+                    name="datosPersonales.tipoIdentificacion"
+                    error={errors.datosPersonales?.tipoIdentificacion?.message}
+                />
+                <InputField
+                    type="text"
+                    register={register}
+                    label="Número de identificación"
+                    name="datosPersonales.numeroIdentificacion"
+                    error={errors.datosPersonales?.numeroIdentificacion?.message}
+                />
+                <SelectField
+                    label="Sexo"
+                    register={register}
+                    options={sexoOptions}
+                    name="datosPersonales.sexo"
+                    error={errors.datosPersonales?.sexo?.message}
+                />
+                <SelectField
+                    register={register}
+                    label="Nacionalidad"
+                    options={nacionalidadOptions}
+                    name="datosPersonales.nacionalidad"
+                    error={errors.datosPersonales?.nacionalidad?.message}
+                />
+                {(watch("datosPersonales.nacionalidad") === "ext") && (<SelectField
+                    label="País"
+                    register={register}
+                    options={paisOptions}
+                    name="datosPersonales.pais"
+                    error={errors.datosPersonales?.pais?.message}
+                />)}
+            </Stack>
+
+            <Stack direction="row" spacing={4} mt={4}>
+                <CustomDatePicker
+                    control={control}
+                    register={register}
+                    setValue={setValue}
+                    label="Fecha de nacimiento"
+                    name="datosPersonales.fechaNacimiento"
+                    error={errors.datosPersonales?.fechaNacimiento?.message}
+                />
+                <SelectField
+                    register={register}
+                    options={paisOptions}
+                    label="País de nacimiento"
+                    name="datosPersonales.paisNacimiento"
+                    error={errors.datosPersonales?.paisNacimiento?.message}
+                />
+                <SelectField
+                    register={register}
+                    options={departamentoOptions}
+                    label="Departamento de nacimiento"
+                    name="datosPersonales.departamentoNacimiento"
+                    error={errors.datosPersonales?.departamentoNacimiento?.message}
+                />
+                <SelectField
+                    register={register}
+                    options={municipioOptions}
+                    label="Municipio de nacimiento"
+                    name="datosPersonales.municipioNacimiento"
+                    error={errors.datosPersonales?.municipioNacimiento?.message}
+                />
+            </Stack>
+
+            <Stack direction="row" spacing={4} mt={4}>
+                <InputField
+                    type="text"
+                    register={register}
+                    label="Dirección de correspondencia"
+                    name="datosPersonales.direccionCorrespondencia"
+                    error={errors.datosPersonales?.direccionCorrespondencia?.message}
+                />
+                <SelectField
+                    register={register}
+                    options={paisOptions}
+                    label="País de correspondencia"
+                    name="datosPersonales.paisCorrespondencia"
+                    error={errors.datosPersonales?.paisCorrespondencia?.message}
+                />
+                <SelectField
+                    register={register}
+                    options={departamentoOptions}
+                    label="Departamento de correspondencia"
+                    name="datosPersonales.departamentoCorrespondencia"
+                    error={errors.datosPersonales?.departamentoCorrespondencia?.message}
+                />
+                <SelectField
+                    register={register}
+                    options={municipioOptions}
+                    label="Municipio de correspondencia"
+                    name="datosPersonales.municipioCorrespondencia"
+                    error={errors.datosPersonales?.municipioCorrespondencia?.message}
+                />
+            </Stack>
+
+            <Stack direction="row" spacing={4} mt={4}>
+                {(watch("datosPersonales.sexo") === "h") && (<SelectField
+                    register={register}
+                    label="Tipo libreta militar"
+                    options={tipoLibretaOptions}
+                    name="datosPersonales.tipolibretaMilitar"
+                    error={errors.datosPersonales?.tipolibretaMilitar?.message}
+                />)}
+                {(watch("datosPersonales.sexo") === "h") && (<InputField
+                    type="text"
+                    register={register}
+                    label="Número libreta militar"
+                    name="datosPersonales.numeroLibretaMilitar"
+                    error={errors.datosPersonales?.numeroLibretaMilitar?.message}
+                />)}
+                {(watch("datosPersonales.sexo") === "h") && (<InputField
+                    type="text"
+                    register={register}
+                    label="Distrito libreta militar"
+                    name="datosPersonales.distritoLibretaMilitar"
+                    error={errors.datosPersonales?.distritoLibretaMilitar?.message}
+                />)}
+            </Stack>
         </Box>
     )
 }

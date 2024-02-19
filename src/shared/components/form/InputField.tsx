@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 import { ReactNode, InputHTMLAttributes } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -9,7 +10,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     wrapperClass?: string;
 }
 
-export default function Input(props: InputProps): ReactNode {
+export default function InputField(props: InputProps): ReactNode {
     const {
         name,
         error,
@@ -20,10 +21,12 @@ export default function Input(props: InputProps): ReactNode {
     } = props;
 
     return (
-        <article className={wrapperClass}>
-            <label className="form-label">{label}</label>
-            <input className="form-control form-control-sm" {...register(name)} {...rest} />
-            <small className="text-danger">{error}</small>
-        </article>
+        <TextField
+            {...rest}
+            label={label}
+            helperText={error}
+            {...register(name)}
+            sx={{ width: '100%' }}
+        />
     );
 }

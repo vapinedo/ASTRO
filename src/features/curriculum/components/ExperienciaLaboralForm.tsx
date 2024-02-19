@@ -1,12 +1,13 @@
 import * as yup from "yup";
 import "./FormComponents.css";
 import { ReactNode } from "react";
+import { Stack } from "@mui/material";
 import { useFieldArray } from "react-hook-form";
 import Box from "../../../shared/containers/Box/Box";
-import Input from "../../../shared/components/form/Input";
-import Select from "../../../shared/components/form/Select";
 import { ExperienciaLaboral } from "../../../models/Curriculum";
-import CustomDatePicker from "../../../shared/components/form/CustomDatePicker";
+import InputField from "../../../shared/components/form/InputField";
+import SelectField from "../../../shared/components/form/SelectField";
+import DatePickerField from "../../../shared/components/form/DatePickerField";
 
 const paisOptions = [
     { key: "Colombia", value: "Colombia" },
@@ -124,113 +125,109 @@ export default function experienciaLaboralForm(props: InputProps): ReactNode {
     }
 
     return (
-        <Box wrapperClass="row">
-            <header className="inline-flex">
-                <h4 className="mb-4">Experiencia Laboral</h4>
+        <Box>
+            <header className="section-header">
+                <h4>Experiencia Laboral</h4>
                 {(fields.length < MAXIMUM_INSTANCES) && <button onClick={handleAppend} className="btn btn-sm btn-success">Agregar</button>}
             </header>
 
             {fields.map((field, index) => (
                 <div key={field.id} className={index > 0 ? "dynamic-fields" : ""}>
-                    <div className="row">
-                        <Input
-                            type="text"
-                            register={register}
-                            wrapperClass="mb-3 col-md-3"
-                            label="Empresa"
-                            name={`experienciaLaboral.${index}.empresa`}
-                            error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.empresa?.message}
-                        />
-                        <Select
-                            register={register}
-                            label="Tipo empresa"
-                            options={tipoEmpresaOptions}
-                            wrapperClass="mb-3 col-md-3"
-                            name={`experienciaLaboral.${index}.tipoEmpresa`}
-                            error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.tipoEmpresa?.message}
-                        />
-                        <Select
-                            register={register}
-                            label="País"
-                            options={paisOptions}
-                            wrapperClass="mb-3 col-md-3"
-                            name={`experienciaLaboral.${index}.pais`}
-                            error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.pais?.message}
-                        />
-                        <Select
-                            register={register}
-                            label="Departamento"
-                            options={departamentoOptions}
-                            wrapperClass="mb-3 col-md-3"
-                            name={`experienciaLaboral.${index}.departamento`}
-                            error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.departamento?.message}
-                        />
-                        <Select
-                            register={register}
-                            label="Municipio"
-                            options={municipioOptions}
-                            wrapperClass="mb-3 col-md-3"
-                            name={`experienciaLaboral.${index}.municipio`}
-                            error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.municipio?.message}
-                        />
-                        <Input
-                            type="text"
-                            register={register}
-                            label="Email"
-                            wrapperClass="mb-3 col-md-3"
-                            name={`experienciaLaboral.${index}.email`}
-                            error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.email?.message}
-                        />
-                        <Input
-                            type="text"
-                            register={register}
-                            label="Teléfono"
-                            wrapperClass="mb-3 col-md-3"
-                            name={`experienciaLaboral.${index}.telefono`}
-                            error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.telefono?.message}
-                        />
-                        <CustomDatePicker
-                            control={control}
-                            register={register}
-                            setValue={setValue}
-                            wrapperClass="mb-3 col-md-3"
-                            label="Fecha ingreso"
-                            name={`experienciaLaboral.${index}.fechaIngreso`}
-                            error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.fechaIngreso?.message}
-                        />
-                        <CustomDatePicker
-                            control={control}
-                            register={register}
-                            setValue={setValue}
-                            wrapperClass="mb-3 col-md-3"
-                            label="Fecha retiro"
-                            name={`experienciaLaboral.${index}.fechaRetiro`}
-                            error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.fechaRetiro?.message}
-                        />
-                        <Input
-                            type="text"
-                            register={register}
-                            wrapperClass="mb-3 col-md-3"
-                            label="Cargo"
-                            name={`experienciaLaboral.${index}.cargo`}
-                            error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.cargo?.message}
-                        />
-                        <Input
-                            type="text"
-                            register={register}
-                            wrapperClass="mb-3 col-md-3"
-                            label="Dependencia"
-                            name={`experienciaLaboral.${index}.dependencia`}
-                            error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.dependencia?.message}
-                        />
-                        <Input
-                            type="text"
-                            register={register}
-                            wrapperClass="mb-3 col-md-3"
-                            label="Dirección"
-                            name={`experienciaLaboral.${index}.direccion`}
-                            error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.direccion?.message}
-                        />
+                    <div className="inner">
+                        <Stack direction="row" spacing={4}>
+                            <InputField
+                                type="text"
+                                register={register}
+                                label="Nombre de la empresa"
+                                name={`experienciaLaboral.${index}.empresa`}
+                                error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.empresa?.message}
+                            />
+                            <SelectField
+                                register={register}
+                                label="Tipo empresa"
+                                options={tipoEmpresaOptions}
+                                name={`experienciaLaboral.${index}.tipoEmpresa`}
+                                error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.tipoEmpresa?.message}
+                            />
+                            <InputField
+                                type="text"
+                                register={register}
+                                label="Cargo"
+                                name={`experienciaLaboral.${index}.cargo`}
+                                error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.cargo?.message}
+                            />
+                            <InputField
+                                type="text"
+                                register={register}
+                                label="Dependencia"
+                                name={`experienciaLaboral.${index}.dependencia`}
+                                error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.dependencia?.message}
+                            />
+                        </Stack>
+
+                        <Stack direction="row" spacing={4} mt={4}>
+                            <SelectField
+                                register={register}
+                                label="País"
+                                options={paisOptions}
+                                name={`experienciaLaboral.${index}.pais`}
+                                error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.pais?.message}
+                            />
+                            <SelectField
+                                register={register}
+                                label="Departamento"
+                                options={departamentoOptions}
+                                name={`experienciaLaboral.${index}.departamento`}
+                                error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.departamento?.message}
+                            />
+                            <SelectField
+                                register={register}
+                                label="Municipio"
+                                options={municipioOptions}
+                                name={`experienciaLaboral.${index}.municipio`}
+                                error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.municipio?.message}
+                            />
+                            <InputField
+                                type="text"
+                                register={register}
+                                label="Dirección"
+                                name={`experienciaLaboral.${index}.direccion`}
+                                error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.direccion?.message}
+                            />
+                        </Stack>
+
+                        <Stack direction="row" spacing={4} mt={4}>
+                            <InputField
+                                type="text"
+                                register={register}
+                                label="Email de la empresa"
+                                name={`experienciaLaboral.${index}.email`}
+                                error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.email?.message}
+                            />
+                            <InputField
+                                type="text"
+                                register={register}
+                                label="Teléfono de la empresa"
+                                name={`experienciaLaboral.${index}.telefono`}
+                                error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.telefono?.message}
+                            />
+                            <DatePickerField
+                                control={control}
+                                register={register}
+                                setValue={setValue}
+                                label="Fecha ingreso"
+                                name={`experienciaLaboral.${index}.fechaIngreso`}
+                                error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.fechaIngreso?.message}
+                            />
+                            <DatePickerField
+                                control={control}
+                                register={register}
+                                setValue={setValue}
+                                label="Fecha retiro"
+                                name={`experienciaLaboral.${index}.fechaRetiro`}
+                                error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.fechaRetiro?.message}
+                            />
+                        </Stack>
                     </div>
                     {index > 0 && <i onClick={() => remove(index)} className="icon bx bx-trash-alt" title="Eliminar"></i>}
                 </div>

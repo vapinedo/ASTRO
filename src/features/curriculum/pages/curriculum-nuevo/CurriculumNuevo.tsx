@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import Button from '@mui/material/Button';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldErrors, useForm } from "react-hook-form";
 import { Curriculum } from "../../../../models/Curriculum";
@@ -41,11 +42,12 @@ export default function CurriculumNuevo() {
     }
 
     function onSubmit(data: any) {
-        const db = getFirestore();
-        const saveDataToFirestore = async () => {
-            const docRef = await addDoc(collection(db, "curriculums"), data);
-        };
-        saveDataToFirestore();
+        console.log(data);
+        // const db = getFirestore();
+        // const saveDataToFirestore = async () => {
+        //     const docRef = await addDoc(collection(db, "curriculums"), data);
+        // };
+        // saveDataToFirestore();
     }
 
     return (
@@ -88,7 +90,7 @@ export default function CurriculumNuevo() {
                     register={register}
                     setValue={setValue}
                 />
-                <button type="submit" className="btn btn-primary">Crear</button>
+                <Button type="submit" variant="contained">Crear</Button>
             </form>
         </>
     );

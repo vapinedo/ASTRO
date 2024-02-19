@@ -1,10 +1,11 @@
 import * as yup from "yup";
 import { ReactNode } from "react";
+import { Stack } from "@mui/material";
 import Box from "../../../shared/containers/Box/Box";
-import Input from "../../../shared/components/form/Input";
-import Select from "../../../shared/components/form/Select";
 import { FormacionBasica } from "../../../models/Curriculum";
-import CustomDatePicker from "../../../shared/components/form/CustomDatePicker";
+import InputField from "../../../shared/components/form/InputField";
+import SelectField from "../../../shared/components/form/SelectField";
+import DatePickerField from "../../../shared/components/form/DatePickerField";
 
 const educacionBasicaOptions = [
     { key: "1", value: "Primero" },
@@ -51,34 +52,35 @@ export default function FormacionBasicaForm(props: InputProps): ReactNode {
     const { errors, control, setValue, register } = props;
 
     return (
-        <Box  wrapperClass="row">
-            <h4 className="mb-4">Formación Básica</h4>
+        <Box>
+            <header className="section-header">
+                <h4>Formación Básica</h4>
+            </header>
 
-            <Select
-                register={register}
-                wrapperClass="mb-3 col-md-4"
-                label="Educación básica"
-                options={educacionBasicaOptions}
-                name="formacionBasica.educacionBasica"
-                error={errors.formacionBasica?.educacionBasica?.message}
-            />
-            <Input
-                type="text"
-                register={register}
-                wrapperClass="mb-3 col-md-4"
-                label="Título obtenido"
-                name="formacionBasica.tituloObtenido"
-                error={errors.formacionBasica?.tituloObtenido?.message}
-            />
-            <CustomDatePicker
-                control={control}
-                register={register}
-                wrapperClass="mb-3 col-md-4"
-                setValue={setValue}
-                label="Fecha de graduación"
-                name="formacionBasica.fechaGraduacion"
-                error={errors.formacionBasica?.fechaGraduacion?.message}
-            />
+            <Stack direction="row" spacing={4}>
+                <SelectField
+                    register={register}
+                    label="Educación básica"
+                    options={educacionBasicaOptions}
+                    name="formacionBasica.educacionBasica"
+                    error={errors.formacionBasica?.educacionBasica?.message}
+                />
+                <InputField
+                    type="text"
+                    register={register}
+                    label="Título obtenido"
+                    name="formacionBasica.tituloObtenido"
+                    error={errors.formacionBasica?.tituloObtenido?.message}
+                />
+                <DatePickerField
+                    control={control}
+                    register={register}
+                    setValue={setValue}
+                    label="Fecha de graduación"
+                    name="formacionBasica.fechaGraduacion"
+                    error={errors.formacionBasica?.fechaGraduacion?.message}
+                />
+            </Stack>
         </Box>
     )
 }

@@ -1,12 +1,13 @@
 import * as yup from "yup";
 import "./FormComponents.css";
 import { ReactNode } from "react";
+import { Stack } from "@mui/material";
 import { useFieldArray } from "react-hook-form";
 import Box from "../../../shared/containers/Box/Box";
-import Input from "../../../shared/components/form/Input";
-import Select from "../../../shared/components/form/Select";
 import { FormacionSuperior } from "../../../models/Curriculum";
-import CustomDatePicker from "../../../shared/components/form/CustomDatePicker";
+import InputField from "../../../shared/components/form/InputField";
+import SelectField from "../../../shared/components/form/SelectField";
+import DatePickerField from "../../../shared/components/form/DatePickerField";
 
 const modalidadAcademicaOptions = [
     { key: "tecnica", value: "Técnica" },
@@ -86,65 +87,65 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
     }
 
     return (
-        <Box wrapperClass="row">
-            <header className="inline-flex">
-                <h4 className="mb-4">Formación Superior</h4>
+        <Box>
+            <header className="section-header">
+                <h4>Formación Superior</h4>
                 {(fields.length < MAXIMUM_INSTANCES) && <button onClick={handleAppend} className="btn btn-sm btn-success">Agregar</button>}
             </header>
 
             {fields.map((field, index) => (
                 <div key={field.id} className={index > 0 ? "dynamic-fields" : ""}>
-                    <div className="row">
-                        <Select
-                            register={register}
-                            label="Modalidad académica"
-                            wrapperClass="mb-3 col-md-4"
-                            options={modalidadAcademicaOptions}
-                            name={`formacionSuperior.${index}.modalidadAcademica`}
-                            error={errors.formacionSuperior && errors.formacionSuperior[index]?.modalidadAcademica?.message}
-                        />
-                        <Input
-                            type="text"
-                            register={register}
-                            wrapperClass="mb-3 col-md-4"
-                            label="Número semestres aprobados"
-                            name={`formacionSuperior.${index}.numeroSemestresAprobados`}
-                            error={errors.formacionSuperior && errors.formacionSuperior[index]?.numeroSemestresAprobados?.message}
-                        />
-                        <Select
-                            register={register}
-                            label="Graduado"
-                            options={SiNoOptions}
-                            wrapperClass="mb-3 col-md-4"
-                            name={`formacionSuperior.${index}.graduado`}
-                            error={errors.formacionSuperior && errors.formacionSuperior[index]?.graduado?.message}
-                        />
-                        <Input
-                            type="text"
-                            register={register}
-                            label="Título obtenido"
-                            wrapperClass="mb-3 col-md-4"
-                            name={`formacionSuperior.${index}.tituloObtenido`}
-                            error={errors.formacionSuperior && errors.formacionSuperior[index]?.tituloObtenido?.message}
-                        />
-                        <CustomDatePicker
-                            control={control}
-                            register={register}
-                            setValue={setValue}
-                            wrapperClass="mb-3 col-md-4"
-                            label="Fecha de terminación"
-                            name={`formacionSuperior.${index}.fechaTerminacion`}
-                            error={errors.formacionSuperior && errors.formacionSuperior[index]?.fechaTerminacion?.message}
-                        />
-                        <Input
-                            type="text"
-                            register={register}
-                            wrapperClass="mb-3 col-md-4"
-                            label="Número tarjeta profesional"
-                            name={`formacionSuperior.${index}.numeroTarjetaProfesional`}
-                            error={errors.formacionSuperior && errors.formacionSuperior[index]?.numeroTarjetaProfesional?.message}
-                        />
+                    <div className="inner">
+                        <Stack direction="row" spacing={4}>
+                            <SelectField
+                                register={register}
+                                label="Modalidad académica"
+                                options={modalidadAcademicaOptions}
+                                name={`formacionSuperior.${index}.modalidadAcademica`}
+                                error={errors.formacionSuperior && errors.formacionSuperior[index]?.modalidadAcademica?.message}
+                            />
+                            <InputField
+                                type="text"
+                                register={register}
+                                label="Número semestres aprobados"
+                                name={`formacionSuperior.${index}.numeroSemestresAprobados`}
+                                error={errors.formacionSuperior && errors.formacionSuperior[index]?.numeroSemestresAprobados?.message}
+                            />
+                            <SelectField
+                                register={register}
+                                label="Graduado"
+                                options={SiNoOptions}
+                                name={`formacionSuperior.${index}.graduado`}
+                                error={errors.formacionSuperior && errors.formacionSuperior[index]?.graduado?.message}
+                            />
+                        </Stack>
+
+                        <Stack direction="row" spacing={4} mt={4}>
+                            <InputField
+                                type="text"
+                                register={register}
+                                label="Título obtenido"
+                                name={`formacionSuperior.${index}.tituloObtenido`}
+                                error={errors.formacionSuperior && errors.formacionSuperior[index]?.tituloObtenido?.message}
+                            />
+                            <DatePickerField
+                                control={control}
+                                register={register}
+                                setValue={setValue}
+                                label="Fecha de terminación"
+                                name={`formacionSuperior.${index}.fechaTerminacion`}
+                                error={errors.formacionSuperior && errors.formacionSuperior[index]?.fechaTerminacion?.message}
+                            />
+                            <InputField
+                                type="text"
+                                register={register}
+                                label="Número tarjeta profesional"
+                                name={`formacionSuperior.${index}.numeroTarjetaProfesional`}
+                                error={errors.formacionSuperior && errors.formacionSuperior[index]?.numeroTarjetaProfesional?.message}
+                            />
+                        </Stack>
                     </div>
+                    
                     {index > 0 && <i onClick={() => remove(index)} className="icon bx bx-trash-alt" title="Eliminar"></i>}
                 </div>
             ))}

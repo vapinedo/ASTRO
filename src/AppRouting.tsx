@@ -1,3 +1,4 @@
+import { Container } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./shared/components/navbar/Navbar";
 import CurriculumAdmin from "./features/curriculum/pages/curriculum-admin/CurriculumAdmin";
@@ -7,13 +8,13 @@ export default function AppRouting() {
     return (
         <>
             <Navbar />
-            <section className="container main-container">
+            <Container sx={{ marginTop: 10, marginBottom: 5 }} maxWidth="xl">
                 <Routes>
                     <Route path="/" element={<CurriculumAdmin />} />
                     <Route path="/curriculums" element={<CurriculumAdmin />} />
                     <Route path="/curriculum-nuevo" element={<CurriculumNuevo />} />
                 </Routes>
-            </section>
+            </Container>
         </>
     )
 }

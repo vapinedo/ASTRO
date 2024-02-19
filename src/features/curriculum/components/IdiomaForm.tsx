@@ -1,10 +1,11 @@
 import "./FormComponents.css";
 import { ReactNode } from "react";
+import { Stack } from "@mui/material";
 import { useFieldArray } from "react-hook-form";
-import Box from "../../../shared/containers/Box/Box";
-import Input from "../../../shared/components/form/Input";
-import Select from "../../../shared/components/form/Select";
 import { Idioma } from "../../../models/Curriculum";
+import Box from "../../../shared/containers/Box/Box";
+import InputField from "../../../shared/components/form/InputField";
+import SelectField from "../../../shared/components/form/SelectField";
 
 const idiomaOptions = [
     { key: "r", value: "Regular" },
@@ -50,47 +51,45 @@ export default function IdiomaForm(props: InputProps): ReactNode {
     }
 
     return (
-        <Box wrapperClass="row">
-            <header className="inline-flex">
-                <h4 className="mb-4">Idiomas</h4>
+        <Box>
+            <header className="section-header">
+                <h4>Idiomas</h4>
                 {(fields.length < MAXIMUM_INSTANCES) && <button onClick={handleAppend} className="btn btn-sm btn-success">Agregar</button>}
             </header>
 
             {fields.map((field, index) => (
                 <div key={field.id} className={index > 0 ? "dynamic-fields" : ""}>
-                    <div className="row">
-                        <Input
-                            type="text"
-                            register={register}
-                            wrapperClass="mb-3 col-md-3"
-                            label="Idioma"
-                            name={`idiomas.${index}.idioma`}
-                            error={errors.idiomas && errors.idiomas[index]?.loHabla?.message}
-                        />
-                        <Select
-                            register={register}
-                            label="Lo habla"
-                            options={idiomaOptions}
-                            wrapperClass="mb-3 col-md-3"
-                            name={`idiomas.${index}.loHabla`}
-                            error={errors.idiomas && errors.idiomas[index]?.loHabla?.message}
-                        />
-                        <Select
-                            register={register}
-                            label="Lo lee"
-                            wrapperClass="mb-3 col-md-3"
-                            options={idiomaOptions}
-                            name={`idiomas.${index}.loLee`}
-                            error={errors.idiomas && errors.idiomas[index]?.loLee?.message}
-                        />
-                        <Select
-                            register={register}
-                            label="Lo escribe"
-                            options={idiomaOptions}
-                            wrapperClass="mb-3 col-md-3"
-                            name={`idiomas.${index}.loEscribe`}
-                            error={errors.idiomas && errors.idiomas[index]?.loEscribe?.message}
-                        />
+                    <div className="inner">
+                        <Stack direction="row" spacing={4}>
+                            <InputField
+                                type="text"
+                                register={register}
+                                label="Idioma"
+                                name={`idiomas.${index}.idioma`}
+                                error={errors.idiomas && errors.idiomas[index]?.loHabla?.message}
+                            />
+                            <SelectField
+                                register={register}
+                                label="Lo habla"
+                                options={idiomaOptions}
+                                name={`idiomas.${index}.loHabla`}
+                                error={errors.idiomas && errors.idiomas[index]?.loHabla?.message}
+                            />
+                            <SelectField
+                                register={register}
+                                label="Lo lee"
+                                options={idiomaOptions}
+                                name={`idiomas.${index}.loLee`}
+                                error={errors.idiomas && errors.idiomas[index]?.loLee?.message}
+                            />
+                            <SelectField
+                                register={register}
+                                label="Lo escribe"
+                                options={idiomaOptions}
+                                name={`idiomas.${index}.loEscribe`}
+                                error={errors.idiomas && errors.idiomas[index]?.loEscribe?.message}
+                            />
+                        </Stack>
                     </div>
                     {index > 0 && <i onClick={() => remove(index)} className="icon bx bx-trash-alt" title="Eliminar"></i>}
                 </div>
