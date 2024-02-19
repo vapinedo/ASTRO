@@ -37,14 +37,13 @@ export default function DatePickerField(props: InputProps): ReactNode {
   };
 
   return (
-    <article className={wrapperClass}>
-      <DatePicker
-        {...rest}
-        label={label}
-        format="D/M/YYYY"
-        {...register(name)}
-        onChange={handleChange}
-      />
-    </article>
+    <DatePicker
+      sx={{ width: "100%" }}
+      {...rest}
+      label={label}
+      format="D/M/YYYY"
+      {...register(name)}
+      onChange={handleChange}
+    />
   );
 }

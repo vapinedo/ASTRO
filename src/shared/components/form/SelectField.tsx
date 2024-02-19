@@ -1,9 +1,8 @@
-import { ReactNode, InputHTMLAttributes } from "react";
-
+import Select from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
 import { InputLabel, MenuItem } from "@mui/material";
+import { ReactNode, InputHTMLAttributes } from "react";
 import FormHelperText from '@mui/material/FormHelperText';
-import Select from '@mui/material/Select';
 
 interface SelectOption {
     key: string;
@@ -32,21 +31,19 @@ export default function SelectField(props: InputProps): ReactNode {
     } = props;
 
     return (
-        <article className={wrapperClass}>
-            <FormControl sx={{ m: 1, width: '100%' }}>
-                <InputLabel>{label}</InputLabel>
-                <Select
-                    {...rest}
-                    label={label}
-                    defaultValue=""
-                    {...register(name)}
-                >
-                    {options?.map(option => (
-                        <MenuItem key={option.key} value={option.key}>{option.value}</MenuItem>
-                    ))}
-                </Select>
-                <FormHelperText>{error}</FormHelperText>
-            </FormControl>
-        </article>
+        <FormControl sx={{ m: 1, width: '100%' }}>
+            <InputLabel>{label}</InputLabel>
+            <Select
+                {...rest}
+                label={label}
+                defaultValue=""
+                {...register(name)}
+            >
+                {options?.map(option => (
+                    <MenuItem key={option.key} value={option.key}>{option.value}</MenuItem>
+                ))}
+            </Select>
+            <FormHelperText>{error}</FormHelperText>
+        </FormControl>
     );
 }

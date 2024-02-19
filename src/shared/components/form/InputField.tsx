@@ -21,14 +21,12 @@ export default function InputField(props: InputProps): ReactNode {
     } = props;
 
     return (
-        <article className={wrapperClass}>
-            <TextField
-                {...rest}
-                label={label}
-                helperText={error}
-                {...register(name)}
-                sx={{ width: '100%' }}
-            />
-        </article>
+        <TextField
+            {...rest}
+            label={label}
+            helperText={error}
+            {...register(name)}
+            sx={{ width: '100%' }}
+        />
     );
 }
