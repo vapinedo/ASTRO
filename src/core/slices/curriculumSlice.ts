@@ -19,7 +19,11 @@ async function getCurriculums() {
     const querySnapshot = await getDocs(collection(db, "curriculums"));
     const temporaryArr: any[] = [];
     querySnapshot.forEach((doc) => {
-        temporaryArr.push(doc.data());
+        let document = {
+            documentId: doc.id,
+            ...doc.data()
+        }
+        temporaryArr.push(document);
     });
     return temporaryArr;
 };

@@ -1,11 +1,11 @@
 import * as yup from "yup";
 import { ReactNode } from "react";
+import { Stack } from "@mui/material";
 import Box from "../../../shared/containers/Box/Box";
-import { DatosPersonales } from "../../../models/Curriculum";
+import {DatosPersonales } from "../../../models/Curriculum";
 import InputField from "../../../shared/components/form/InputField";
 import SelectField from "../../../shared/components/form/SelectField";
 import CustomDatePicker from "../../../shared/components/form/DatePickerField";
-import { Stack } from "@mui/material";
 
 const tipoIdentificacionOptions = [
     { key: "cc", value: "Cedula de ciudadanía" },
@@ -86,7 +86,7 @@ export const datosPersonalesSchema = yup.object().shape({
         .string()
         .required("Tipo ocumento es requerido"),
     numeroIdentificacion: yup
-        .number()
+        .string()
         .typeError("Solo ingrese números")
         .required("Número documento es requerido"),
     sexo: yup
@@ -97,7 +97,10 @@ export const datosPersonalesSchema = yup.object().shape({
         .required("Nacionalidad es requerido"),
     pais: yup
         .string()
-        .required("País es requerido"),
+        .when("nacionalidad", {
+            is: "ext",
+            then: (datosPersonalesSchema) => datosPersonalesSchema.required("País es requerido"),
+        }),
     tipolibretaMilitar: yup
         .string()
         .when("sexo", {

@@ -1,18 +1,27 @@
 import "./CurriculumAdmin.css"
 import { useEffect } from "react";
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import Box from "../../../../shared/containers/Box/Box"
+import { Curriculum } from "../../../../models/Curriculum";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useAppDispatch, useAppSelector } from "../../../../core/hooks"
 import { fetchCurriculums } from "../../../../core/slices/curriculumSlice";
 
 export default function CurriculumAdmin() {
 
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const curriculums = useAppSelector((state) => state.curriculum);
 
   useEffect(() => {
     dispatch(fetchCurriculums());
   }, []);
+
+  function handlePreview(curriculum: Curriculum) {
+    localStorage.setItem("curriculum", JSON.stringify(curriculum));
+    navigate("/curriculum-preview");
+  }
 
   return (
     <>
@@ -38,7 +47,7 @@ export default function CurriculumAdmin() {
               <th scope="col">Primer Apellido</th>
               <th scope="col">Segundo Apellido</th>
               <th scope="col">Tipo de identidad</th>
-              <th scope="col">Número identidad</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
 
@@ -51,7 +60,7 @@ export default function CurriculumAdmin() {
                   <td>{curriculum.datosPersonales.primerApellido}</td>
                   <td>{curriculum.datosPersonales.segundoApellido}</td>
                   <td>{curriculum.datosPersonales.tipoIdentificacion}</td>
-                  <td>{curriculum.datosPersonales.numeroIdentificacion}</td>
+                  <td><VisibilityIcon onClick={() => handlePreview(curriculum)} /></td>
                 </tr>
               ))
             }

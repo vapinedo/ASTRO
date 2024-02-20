@@ -1,4 +1,5 @@
 export interface Curriculum {
+    documentId?: string;
     datosPersonales: DatosPersonales;
     formacionBasica: FormacionBasica;
     formacionSuperior: FormacionSuperior[];
