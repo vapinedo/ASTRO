@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
 import Box from "../../../../shared/containers/Box/Box"
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { Curriculum } from "../../../../models/Curriculum";
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useAppDispatch, useAppSelector } from "../../../../core/hooks"
 import { fetchCurriculums } from "../../../../core/slices/curriculumSlice";
 
@@ -17,6 +18,11 @@ export default function CurriculumAdmin() {
   useEffect(() => {
     dispatch(fetchCurriculums());
   }, []);
+
+  function handleEdit(curriculum: Curriculum) {
+    localStorage.setItem("curriculum-edit", JSON.stringify(curriculum));
+    navigate("/curriculum-editar");
+  }
 
   function handlePreview(curriculum: Curriculum) {
     localStorage.setItem("curriculum", JSON.stringify(curriculum));
@@ -60,7 +66,10 @@ export default function CurriculumAdmin() {
                   <td>{curriculum.datosPersonales.primerApellido}</td>
                   <td>{curriculum.datosPersonales.segundoApellido}</td>
                   <td>{curriculum.datosPersonales.tipoIdentificacion}</td>
-                  <td><VisibilityIcon onClick={() => handlePreview(curriculum)} /></td>
+                  <td>
+                    <ModeEditIcon onClick={() => handleEdit(curriculum)} sx={{ marginRight: 2 }} titleAccess="Editar" />
+                    <VisibilityIcon onClick={() => handlePreview(curriculum)} titleAccess="Vista previa" />
+                  </td>
                 </tr>
               ))
             }

@@ -1,8 +1,9 @@
 import * as yup from "yup";
 import { ReactNode } from "react";
-import { Stack } from "@mui/material";
+import { Controller } from "react-hook-form";
 import Box from "../../../shared/containers/Box/Box";
-import {DatosPersonales } from "../../../models/Curriculum";
+import { DatosPersonales } from "../../../models/Curriculum";
+import { FormControl, InputLabel,Stack } from "@mui/material";
 import InputField from "../../../shared/components/form/InputField";
 import SelectField from "../../../shared/components/form/SelectField";
 import CustomDatePicker from "../../../shared/components/form/DatePickerField";
@@ -37,14 +38,6 @@ const tipoLibretaOptions = [
     { key: "primera", value: "Primera clase" },
     { key: "segunda", value: "Segunda clase" },
 ];
-
-interface InputProps {
-    watch: any;
-    errors: any;
-    control: any;
-    setValue: any;
-    register: any;
-}
 
 export const datosPersonalesDefaultValues: DatosPersonales = {
     primerApellido: "",
@@ -150,6 +143,14 @@ export const datosPersonalesSchema = yup.object().shape({
         .required("Email es requerido"),
 });
 
+interface InputProps {
+    watch: any;
+    errors: any;
+    control: any;
+    setValue: any;
+    register: any;
+}
+
 export default function DatosPersonalesForm(props: InputProps): ReactNode {
 
     const { errors, control, setValue, register, watch } = props;
@@ -193,41 +194,76 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
             </Stack>
 
             <Stack direction="row" spacing={4} mt={4}>
-                <SelectField
-                    register={register}
-                    label="Tipo de identificación"
-                    options={tipoIdentificacionOptions}
-                    name="datosPersonales.tipoIdentificacion"
-                    error={errors.datosPersonales?.tipoIdentificacion?.message}
-                />
-                <InputField
-                    type="text"
-                    register={register}
-                    label="Número de identificación"
-                    name="datosPersonales.numeroIdentificacion"
-                    error={errors.datosPersonales?.numeroIdentificacion?.message}
-                />
-                <SelectField
-                    label="Sexo"
-                    register={register}
-                    options={sexoOptions}
-                    name="datosPersonales.sexo"
-                    error={errors.datosPersonales?.sexo?.message}
-                />
-                <SelectField
-                    register={register}
-                    label="Nacionalidad"
-                    options={nacionalidadOptions}
-                    name="datosPersonales.nacionalidad"
-                    error={errors.datosPersonales?.nacionalidad?.message}
-                />
-                {(watch("datosPersonales.nacionalidad") === "ext") && (<SelectField
-                    label="País"
-                    register={register}
-                    options={paisOptions}
-                    name="datosPersonales.pais"
-                    error={errors.datosPersonales?.pais?.message}
-                />)}
+                <FormControl sx={{ m: 1, width: '100%' }}>
+                    <InputLabel>Tipo de identifiación</InputLabel>
+                    <Controller
+                        defaultValue=""
+                        control={control}
+                        name="datosPersonales.tipoIdentificacion"
+                        render={({ field: { onChange, value } }) => (
+                            <SelectField
+                                value={value}
+                                onChange={onChange}
+                                label="Tipo de identificación"
+                                options={tipoIdentificacionOptions}
+                                error={errors.datosPersonales?.tipoIdentificacion?.message}
+                            />
+                        )}
+                    />
+                </FormControl>
+                <FormControl sx={{ m: 1, width: '100%' }}>
+                    <InputLabel>Sexo</InputLabel>
+                    <Controller
+                        defaultValue=""
+                        control={control}
+                        name="datosPersonales.sexo"
+                        render={({ field: { onChange, value } }) => (
+                            <SelectField
+                                value={value}
+                                onChange={onChange}
+                                label="Sexo"
+                                options={sexoOptions}
+                                error={errors.datosPersonales?.sexo?.message}
+                            />
+                        )}
+                    />
+                </FormControl>
+                <FormControl sx={{ m: 1, width: '100%' }}>
+                    <InputLabel>Nacionalidad</InputLabel>
+                    <Controller
+                        defaultValue=""
+                        control={control}
+                        name="datosPersonales.nacionalidad"
+                        render={({ field: { onChange, value } }) => (
+                            <SelectField
+                                value={value}
+                                onChange={onChange}
+                                label="Nacionalidad"
+                                options={nacionalidadOptions}
+                                error={errors.datosPersonales?.nacionalidad?.message}
+                            />
+                        )}
+                    />
+                </FormControl>
+                {(watch("datosPersonales.nacionalidad") === "ext") && (
+                    <FormControl sx={{ m: 1, width: '100%' }}>
+                        <InputLabel>País</InputLabel>
+                        <Controller
+                            defaultValue=""
+                            control={control}
+                            name="datosPersonales.pais"
+                            render={({ field: { onChange, value } }) => (
+                                <SelectField
+                                    value={value}
+                                    onChange={onChange}
+                                    label="País"
+                                    options={paisOptions}
+                                    error={errors.datosPersonales?.pais?.message}
+                                />
+                            )}
+                        />
+                    </FormControl>
+                )}
             </Stack>
 
             <Stack direction="row" spacing={4} mt={4}>
@@ -239,27 +275,57 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                     name="datosPersonales.fechaNacimiento"
                     error={errors.datosPersonales?.fechaNacimiento?.message}
                 />
-                <SelectField
-                    register={register}
-                    options={paisOptions}
-                    label="País de nacimiento"
-                    name="datosPersonales.paisNacimiento"
-                    error={errors.datosPersonales?.paisNacimiento?.message}
-                />
-                <SelectField
-                    register={register}
-                    options={departamentoOptions}
-                    label="Departamento de nacimiento"
-                    name="datosPersonales.departamentoNacimiento"
-                    error={errors.datosPersonales?.departamentoNacimiento?.message}
-                />
-                <SelectField
-                    register={register}
-                    options={municipioOptions}
-                    label="Municipio de nacimiento"
-                    name="datosPersonales.municipioNacimiento"
-                    error={errors.datosPersonales?.municipioNacimiento?.message}
-                />
+                <FormControl sx={{ m: 1, width: '100%' }}>
+                    <InputLabel>País de nacimiento</InputLabel>
+                    <Controller
+                        defaultValue=""
+                        control={control}
+                        name="datosPersonales.paisNacimiento"
+                        render={({ field: { onChange, value } }) => (
+                            <SelectField
+                                value={value}
+                                onChange={onChange}
+                                label="País de nacimiento"
+                                options={paisOptions}
+                                error={errors.datosPersonales?.paisNacimiento?.message}
+                            />
+                        )}
+                    />
+                </FormControl>
+                <FormControl sx={{ m: 1, width: '100%' }}>
+                    <InputLabel>Departamento de nacimiento</InputLabel>
+                    <Controller
+                        defaultValue=""
+                        control={control}
+                        name="datosPersonales.departamentoNacimiento"
+                        render={({ field: { onChange, value } }) => (
+                            <SelectField
+                                value={value}
+                                onChange={onChange}
+                                label="Departamento de nacimiento"
+                                options={departamentoOptions}
+                                error={errors.datosPersonales?.departamentoNacimiento?.message}
+                            />
+                        )}
+                    />
+                </FormControl>
+                <FormControl sx={{ m: 1, width: '100%' }}>
+                    <InputLabel>Municipio de nacimiento</InputLabel>
+                    <Controller
+                        defaultValue=""
+                        control={control}
+                        name="datosPersonales.municipioNacimiento"
+                        render={({ field: { onChange, value } }) => (
+                            <SelectField
+                                value={value}
+                                onChange={onChange}
+                                label="Municipio de nacimiento"
+                                options={municipioOptions}
+                                error={errors.datosPersonales?.municipioNacimiento?.message}
+                            />
+                        )}
+                    />
+                </FormControl>
             </Stack>
 
             <Stack direction="row" spacing={4} mt={4}>
@@ -270,45 +336,87 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                     name="datosPersonales.direccionCorrespondencia"
                     error={errors.datosPersonales?.direccionCorrespondencia?.message}
                 />
-                <SelectField
-                    register={register}
-                    options={paisOptions}
-                    label="País de correspondencia"
-                    name="datosPersonales.paisCorrespondencia"
-                    error={errors.datosPersonales?.paisCorrespondencia?.message}
-                />
-                <SelectField
-                    register={register}
-                    options={departamentoOptions}
-                    label="Departamento de correspondencia"
-                    name="datosPersonales.departamentoCorrespondencia"
-                    error={errors.datosPersonales?.departamentoCorrespondencia?.message}
-                />
-                <SelectField
-                    register={register}
-                    options={municipioOptions}
-                    label="Municipio de correspondencia"
-                    name="datosPersonales.municipioCorrespondencia"
-                    error={errors.datosPersonales?.municipioCorrespondencia?.message}
-                />
+                <FormControl sx={{ m: 1, width: '100%' }}>
+                    <InputLabel>País de correspondencia</InputLabel>
+                    <Controller
+                        defaultValue=""
+                        control={control}
+                        name="datosPersonales.paisCorrespondencia"
+                        render={({ field: { onChange, value } }) => (
+                            <SelectField
+                                value={value}
+                                onChange={onChange}
+                                label="País de correspondencia"
+                                options={paisOptions}
+                                error={errors.datosPersonales?.paisCorrespondencia?.message}
+                            />
+                        )}
+                    />
+                </FormControl>
+                <FormControl sx={{ m: 1, width: '100%' }}>
+                    <InputLabel>Departamento de correspondencia</InputLabel>
+                    <Controller
+                        defaultValue=""
+                        control={control}
+                        name="datosPersonales.departamentoCorrespondencia"
+                        render={({ field: { onChange, value } }) => (
+                            <SelectField
+                                value={value}
+                                onChange={onChange}
+                                label="Departamento de correspondencia"
+                                options={departamentoOptions}
+                                error={errors.datosPersonales?.departamentoCorrespondencia?.message}
+                            />
+                        )}
+                    />
+                </FormControl>
+                <FormControl sx={{ m: 1, width: '100%' }}>
+                    <InputLabel>Municipio de correspondencia</InputLabel>
+                    <Controller
+                        defaultValue=""
+                        control={control}
+                        name="datosPersonales.municipioCorrespondencia"
+                        render={({ field: { onChange, value } }) => (
+                            <SelectField
+                                value={value}
+                                onChange={onChange}
+                                label="Municipio de correspondencia"
+                                options={municipioOptions}
+                                error={errors.datosPersonales?.municipioCorrespondencia?.message}
+                            />
+                        )}
+                    />
+                </FormControl>
             </Stack>
 
             <Stack direction="row" spacing={4} mt={4}>
-                {(watch("datosPersonales.sexo") === "h") && (<SelectField
-                    register={register}
-                    label="Tipo libreta militar"
-                    options={tipoLibretaOptions}
-                    name="datosPersonales.tipolibretaMilitar"
-                    error={errors.datosPersonales?.tipolibretaMilitar?.message}
-                />)}
-                {(watch("datosPersonales.sexo") === "h") && (<InputField
+                {(watch("datosPersonales.sexo") === "m") && (
+                    <FormControl sx={{ m: 1, width: '100%' }}>
+                        <InputLabel>Tipo libreta militar</InputLabel>
+                        <Controller
+                            defaultValue=""
+                            control={control}
+                            name="datosPersonales.tipolibretaMilitar"
+                            render={({ field: { onChange, value } }) => (
+                                <SelectField
+                                    value={value}
+                                    onChange={onChange}
+                                    label="Tipo libreta militar"
+                                    options={tipoLibretaOptions}
+                                    error={errors.datosPersonales?.tipolibretaMilitar?.message}
+                                />
+                            )}
+                        />
+                    </FormControl>
+                )}
+                {(watch("datosPersonales.sexo") === "m") && (<InputField
                     type="text"
                     register={register}
                     label="Número libreta militar"
                     name="datosPersonales.numeroLibretaMilitar"
                     error={errors.datosPersonales?.numeroLibretaMilitar?.message}
                 />)}
-                {(watch("datosPersonales.sexo") === "h") && (<InputField
+                {(watch("datosPersonales.sexo") === "m") && (<InputField
                     type="text"
                     register={register}
                     label="Distrito libreta militar"
