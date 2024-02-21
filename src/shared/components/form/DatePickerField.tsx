@@ -38,11 +38,11 @@ export default function DatePickerField(props: InputProps): ReactNode {
 
   return (
     <DatePicker
-      sx={{ width: "100%" }}
       {...rest}
       label={label}
       format="D/M/YYYY"
       {...register(name)}
+      sx={{ width: "100%" }}
       onChange={handleChange}
     />
   );

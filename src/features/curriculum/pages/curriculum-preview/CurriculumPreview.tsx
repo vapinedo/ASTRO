@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import file from "../../../../cv-format.pdf";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
-import { Curriculum } from "../../../../models/Curriculum";
+import { Curriculum, FormacionSuperior } from "../../../../models/Curriculum";
+import { getDoubleSpacedYear, getSpacedDay, getSpacedMonth, getSpacedYear } from "../../../../helpers/DateHelper";
 
 const drawText = (page: any, font: any, text: any, x: number, y: number, fontSize = 11) => {
     page.drawText(text, {
@@ -52,11 +53,11 @@ export default function CurriculumPreview() {
             case "ce": drawText(page1, helveticaFont, "X", 113, 574); break;
             case "pas": drawText(page1, helveticaFont, "X", 147, 574); break;
         }
-        drawText(page1, helveticaFont, curriculum?.datosPersonales?.numeroIdentificacion, 185, 574);
+        drawText(page1, helveticaFont, curriculum?.datosPersonales?.numeroIdentificacion, 185, 574.8);
 
         // sexo
         switch(curriculum?.datosPersonales?.sexo) {
-            case "h": drawText(page1, helveticaFont, "X", 316.5, 573.4); break;
+            case "f": drawText(page1, helveticaFont, "X", 316.5, 573.4); break;
             case "m": drawText(page1, helveticaFont, "X", 341, 573.4); break;
         }
 
@@ -66,59 +67,133 @@ export default function CurriculumPreview() {
             case "ext": drawText(page1, helveticaFont, "X", 456.3, 573.4); break;
         }
 
-        // drawText(page1, helveticaFont, "X", 341, 574);
-        // drawText(page1, helveticaFont, "X", 383.5, 574);
+        // pais
+        switch(curriculum?.datosPersonales?.nacionalidad) {
+            case "col": drawText(page1, helveticaFont, curriculum?.datosPersonales?.pais, 478, 574.8); break;
+            case "ext": drawText(page1, helveticaFont, "X", 456.3, 573.4); break;
+        }
 
-        // libreta militar
-        // drawText(page1, helveticaFont, "X", 261, 544);
-        // drawText(page1, helveticaFont, "17.827.282", 340, 544);
-        // drawText(page1, helveticaFont, "45", 500, 544);
+        // libreta militar tipo
+        switch(curriculum?.datosPersonales?.tipolibretaMilitar) {
+            case "primera": drawText(page1, helveticaFont, "X", 145.6, 543.2); break;
+            case "segunda": drawText(page1, helveticaFont, "X", 261.2, 543.2); break;
+        }
 
-        // fecha y lugar de nacimiento
-        // drawText(page1, helveticaFont, "3 0", 137, 507);
-        // drawText(page1, helveticaFont, "0 8", 187, 507);
-        // drawText(page1, helveticaFont, "1 9 8 2", 237, 507);
-        // drawText(page1, helveticaFont, "COLOMBIA", 120, 490);
-        // drawText(page1, helveticaFont, "LA GUAJIRA", 120, 473);
-        // drawText(page1, helveticaFont, "URIBIA", 120, 455.5);
+        // libreta militar numero
+        drawText(page1, helveticaFont, curriculum?.datosPersonales?.numeroLibretaMilitar, 340, 545);
+
+        // libreta militar distrito
+        drawText(page1, helveticaFont, curriculum?.datosPersonales?.distritoLibretaMilitar, 500, 545);
+
+        // dia de nacimiento
+        drawText(page1, helveticaFont, getSpacedDay(curriculum.datosPersonales.fechaNacimiento), 137.4, 507);
+        // mes de nacimiento
+        drawText(page1, helveticaFont, getSpacedMonth(curriculum.datosPersonales.fechaNacimiento), 187, 507);
+        // año de nacimiento
+        drawText(page1, helveticaFont, getSpacedYear(curriculum.datosPersonales.fechaNacimiento), 237.2, 507);
+
+        // Pais, Departamento y municipio de nacimiento
+        drawText(page1, helveticaFont, curriculum.datosPersonales.paisNacimiento, 120, 491);
+        drawText(page1, helveticaFont, curriculum.datosPersonales.departamentoNacimiento, 120, 474);
+        drawText(page1, helveticaFont, curriculum.datosPersonales.municipioNacimiento, 120, 455.7);
 
         // direccion de correspondencia
-        // drawText(page1, helveticaFont, "CALLE 18 #7A - 147", 300, 507);
-        // drawText(page1, helveticaFont, "COLOMBIA", 320, 490);
-        // drawText(page1, helveticaFont, "LA GUAJIRA", 474, 490);
-        // drawText(page1, helveticaFont, "URIBIA", 348, 473);
-        // drawText(page1, helveticaFont, "302 367 8147", 348, 455.5);
-        // drawText(page1, helveticaFont, "victorpinedomartinez@gmail.com", 474, 455.5, 8);
+        drawText(page1, helveticaFont, curriculum.datosPersonales.direccionCorrespondencia, 295, 509);
+        drawText(page1, helveticaFont, curriculum.datosPersonales.paisCorrespondencia, 320, 492);
+        drawText(page1, helveticaFont, curriculum.datosPersonales.departamentoCorrespondencia, 474, 492);
+        drawText(page1, helveticaFont, curriculum.datosPersonales.municipioCorrespondencia, 348, 475);
+        drawText(page1, helveticaFont, curriculum.datosPersonales.email, 472, 455.8, 8);
 
-        // formacion academica
-        // drawText(page1, helveticaFont, "X", 270, 317, 18);
-        // drawText(page1, helveticaFont, "1 2", 351.5, 320);
-        // drawText(page1, helveticaFont, "1 9 9 9", 412, 320);
+        // formacion básica
+        switch(curriculum?.formacionBasica.educacionBasica) {
+            case "1": drawText(page1, helveticaFont, "X", 100, 317, 18); break;
+            case "2": drawText(page1, helveticaFont, "X", 116.4, 317, 18); break;
+            case "3": drawText(page1, helveticaFont, "X", 133, 317, 18); break;
+            case "4": drawText(page1, helveticaFont, "X", 151, 317, 18); break;
+            case "5": drawText(page1, helveticaFont, "X", 167.3, 317, 18); break;
+            case "6": drawText(page1, helveticaFont, "X", 184.5, 317, 18); break;
+            case "7": drawText(page1, helveticaFont, "X", 201.5, 317, 18); break;
+            case "8": drawText(page1, helveticaFont, "X", 218, 317, 18); break;
+            case "9": drawText(page1, helveticaFont, "X", 235.4, 317, 18); break;
+            case "10": drawText(page1, helveticaFont, "X", 253.5, 317, 18); break;
+            case "11": drawText(page1, helveticaFont, "X", 270, 317, 18); break;
+        }
+        // titulo obtenido basica
+        drawText(page1, helveticaFont, curriculum.formacionBasica.tituloObtenido, 363, 349.8);
+        // mes grado basica
+        drawText(page1, helveticaFont, getSpacedMonth(curriculum.formacionBasica.fechaGraduacion), 351.5, 319.8);
+        // año grado basica
+        drawText(page1, helveticaFont, getSpacedYear(curriculum.formacionBasica.fechaGraduacion), 412, 319.8);
 
-        // modalidad academica 1
-        // drawText(page1, helveticaFont, "UN", 74, 200);
-        // drawText(page1, helveticaFont, "10", 135, 200);
-        // drawText(page1, helveticaFont, "X", 183, 200);
-        // drawText(page1, helveticaFont, "BACHILLER ACADEMICO", 230, 200);
-        // drawText(page1, helveticaFont, "12", 427, 200);
-        // drawText(page1, helveticaFont, "1", 450, 200);
-        // drawText(page1, helveticaFont, "9", 464.5, 200);
-        // drawText(page1, helveticaFont, "9", 478, 200);
-        // drawText(page1, helveticaFont, "9", 491.5, 200);
-        // drawText(page1, helveticaFont, "GAG-89556-FA56", 503.5, 200, 7);
+        // formacion superior 1
+        function printFormacionSuperior(formacionSuperior: FormacionSuperior[]) {
+            if (formacionSuperior[0]) {
+                switch(formacionSuperior[0].modalidadAcademica) {
+                    case "tecnica": drawText(page1, helveticaFont, "TC", 74, 200); break;
+                    case "tecnologica": drawText(page1, helveticaFont, "TL", 74, 200); break;
+                    case "tecnologa": drawText(page1, helveticaFont, "TE", 74, 200); break;
+                    case "unversitaria": drawText(page1, helveticaFont, "UN", 74, 200); break;
+                    case "especializacion": drawText(page1, helveticaFont, "ES", 74, 200); break;
+                    case "maestria": drawText(page1, helveticaFont, "MG", 74, 200); break;
+                    case "doctorado": drawText(page1, helveticaFont, "DOC", 74, 200); break;
+                }
+                drawText(page1, helveticaFont, formacionSuperior[0].numeroSemestresAprobados, 132, 200);
+                // grauado
+                switch(formacionSuperior[0].graduado) {
+                    case "si": drawText(page1, helveticaFont, "X", 183, 200); break;
+                    case "no": drawText(page1, helveticaFont, "X", 207, 200); break;
+                }
+                drawText(page1, helveticaFont, formacionSuperior[0].tituloObtenido, 230, 200);
+                drawText(page1, helveticaFont, getSpacedMonth(formacionSuperior[0].fechaTerminacion), 427, 200);
+                drawText(page1, helveticaFont, getDoubleSpacedYear(formacionSuperior[0].fechaTerminacion), 453, 200);
+                drawText(page1, helveticaFont, formacionSuperior[0].numeroTarjetaProfesional, 503.5, 200, 9);
+            }
 
-        // modalidad academica 2
-        // drawText(page1, helveticaFont, "MG", 74, 182.5);
-        // drawText(page1, helveticaFont, "2", 135, 182.5);
-        // drawText(page1, helveticaFont, "X", 206, 182.5);
-        // drawText(page1, helveticaFont, "MAGISTER EN GOBIERNO DE TI", 230, 182.5);
-        // drawText(page1, helveticaFont, "08", 427, 182.5);
-        // drawText(page1, helveticaFont, "2", 450, 182.5);
-        // drawText(page1, helveticaFont, "0", 464.5, 182.5);
-        // drawText(page1, helveticaFont, "1", 478, 182.5);
-        // drawText(page1, helveticaFont, "7", 491.5, 182.5);
-        // drawText(page1, helveticaFont, "GAG-89556-FA56", 503.5, 182.5, 7);
-
+            if (formacionSuperior[1]) {
+                switch(formacionSuperior[1].modalidadAcademica) {
+                    case "tecnica": drawText(page1, helveticaFont, "TC", 74, 182.5); break;
+                    case "tecnologica": drawText(page1, helveticaFont, "TL", 74, 182.5); break;
+                    case "tecnologa": drawText(page1, helveticaFont, "TE", 74, 182.5); break;
+                    case "unversitaria": drawText(page1, helveticaFont, "UN", 74, 182.5); break;
+                    case "especializacion": drawText(page1, helveticaFont, "ES", 74, 182.5); break;
+                    case "maestria": drawText(page1, helveticaFont, "MG", 74, 182.5); break;
+                    case "doctorado": drawText(page1, helveticaFont, "DOC", 74, 182.5); break;
+                }
+                drawText(page1, helveticaFont, formacionSuperior[1].numeroSemestresAprobados, 135, 182.5);
+                // grauado
+                switch(formacionSuperior[1].graduado) {
+                    case "si": drawText(page1, helveticaFont, "X", 183, 182.5); break;
+                    case "no": drawText(page1, helveticaFont, "X", 207, 182.5); break;
+                }
+                drawText(page1, helveticaFont, formacionSuperior[1].tituloObtenido, 230, 182.5);
+                drawText(page1, helveticaFont, getSpacedMonth(formacionSuperior[1].fechaTerminacion), 427, 182.5);
+                drawText(page1, helveticaFont, getDoubleSpacedYear(formacionSuperior[1].fechaTerminacion), 453, 182.5);
+                drawText(page1, helveticaFont, formacionSuperior[1].numeroTarjetaProfesional, 503.5, 183.5, 9);
+            }
+            if (formacionSuperior[2]) {
+                switch(formacionSuperior[2].modalidadAcademica) {
+                    case "tecnica": drawText(page1, helveticaFont, "TC", 74, 166); break;
+                    case "tecnologica": drawText(page1, helveticaFont, "TL", 74, 166); break;
+                    case "tecnologa": drawText(page1, helveticaFont, "TE", 74, 166); break;
+                    case "unversitaria": drawText(page1, helveticaFont, "UN", 74, 166); break;
+                    case "especializacion": drawText(page1, helveticaFont, "ES", 74, 166); break;
+                    case "maestria": drawText(page1, helveticaFont, "MG", 74, 166); break;
+                    case "doctorado": drawText(page1, helveticaFont, "DOC", 74, 166); break;
+                }
+                drawText(page1, helveticaFont, formacionSuperior[2].numeroSemestresAprobados, 135, 166);
+                // grauado
+                switch(formacionSuperior[2].graduado) {
+                    case "si": drawText(page1, helveticaFont, "X", 183, 166); break;
+                    case "no": drawText(page1, helveticaFont, "X", 207, 166); break;
+                }
+                drawText(page1, helveticaFont, formacionSuperior[2].tituloObtenido, 230, 166);
+                drawText(page1, helveticaFont, getSpacedMonth(formacionSuperior[2].fechaTerminacion), 427, 166);
+                drawText(page1, helveticaFont, getDoubleSpacedYear(formacionSuperior[2].fechaTerminacion), 453, 166);
+                drawText(page1, helveticaFont, formacionSuperior[2].numeroTarjetaProfesional, 503.5, 166, 9);
+            }
+        }
+        printFormacionSuperior(curriculum.formacionSuperior);
+        
         // idioma 1
         // drawText(page1, helveticaFont, "INGLÉS", 160, 71);
         // drawText(page1, helveticaFont, "X", 321, 71);

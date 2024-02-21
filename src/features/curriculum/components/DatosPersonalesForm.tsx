@@ -13,8 +13,8 @@ const tipoIdentificacionOptions = [
     { key: "pas", value: "Pasaporte" },
 ];
 const sexoOptions = [
-    { key: "h", value: "Hombre" },
-    { key: "m", value: "Mujer" },
+    { key: "f", value: "Femenino" },
+    { key: "m", value: "Masculino" },
 ];
 const nacionalidadOptions = [
     { key: "col", value: "Colombiano" },
