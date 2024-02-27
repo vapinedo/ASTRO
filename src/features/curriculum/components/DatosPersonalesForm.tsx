@@ -1,12 +1,13 @@
+import dayjs from "dayjs";
 import * as yup from "yup";
 import { ReactNode } from "react";
 import { Controller } from "react-hook-form";
 import Box from "../../../shared/containers/Box/Box";
 import { DatosPersonales } from "../../../models/Curriculum";
-import { FormControl, InputLabel,Stack } from "@mui/material";
+import { FormControl, InputLabel, Stack } from "@mui/material";
 import InputField from "../../../shared/components/form/InputField";
 import SelectField from "../../../shared/components/form/SelectField";
-import CustomDatePicker from "../../../shared/components/form/DatePickerField";
+import DatePickerField from "../../../shared/components/form/DatePickerField";
 
 const tipoIdentificacionOptions = [
     { key: "cc", value: "Cedula de ciudadanía" },
@@ -51,7 +52,7 @@ export const datosPersonalesDefaultValues: DatosPersonales = {
     tipolibretaMilitar: "",
     numeroLibretaMilitar: "",
     distritoLibretaMilitar: "",
-    fechaNacimiento: new Date(),
+    fechaNacimiento: null,
     paisNacimiento: "",
     departamentoNacimiento: "",
     municipioNacimiento: "",
@@ -97,19 +98,19 @@ export const datosPersonalesSchema = yup.object().shape({
     tipolibretaMilitar: yup
         .string()
         .when("sexo", {
-            is: "h",
+            is: "m",
             then: (datosPersonalesSchema) => datosPersonalesSchema.required("Tipo libreta es requerido"),
         }),
     numeroLibretaMilitar: yup
         .string()
         .when("sexo", {
-            is: "h",
+            is: "m",
             then: (datosPersonalesSchema) => datosPersonalesSchema.required("Número libreta es requerido")
         }),
     distritoLibretaMilitar: yup
         .string()
         .when("sexo", {
-            is: "h",
+            is: "m",
             then: (datosPersonalesSchema) => datosPersonalesSchema.required("Distrito libreta es requerido")
         }),
     fechaNacimiento: yup
@@ -152,7 +153,6 @@ interface InputProps {
 }
 
 export default function DatosPersonalesForm(props: InputProps): ReactNode {
-
     const { errors, control, setValue, register, watch } = props;
 
     return (
@@ -267,13 +267,19 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
             </Stack>
 
             <Stack direction="row" spacing={4} mt={4}>
-                <CustomDatePicker
+                <Controller
                     control={control}
-                    register={register}
-                    setValue={setValue}
-                    label="Fecha de nacimiento"
                     name="datosPersonales.fechaNacimiento"
-                    error={errors.datosPersonales?.fechaNacimiento?.message}
+                    render={({
+                        field: { onChange, value },
+                        fieldState: { error }
+                    }) => (
+                        <DatePickerField 
+                            value={dayjs(value)}
+                            onChange={onChange}
+                            label="Fecha de nacimiento"
+                        />
+                    )}
                 />
                 <FormControl sx={{ m: 1, width: '100%' }}>
                     <InputLabel>País de nacimiento</InputLabel>

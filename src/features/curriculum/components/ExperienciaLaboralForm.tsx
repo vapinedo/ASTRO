@@ -1,13 +1,14 @@
 import * as yup from "yup";
 import "./FormComponents.css";
 import { ReactNode } from "react";
-import { Stack } from "@mui/material";
-import { useFieldArray } from "react-hook-form";
+import { FormControl, InputLabel, Stack } from "@mui/material";
+import { Controller, useFieldArray } from "react-hook-form";
 import Box from "../../../shared/containers/Box/Box";
 import { ExperienciaLaboral } from "../../../models/Curriculum";
 import InputField from "../../../shared/components/form/InputField";
 import SelectField from "../../../shared/components/form/SelectField";
 import DatePickerField from "../../../shared/components/form/DatePickerField";
+import dayjs from "dayjs";
 
 const paisOptions = [
     { key: "Colombia", value: "Colombia" },
@@ -44,8 +45,8 @@ export const experienciaLaboralDefaultValues: ExperienciaLaboral = {
     municipio: "",
     email: "",
     telefono: "",
-    fechaIngreso: new Date(),
-    fechaRetiro: new Date(),
+    fechaIngreso: null,
+    fechaRetiro: null,
     cargo: "",
     dependencia: "",
     direccion: "",
@@ -116,8 +117,8 @@ export default function experienciaLaboralForm(props: InputProps): ReactNode {
             municipio: "",
             email: "",
             telefono: "",
-            fechaIngreso: new Date(),
-            fechaRetiro: new Date(),
+            fechaIngreso: null,
+            fechaRetiro: null,
             cargo: "",
             dependencia: "",
             direccion: "",
@@ -142,13 +143,23 @@ export default function experienciaLaboralForm(props: InputProps): ReactNode {
                                 name={`experienciaLaboral.${index}.empresa`}
                                 error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.empresa?.message}
                             />
-                            <SelectField
-                                register={register}
-                                label="Tipo empresa"
-                                options={tipoEmpresaOptions}
-                                name={`experienciaLaboral.${index}.tipoEmpresa`}
-                                error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.tipoEmpresa?.message}
-                            />
+                            <FormControl sx={{ m: 1, width: '100%' }}>
+                                <InputLabel>Tipo empresa</InputLabel>
+                                <Controller
+                                    defaultValue=""
+                                    control={control}
+                                    name={`experienciaLaboral.${index}.tipoEmpresa`}
+                                    render={({ field: { onChange, value } }) => (
+                                        <SelectField
+                                            value={value}
+                                            onChange={onChange}
+                                            label="Tipo empresa"
+                                            options={tipoEmpresaOptions}
+                                            error={errors.experienciaLaboral?.tipoEmpresa?.message}
+                                        />
+                                    )}
+                                />
+                            </FormControl>
                             <InputField
                                 type="text"
                                 register={register}
@@ -166,27 +177,57 @@ export default function experienciaLaboralForm(props: InputProps): ReactNode {
                         </Stack>
 
                         <Stack direction="row" spacing={4} mt={4}>
-                            <SelectField
-                                register={register}
-                                label="País"
-                                options={paisOptions}
-                                name={`experienciaLaboral.${index}.pais`}
-                                error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.pais?.message}
-                            />
-                            <SelectField
-                                register={register}
-                                label="Departamento"
-                                options={departamentoOptions}
-                                name={`experienciaLaboral.${index}.departamento`}
-                                error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.departamento?.message}
-                            />
-                            <SelectField
-                                register={register}
-                                label="Municipio"
-                                options={municipioOptions}
-                                name={`experienciaLaboral.${index}.municipio`}
-                                error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.municipio?.message}
-                            />
+                            <FormControl sx={{ m: 1, width: '100%' }}>
+                                <InputLabel>País</InputLabel>
+                                <Controller
+                                    defaultValue=""
+                                    control={control}
+                                    name={`experienciaLaboral.${index}.pais`}
+                                    render={({ field: { onChange, value } }) => (
+                                        <SelectField
+                                            value={value}
+                                            onChange={onChange}
+                                            label="País"
+                                            options={paisOptions}
+                                            error={errors.experienciaLaboral?.pais?.message}
+                                        />
+                                    )}
+                                />
+                            </FormControl>
+                            <FormControl sx={{ m: 1, width: '100%' }}>
+                                <InputLabel>Departamento</InputLabel>
+                                <Controller
+                                    defaultValue=""
+                                    control={control}
+                                    name={`experienciaLaboral.${index}.departamento`}
+                                    render={({ field: { onChange, value } }) => (
+                                        <SelectField
+                                            value={value}
+                                            onChange={onChange}
+                                            label="Departamento"
+                                            options={departamentoOptions}
+                                            error={errors.experienciaLaboral?.departamento?.message}
+                                        />
+                                    )}
+                                />
+                            </FormControl>
+                            <FormControl sx={{ m: 1, width: '100%' }}>
+                                <InputLabel>Municipio</InputLabel>
+                                <Controller
+                                    defaultValue=""
+                                    control={control}
+                                    name={`experienciaLaboral.${index}.municipio`}
+                                    render={({ field: { onChange, value } }) => (
+                                        <SelectField
+                                            value={value}
+                                            onChange={onChange}
+                                            label="Municipio"
+                                            options={municipioOptions}
+                                            error={errors.experienciaLaboral?.municipio?.message}
+                                        />
+                                    )}
+                                />
+                            </FormControl>
                             <InputField
                                 type="text"
                                 register={register}
@@ -211,21 +252,33 @@ export default function experienciaLaboralForm(props: InputProps): ReactNode {
                                 name={`experienciaLaboral.${index}.telefono`}
                                 error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.telefono?.message}
                             />
-                            <DatePickerField
+                            <Controller
                                 control={control}
-                                register={register}
-                                setValue={setValue}
-                                label="Fecha ingreso"
                                 name={`experienciaLaboral.${index}.fechaIngreso`}
-                                error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.fechaIngreso?.message}
+                                render={({
+                                    field: { onChange, value },
+                                    fieldState: { error }
+                                }) => (
+                                    <DatePickerField
+                                        value={dayjs(value)}
+                                        onChange={onChange}
+                                        label="Fecha ingreso"
+                                    />
+                                )}
                             />
-                            <DatePickerField
+                            <Controller
                                 control={control}
-                                register={register}
-                                setValue={setValue}
-                                label="Fecha retiro"
                                 name={`experienciaLaboral.${index}.fechaRetiro`}
-                                error={errors.experienciaLaboral && errors.experienciaLaboral[index]?.fechaRetiro?.message}
+                                render={({
+                                    field: { onChange, value },
+                                    fieldState: { error }
+                                }) => (
+                                    <DatePickerField
+                                        value={dayjs(value)}
+                                        onChange={onChange}
+                                        label="Fecha retiro"
+                                    />
+                                )}
                             />
                         </Stack>
                     </div>

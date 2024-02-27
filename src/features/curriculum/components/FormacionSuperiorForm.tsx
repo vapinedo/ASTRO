@@ -1,9 +1,10 @@
+import dayjs from "dayjs";
 import * as yup from "yup";
 import "./FormComponents.css";
 import { ReactNode } from "react";
-import { Stack } from "@mui/material";
-import { useFieldArray } from "react-hook-form";
+import { FormControl, InputLabel, Stack } from "@mui/material";
 import Box from "../../../shared/containers/Box/Box";
+import { Controller, useFieldArray } from "react-hook-form";
 import { FormacionSuperior } from "../../../models/Curriculum";
 import InputField from "../../../shared/components/form/InputField";
 import SelectField from "../../../shared/components/form/SelectField";
@@ -37,7 +38,7 @@ export const formacionSuperiorDefaultValues: FormacionSuperior = {
     numeroSemestresAprobados: "",
     graduado: "",
     tituloObtenido: "",
-    fechaTerminacion: new Date(),
+    fechaTerminacion: null,
     numeroTarjetaProfesional: "",
 };
 
@@ -71,15 +72,15 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
 
     function handleAppend(event: any) {
         event.preventDefault();
-        
+
         if (fields.length === MAXIMUM_INSTANCES) return;
-        
+
         append({
             modalidadAcademica: "",
             numeroSemestresAprobados: "",
             graduado: "",
             tituloObtenido: "",
-            fechaTerminacion: new Date(),
+            fechaTerminacion: null,
             numeroTarjetaProfesional: "",
         });
     }
@@ -95,26 +96,46 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
                 <div key={field.id} className={index > 0 ? "dynamic-fields" : ""}>
                     <div className="inner">
                         <Stack direction="row" spacing={4}>
-                            <SelectField
-                                register={register}
-                                label="Modalidad académica"
-                                options={modalidadAcademicaOptions}
-                                name={`formacionSuperior.${index}.modalidadAcademica`}
-                                error={errors.formacionSuperior && errors.formacionSuperior[index]?.modalidadAcademica?.message}
-                            />
+                        <FormControl sx={{ m: 1, width: '100%' }}>
+                                <InputLabel>Modalidad académica</InputLabel>
+                                <Controller
+                                    defaultValue=""
+                                    control={control}
+                                    name={`formacionSuperior.${index}.modalidadAcademica`}
+                                    render={({ field: { onChange, value } }) => (
+                                        <SelectField
+                                            value={value}
+                                            onChange={onChange}
+                                            label="Modalidad académica"
+                                            options={modalidadAcademicaOptions}
+                                            error={errors.formacionSuperior?.modalidadAcademica?.message}
+                                        />
+                                    )}
+                                />
+                            </FormControl>
+                            <FormControl sx={{ m: 1, width: '100%' }}>
+                                <InputLabel>Graduado</InputLabel>
+                                <Controller
+                                    defaultValue=""
+                                    control={control}
+                                    name={`formacionSuperior.${index}.graduado`}
+                                    render={({ field: { onChange, value } }) => (
+                                        <SelectField
+                                            value={value}
+                                            onChange={onChange}
+                                            label="Graduado"
+                                            options={SiNoOptions}
+                                            error={errors.formacionSuperior?.graduado?.message}
+                                        />
+                                    )}
+                                />
+                            </FormControl>
                             <InputField
                                 type="text"
                                 register={register}
                                 label="Número semestres aprobados"
                                 name={`formacionSuperior.${index}.numeroSemestresAprobados`}
                                 error={errors.formacionSuperior && errors.formacionSuperior[index]?.numeroSemestresAprobados?.message}
-                            />
-                            <SelectField
-                                register={register}
-                                label="Graduado"
-                                options={SiNoOptions}
-                                name={`formacionSuperior.${index}.graduado`}
-                                error={errors.formacionSuperior && errors.formacionSuperior[index]?.graduado?.message}
                             />
                         </Stack>
 
@@ -126,13 +147,19 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
                                 name={`formacionSuperior.${index}.tituloObtenido`}
                                 error={errors.formacionSuperior && errors.formacionSuperior[index]?.tituloObtenido?.message}
                             />
-                            <DatePickerField
+                            <Controller
                                 control={control}
-                                register={register}
-                                setValue={setValue}
-                                label="Fecha de terminación"
                                 name={`formacionSuperior.${index}.fechaTerminacion`}
-                                error={errors.formacionSuperior && errors.formacionSuperior[index]?.fechaTerminacion?.message}
+                                render={({
+                                    field: { onChange, value },
+                                    fieldState: { error }
+                                }) => (
+                                    <DatePickerField
+                                        value={dayjs(value)}
+                                        onChange={onChange}
+                                        label="Fecha de terminación"
+                                    />
+                                )}
                             />
                             <InputField
                                 type="text"
@@ -143,7 +170,7 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
                             />
                         </Stack>
                     </div>
-                    
+
                     {index > 0 && <i onClick={() => remove(index)} className="icon bx bx-trash-alt" title="Eliminar"></i>}
                 </div>
             ))}

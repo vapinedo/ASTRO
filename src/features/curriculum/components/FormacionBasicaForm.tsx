@@ -1,6 +1,8 @@
+import dayjs from "dayjs";
 import * as yup from "yup";
 import { ReactNode } from "react";
-import { Stack } from "@mui/material";
+import { FormControl, InputLabel, Stack } from "@mui/material";
+import { Controller } from "react-hook-form";
 import Box from "../../../shared/containers/Box/Box";
 import { FormacionBasica } from "../../../models/Curriculum";
 import InputField from "../../../shared/components/form/InputField";
@@ -31,7 +33,7 @@ interface InputProps {
 export const formacionBasicaDefaultValues: FormacionBasica = {
     educacionBasica: "",
     tituloObtenido: "",
-    fechaGraduacion: new Date(),
+    fechaGraduacion: null,
 };
 
 export const formacionBasicaSchema = yup.object().shape({
@@ -58,13 +60,23 @@ export default function FormacionBasicaForm(props: InputProps): ReactNode {
             </header>
 
             <Stack direction="row" spacing={4}>
-                <SelectField
-                    register={register}
-                    label="Educación básica"
-                    options={educacionBasicaOptions}
-                    name="formacionBasica.educacionBasica"
-                    error={errors.formacionBasica?.educacionBasica?.message}
-                />
+                <FormControl sx={{ m: 1, width: '100%' }}>
+                    <InputLabel>Educación básica</InputLabel>
+                    <Controller
+                        defaultValue=""
+                        control={control}
+                        name="formacionBasica.educacionBasica"
+                        render={({ field: { onChange, value } }) => (
+                            <SelectField
+                                value={value}
+                                onChange={onChange}
+                                label="Nacionalidad"
+                                options={educacionBasicaOptions}
+                                error={errors.datosPersonales?.educacionBasica?.message}
+                            />
+                        )}
+                    />
+                </FormControl>
                 <InputField
                     type="text"
                     register={register}
@@ -72,13 +84,19 @@ export default function FormacionBasicaForm(props: InputProps): ReactNode {
                     name="formacionBasica.tituloObtenido"
                     error={errors.formacionBasica?.tituloObtenido?.message}
                 />
-                <DatePickerField
+                <Controller
                     control={control}
-                    register={register}
-                    setValue={setValue}
-                    label="Fecha de graduación"
                     name="formacionBasica.fechaGraduacion"
-                    error={errors.formacionBasica?.fechaGraduacion?.message}
+                    render={({
+                        field: { onChange, value },
+                        fieldState: { error }
+                    }) => (
+                        <DatePickerField
+                            value={dayjs(value)}
+                            onChange={onChange}
+                            label="Fecha de graduación"
+                        />
+                    )}
                 />
             </Stack>
         </Box>

@@ -1,7 +1,7 @@
 import "./FormComponents.css";
 import { ReactNode } from "react";
-import { Stack } from "@mui/material";
-import { useFieldArray } from "react-hook-form";
+import { FormControl, InputLabel, Stack } from "@mui/material";
+import { Controller, useFieldArray } from "react-hook-form";
 import { Idioma } from "../../../models/Curriculum";
 import Box from "../../../shared/containers/Box/Box";
 import InputField from "../../../shared/components/form/InputField";
@@ -68,27 +68,57 @@ export default function IdiomaForm(props: InputProps): ReactNode {
                                 name={`idiomas.${index}.idioma`}
                                 error={errors.idiomas && errors.idiomas[index]?.loHabla?.message}
                             />
-                            <SelectField
-                                register={register}
-                                label="Lo habla"
-                                options={idiomaOptions}
-                                name={`idiomas.${index}.loHabla`}
-                                error={errors.idiomas && errors.idiomas[index]?.loHabla?.message}
-                            />
-                            <SelectField
-                                register={register}
-                                label="Lo lee"
-                                options={idiomaOptions}
-                                name={`idiomas.${index}.loLee`}
-                                error={errors.idiomas && errors.idiomas[index]?.loLee?.message}
-                            />
-                            <SelectField
-                                register={register}
-                                label="Lo escribe"
-                                options={idiomaOptions}
-                                name={`idiomas.${index}.loEscribe`}
-                                error={errors.idiomas && errors.idiomas[index]?.loEscribe?.message}
-                            />
+                            <FormControl sx={{ m: 1, width: '100%' }}>
+                                <InputLabel>Lo habla</InputLabel>
+                                <Controller
+                                    defaultValue=""
+                                    control={control}
+                                    name={`idiomas.${index}.loHabla`}
+                                    render={({ field: { onChange, value } }) => (
+                                        <SelectField
+                                            value={value}
+                                            onChange={onChange}
+                                            label="Lo habla"
+                                            options={idiomaOptions}
+                                            error={errors.idiomas?.loHabla?.message}
+                                        />
+                                    )}
+                                />
+                            </FormControl>
+                            <FormControl sx={{ m: 1, width: '100%' }}>
+                                <InputLabel>Lo lee</InputLabel>
+                                <Controller
+                                    defaultValue=""
+                                    control={control}
+                                    name={`idiomas.${index}.loLee`}
+                                    render={({ field: { onChange, value } }) => (
+                                        <SelectField
+                                            value={value}
+                                            onChange={onChange}
+                                            label="Lo lee"
+                                            options={idiomaOptions}
+                                            error={errors.idiomas?.loLee?.message}
+                                        />
+                                    )}
+                                />
+                            </FormControl>
+                            <FormControl sx={{ m: 1, width: '100%' }}>
+                                <InputLabel>Lo escribe</InputLabel>
+                                <Controller
+                                    defaultValue=""
+                                    control={control}
+                                    name={`idiomas.${index}.loEscribe`}
+                                    render={({ field: { onChange, value } }) => (
+                                        <SelectField
+                                            value={value}
+                                            onChange={onChange}
+                                            label="Lo escribe"
+                                            options={idiomaOptions}
+                                            error={errors.idiomas?.loEscribe?.message}
+                                        />
+                                    )}
+                                />
+                            </FormControl>
                         </Stack>
                     </div>
                     {index > 0 && <i onClick={() => remove(index)} className="icon bx bx-trash-alt" title="Eliminar"></i>}

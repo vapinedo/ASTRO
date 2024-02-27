@@ -4,11 +4,12 @@ import { ReactNode, InputHTMLAttributes, useState } from "react";
 
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  name: string;
   control?: any;
   setValue?: any;
   register?: any;
   label?: string;
+  value: any;
+  onChange: any;
   error?: string;
   className?: string;
   wrapperClass?: string;
@@ -17,33 +18,31 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 export default function DatePickerField(props: InputProps): ReactNode {
 
   const {
-    name,
     error,
     label,
+    value,
     register,
+    onChange,
     control,
     setValue,
     wrapperClass,
     ...rest
   } = props;
 
-  const [date, setDate] = useState(new Date(Date.now()));
-
-  function handleChange(dateChange: Date) {
-    setValue(name, dateChange, {
-      shouldDirty: true
-    });
-    setDate(dateChange);
-  };
-
   return (
+    // <DatePicker
+    //   value={value}
+    //   label={label}
+    //   format="D/M/YYYY"
+    //   onChange={onChange}
+    //   sx={{ width: "100%" }}
+    // />
     <DatePicker
-      {...rest}
-      label={label}
-      format="D/M/YYYY"
-      {...register(name)}
+      onChange={onChange}
+      value={value}
       sx={{ width: "100%" }}
-      onChange={handleChange}
-    />
+      label={label}
+      // slotProps={{ textField: { error: !!error, helperText: error?.message } }}
+  />
   );
 }

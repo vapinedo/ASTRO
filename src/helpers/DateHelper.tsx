@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { Curriculum } from "../models/Curriculum";
 
 export function getSpacedDay(firestoreTimestamp: any) {
     const jsDateObject = dayjs.unix(firestoreTimestamp.seconds).$d;
@@ -52,4 +53,29 @@ export function getDoubleSpacedYear(firestoreTimestamp: any) {
     const stringYear = jsDateObject.getFullYear().toString();
     const spacedYear = stringYear.split("").join("  ");
     return spacedYear;
+}
+
+export function getJsDate(firestoreTimestamp: any) {
+    const jsDate = dayjs.unix(firestoreTimestamp.seconds).$d;
+    return jsDate;
+}
+
+export function allFStimestampToDateObj(curriculum: Curriculum) {
+    curriculum.datosPersonales.fechaNacimiento = getJsDate(curriculum.datosPersonales.fechaNacimiento);
+    curriculum.formacionBasica.fechaGraduacion = getJsDate(curriculum.formacionBasica.fechaGraduacion);
+
+    if (curriculum.formacionSuperior) {
+        for (let i=0; i<curriculum.formacionSuperior.length; i++) {
+            curriculum.formacionSuperior[i].fechaTerminacion = getJsDate(curriculum.formacionSuperior[i].fechaTerminacion);
+        }
+    }
+
+    if (curriculum.experienciaLaboral) {
+        for (let i=0; i<curriculum.experienciaLaboral.length; i++) {
+            curriculum.experienciaLaboral[i].fechaIngreso = getJsDate(curriculum.experienciaLaboral[i].fechaIngreso);
+            curriculum.experienciaLaboral[i].fechaRetiro = getJsDate(curriculum.experienciaLaboral[i].fechaRetiro);
+        }
+    }
+    
+    return curriculum;
 }

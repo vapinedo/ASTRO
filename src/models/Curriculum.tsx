@@ -19,7 +19,7 @@ export interface DatosPersonales {
     tipolibretaMilitar: string;
     numeroLibretaMilitar: string;
     distritoLibretaMilitar: string;
-    fechaNacimiento: Date;
+    fechaNacimiento: Date | null;
     paisNacimiento: string;
     departamentoNacimiento: string;
     municipioNacimiento: string;
@@ -33,7 +33,7 @@ export interface DatosPersonales {
 export interface FormacionBasica {
     educacionBasica: string;
     tituloObtenido: string;
-    fechaGraduacion: Date;
+    fechaGraduacion: Date | null;
 }
 
 export interface FormacionSuperior {
@@ -41,7 +41,7 @@ export interface FormacionSuperior {
     numeroSemestresAprobados: string;
     graduado: string;
     tituloObtenido: string;
-    fechaTerminacion: Date;
+    fechaTerminacion: Date | null;
     numeroTarjetaProfesional: string;
 }
 
@@ -60,8 +60,8 @@ export interface ExperienciaLaboral {
     municipio: string;
     email: string;
     telefono: string;
-    fechaIngreso: Date;
-    fechaRetiro: Date;
+    fechaIngreso: Date | null;
+    fechaRetiro: Date | null;
     cargo: string;
     dependencia: string;
     direccion: string;

@@ -9,6 +9,7 @@ import FormacionBasicaForm, { formacionBasicaDefaultValues, formacionBasicaSchem
 import FormacionSuperiorForm, { formacionSuperiorDefaultValues, formacionSuperiorSchema } from "../../components/FormacionSuperiorForm";
 import ExperienciaLaboralForm, { experienciaLaboralDefaultValues, experienciaLaboralSchema } from "../../components/ExperienciaLaboralForm";
 import { useEffect, useState } from "react";
+import { allFStimestampToDateObj, getJsDate } from "../../../../helpers/DateHelper";
 
 let defaultValues: Curriculum = {
     datosPersonales: datosPersonalesDefaultValues,
@@ -37,8 +38,13 @@ export default function CurriculumEditar() {
         const data = localStorage.getItem("curriculum-edit");
         if (data !== null) {
             const curriculum = JSON.parse(data);
-            setValue("datosPersonales", curriculum.datosPersonales, { shouldValidate: true });
-        }
+            allFStimestampToDateObj(curriculum);
+            setValue("datosPersonales", curriculum.datosPersonales, { shouldValidate: false });
+            setValue("formacionBasica", curriculum.formacionBasica, { shouldValidate: false });
+            setValue("formacionSuperior", curriculum.formacionSuperior, { shouldValidate: false });
+            setValue("idiomas", curriculum.idiomas, { shouldValidate: false });
+            setValue("experienciaLaboral", curriculum.experienciaLaboral, { shouldValidate: false });
+        }   
     }, []);
 
     const { register, formState, handleSubmit, control, setValue, watch } = form;
