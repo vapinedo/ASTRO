@@ -2,14 +2,14 @@ import * as yup from "yup";
 import Button from '@mui/material/Button';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldErrors, useForm } from "react-hook-form";
+import { useAppDispatch } from "../../../../core/hooks";
 import { Curriculum } from "../../../../models/Curriculum";
+import { createCurriculum } from "../../../../core/actions/curriculumActions";
 import IdiomaForm, { idiomasDefaultValues } from "../../components/IdiomaForm";
 import DatosPersonalesForm, { datosPersonalesDefaultValues, datosPersonalesSchema } from "../../components/DatosPersonalesForm";
 import FormacionBasicaForm, { formacionBasicaDefaultValues, formacionBasicaSchema } from "../../components/FormacionBasicaForm";
 import FormacionSuperiorForm, { formacionSuperiorDefaultValues, formacionSuperiorSchema } from "../../components/FormacionSuperiorForm";
 import ExperienciaLaboralForm, { experienciaLaboralDefaultValues, experienciaLaboralSchema } from "../../components/ExperienciaLaboralForm";
-
-import { getFirestore, addDoc, collection } from 'firebase/firestore';
 
 let defaultValues: Curriculum = {
     datosPersonales: datosPersonalesDefaultValues,
@@ -28,6 +28,8 @@ const validationSchema = yup.object().shape({
 
 export default function CurriculumNuevo() {
 
+    const dispatch = useAppDispatch();
+
     const form = useForm<Curriculum>({
         defaultValues,
         mode: "onTouched",
@@ -43,11 +45,7 @@ export default function CurriculumNuevo() {
 
     function onSubmit(curriculum: Curriculum) {
         console.log(curriculum);
-        // const db = getFirestore();
-        // const saveDataToFirestore = async () => {
-        //     const docRef = await addDoc(collection(db, "curriculums"), data);
-        // };
-        // saveDataToFirestore();
+        dispatch(createCurriculum(curriculum));
     }
 
     return (

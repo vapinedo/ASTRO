@@ -7,7 +7,7 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { Curriculum } from "../../../../models/Curriculum";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useAppDispatch, useAppSelector } from "../../../../core/hooks"
-import { fetchCurriculums } from "../../../../core/slices/curriculumSlice";
+import { readCurriculums } from "../../../../core/actions/curriculumActions";
 
 export default function CurriculumAdmin() {
 
@@ -16,7 +16,7 @@ export default function CurriculumAdmin() {
   const curriculums = useAppSelector((state) => state.curriculum);
 
   useEffect(() => {
-    dispatch(fetchCurriculums());
+    dispatch(readCurriculums());
   }, []);
 
   function handleEdit(curriculum: Curriculum) {
