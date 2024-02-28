@@ -191,6 +191,48 @@ export default function CurriculumPreview() {
                 drawText(page1, helveticaFont, getDoubleSpacedYear(formacionSuperior[2].fechaTerminacion), 453, 166);
                 drawText(page1, helveticaFont, formacionSuperior[2].numeroTarjetaProfesional, 503.5, 166, 9);
             }
+            if (formacionSuperior[3]) {
+                switch(formacionSuperior[3].modalidadAcademica) {
+                    case "tecnica": drawText(page1, helveticaFont, "TC", 74, 148.5); break;
+                    case "tecnologica": drawText(page1, helveticaFont, "TL", 74, 148.5); break;
+                    case "tecnologa": drawText(page1, helveticaFont, "TE", 74, 148.5); break;
+                    case "unversitaria": drawText(page1, helveticaFont, "UN", 74, 148.5); break;
+                    case "especializacion": drawText(page1, helveticaFont, "ES", 74, 148.5); break;
+                    case "maestria": drawText(page1, helveticaFont, "MG", 74, 148.5); break;
+                    case "doctorado": drawText(page1, helveticaFont, "DOC", 74, 148.5); break;
+                }
+                drawText(page1, helveticaFont, formacionSuperior[3].numeroSemestresAprobados, 135, 148.5);
+                // grauado
+                switch(formacionSuperior[3].graduado) {
+                    case "si": drawText(page1, helveticaFont, "X", 183, 148.5); break;
+                    case "no": drawText(page1, helveticaFont, "X", 207, 148.5); break;
+                }
+                drawText(page1, helveticaFont, formacionSuperior[3].tituloObtenido, 230, 148.5);
+                drawText(page1, helveticaFont, getSpacedMonth(formacionSuperior[3].fechaTerminacion), 427, 148.5);
+                drawText(page1, helveticaFont, getDoubleSpacedYear(formacionSuperior[3].fechaTerminacion), 453, 148.5);
+                drawText(page1, helveticaFont, formacionSuperior[3].numeroTarjetaProfesional, 503.5, 149);
+            }
+            if (formacionSuperior[4]) {
+                switch(formacionSuperior[4].modalidadAcademica) {
+                    case "tecnica": drawText(page1, helveticaFont, "TC", 74, 131); break;
+                    case "tecnologica": drawText(page1, helveticaFont, "TL", 74, 131); break;
+                    case "tecnologa": drawText(page1, helveticaFont, "TE", 74, 131); break;
+                    case "unversitaria": drawText(page1, helveticaFont, "UN", 74, 131); break;
+                    case "especializacion": drawText(page1, helveticaFont, "ES", 74, 131); break;
+                    case "maestria": drawText(page1, helveticaFont, "MG", 74, 131); break;
+                    case "doctorado": drawText(page1, helveticaFont, "DOC", 74, 131); break;
+                }
+                drawText(page1, helveticaFont, formacionSuperior[4].numeroSemestresAprobados, 135, 131);
+                // grauado
+                switch(formacionSuperior[4].graduado) {
+                    case "si": drawText(page1, helveticaFont, "X", 183, 131); break;
+                    case "no": drawText(page1, helveticaFont, "X", 207, 131); break;
+                }
+                drawText(page1, helveticaFont, formacionSuperior[4].tituloObtenido, 230, 131);
+                drawText(page1, helveticaFont, getSpacedMonth(formacionSuperior[4].fechaTerminacion), 427, 131);
+                drawText(page1, helveticaFont, getDoubleSpacedYear(formacionSuperior[4].fechaTerminacion), 453, 131);
+                drawText(page1, helveticaFont, formacionSuperior[4].numeroTarjetaProfesional, 503.5, 132);
+            }
         }
         printFormacionSuperior(curriculum.formacionSuperior);
         
