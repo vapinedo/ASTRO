@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import file from "../../../../cv-format.pdf";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
-import { Curriculum, FormacionSuperior } from "../../../../models/Curriculum";
+import { Curriculum, FormacionSuperior, Idioma } from "../../../../models/Curriculum";
 import { getDoubleSpacedYear, getSpacedDay, getSpacedMonth, getSpacedYear } from "../../../../helpers/DateHelper";
 
 const drawText = (page: any, font: any, text: any, x: number, y: number, fontSize = 11) => {
@@ -236,11 +236,48 @@ export default function CurriculumPreview() {
         }
         printFormacionSuperior(curriculum.formacionSuperior);
         
-        // idioma 1
-        // drawText(page1, helveticaFont, "INGLÉS", 160, 71);
-        // drawText(page1, helveticaFont, "X", 321, 71);
-        // drawText(page1, helveticaFont, "X", 372, 71);
-        // drawText(page1, helveticaFont, "X", 424, 71);
+        // Idiomas
+        function printIdiomas(idiomas: Idioma[]) {
+            if (idiomas[0]) {
+                drawText(page1, helveticaFont, curriculum.idiomas[0].idioma, 160, 71);
+                
+                switch(idiomas[0].loHabla) {
+                    case "r": drawText(page1, helveticaFont, "X", 303, 71); break;
+                    case "b": drawText(page1, helveticaFont, "X", 320, 71); break;
+                    case "mb": drawText(page1, helveticaFont, "X", 337, 71); break;
+                }
+                switch(idiomas[0].loLee) {
+                    case "r": drawText(page1, helveticaFont, "X", 354.5, 71); break;
+                    case "b": drawText(page1, helveticaFont, "X", 371.5, 71); break;
+                    case "mb": drawText(page1, helveticaFont, "X", 388, 71); break;
+                }
+                switch(idiomas[0].loEscribe) {
+                    case "r": drawText(page1, helveticaFont, "X", 307, 71); break;
+                    case "b": drawText(page1, helveticaFont, "X", 423, 71); break;
+                    case "mb": drawText(page1, helveticaFont, "X", 440, 71); break;
+                }
+            }
+            if (idiomas[1]) {
+                drawText(page1, helveticaFont, curriculum.idiomas[1].idioma, 160, 53.6);
+                
+                switch(idiomas[1].loHabla) {
+                    case "r": drawText(page1, helveticaFont, "X", 303, 53.6); break;
+                    case "b": drawText(page1, helveticaFont, "X", 320, 53.6); break;
+                    case "mb": drawText(page1, helveticaFont, "X", 337, 53.6); break;
+                }
+                switch(idiomas[1].loLee) {
+                    case "r": drawText(page1, helveticaFont, "X", 354.5, 53.6); break;
+                    case "b": drawText(page1, helveticaFont, "X", 371.5, 53.6); break;
+                    case "mb": drawText(page1, helveticaFont, "X", 388, 53.6); break;
+                }
+                switch(idiomas[1].loEscribe) {
+                    case "r": drawText(page1, helveticaFont, "X", 307, 53.6); break;
+                    case "b": drawText(page1, helveticaFont, "X", 423, 53.6); break;
+                    case "mb": drawText(page1, helveticaFont, "X", 440, 53.6); break;
+                }
+            }
+        }
+        printIdiomas(curriculum.idiomas);
 
         // PAGE 2
         // empresa actual
