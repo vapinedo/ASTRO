@@ -28,9 +28,10 @@ const validationSchema = yup.object().shape({
     experienciaLaboral: yup.array().of(experienciaLaboralSchema)
 });
 
+let documentId: string | undefined = "";
+
 export default function CurriculumEditar() {
 
-    let documentId: string | undefined = "";
     const dispatch = useAppDispatch();
 
     const form = useForm<Curriculum>({
@@ -62,8 +63,8 @@ export default function CurriculumEditar() {
 
     function onSubmit(curriculum: Curriculum) {
         curriculum.documentId = documentId;
-        console.log({curriculum});
         fromM2ToDate(curriculum);
+        console.log({curriculum});
         dispatch(updateCurriculum(curriculum));
     }
 
