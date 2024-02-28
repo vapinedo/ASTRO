@@ -44,7 +44,6 @@ export default function CurriculumNuevo() {
     }
 
     function onSubmit(curriculum: Curriculum) {
-        console.log(curriculum);
         dispatch(createCurriculum(curriculum));
     }
 

@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { StoreInitialState } from "../../models/StoreInitialState";
-import { createCurriculum, readCurriculumsCases } from "../actions/curriculumActions";
+import { curriculumReadCases } from "../cases/curriculumReadCases";
+import { curriculumCreateCases } from "../cases/curriculumCreateCases";
+import { curriculumUpdateCases } from "../cases/curriculumUpdateCases";
 
 const initialState: StoreInitialState = {
     loading: false,
@@ -13,19 +15,9 @@ const curriculumSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: function (builder) {
-        readCurriculumsCases(builder),
-        builder.addCase(createCurriculum.pending, (state) => {
-            state.loading = true
-        })
-        builder.addCase(createCurriculum.fulfilled, (state) => {
-            state.loading = false,
-            state.error = ""
-        })
-        builder.addCase(createCurriculum.rejected, (state, action) => {
-            state.loading = false,
-            state.curriculums = [],
-            state.error = action.error.message || "Something went wrong"
-        })
+        curriculumReadCases(builder),
+        curriculumCreateCases(builder),
+        curriculumUpdateCases(builder)
     },
 })
 

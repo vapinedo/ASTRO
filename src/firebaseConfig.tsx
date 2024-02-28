@@ -20,7 +20,7 @@ const firebaseConfig = {
     storageBucket: "astro-463ea.appspot.com",
     messagingSenderId: "950639520557",
     appId: "1:950639520557:web:43d10d30bdf840970f81a4",
-    measurementId: "G-6LKW781Z6R"    
+    measurementId: "G-6LKW781Z6R",
 };
 
 // Initialize Firebase

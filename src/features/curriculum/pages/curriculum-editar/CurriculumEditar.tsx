@@ -1,15 +1,17 @@
 import * as yup from "yup";
+import { useEffect } from "react";
 import Button from '@mui/material/Button';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldErrors, useForm } from "react-hook-form";
+import { useAppDispatch } from "../../../../core/hooks";
 import { Curriculum } from "../../../../models/Curriculum";
+import { allFStimestampToDateObj, fromM2ToDate } from "../../../../helpers/DateHelper";
+import { updateCurriculum } from "../../../../core/actions/curriculumActions";
 import IdiomaForm, { idiomasDefaultValues } from "../../components/IdiomaForm";
 import DatosPersonalesForm, { datosPersonalesDefaultValues, datosPersonalesSchema } from "../../components/DatosPersonalesForm";
 import FormacionBasicaForm, { formacionBasicaDefaultValues, formacionBasicaSchema } from "../../components/FormacionBasicaForm";
 import FormacionSuperiorForm, { formacionSuperiorDefaultValues, formacionSuperiorSchema } from "../../components/FormacionSuperiorForm";
 import ExperienciaLaboralForm, { experienciaLaboralDefaultValues, experienciaLaboralSchema } from "../../components/ExperienciaLaboralForm";
-import { useEffect, useState } from "react";
-import { allFStimestampToDateObj, getJsDate } from "../../../../helpers/DateHelper";
 
 let defaultValues: Curriculum = {
     datosPersonales: datosPersonalesDefaultValues,
@@ -28,6 +30,9 @@ const validationSchema = yup.object().shape({
 
 export default function CurriculumEditar() {
 
+    let documentId: string | undefined = "";
+    const dispatch = useAppDispatch();
+
     const form = useForm<Curriculum>({
         defaultValues,
         mode: "onTouched",
@@ -37,13 +42,14 @@ export default function CurriculumEditar() {
     useEffect(() => {
         const data = localStorage.getItem("curriculum-edit");
         if (data !== null) {
-            const curriculum = JSON.parse(data);
+            const curriculum: Curriculum = JSON.parse(data);
             allFStimestampToDateObj(curriculum);
             setValue("datosPersonales", curriculum.datosPersonales, { shouldValidate: false });
             setValue("formacionBasica", curriculum.formacionBasica, { shouldValidate: false });
             setValue("formacionSuperior", curriculum.formacionSuperior, { shouldValidate: false });
             setValue("idiomas", curriculum.idiomas, { shouldValidate: false });
             setValue("experienciaLaboral", curriculum.experienciaLaboral, { shouldValidate: false });
+            documentId = curriculum.documentId;
         }   
     }, []);
 
@@ -54,8 +60,11 @@ export default function CurriculumEditar() {
         console.log(errors);
     }
 
-    function onSubmit(data: any) {
-        console.log(data);
+    function onSubmit(curriculum: Curriculum) {
+        curriculum.documentId = documentId;
+        console.log({curriculum});
+        fromM2ToDate(curriculum);
+        dispatch(updateCurriculum(curriculum));
     }
 
     return (

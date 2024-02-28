@@ -79,3 +79,29 @@ export function allFStimestampToDateObj(curriculum: Curriculum) {
     
     return curriculum;
 }
+
+export function fromM2ToDate(curriculum: Curriculum) {
+    if (curriculum.datosPersonales.fechaNacimiento?.$d) {
+        curriculum.datosPersonales.fechaNacimiento = curriculum.datosPersonales.fechaNacimiento?.$d;
+    }
+    if (curriculum.formacionBasica.fechaGraduacion?.$d) {
+        curriculum.formacionBasica.fechaGraduacion = curriculum.formacionBasica.fechaGraduacion?.$d;
+    }
+    if (curriculum.formacionSuperior) {
+        for (let i=0; i<curriculum.formacionSuperior.length; i++) {
+            if (curriculum.formacionSuperior[i].fechaTerminacion?.$d) {
+                curriculum.formacionSuperior[i].fechaTerminacion = curriculum.formacionSuperior[i].fechaTerminacion?.$d;
+            }
+        }
+    }
+    if (curriculum.experienciaLaboral) {
+        for (let i=0; i<curriculum.experienciaLaboral.length; i++) {
+            if (curriculum.experienciaLaboral[i].fechaIngreso?.$d) {
+                curriculum.experienciaLaboral[i].fechaIngreso = curriculum.experienciaLaboral[i].fechaIngreso?.$d;
+            }
+            if (curriculum.experienciaLaboral[i].fechaRetiro?.$d) {
+                curriculum.experienciaLaboral[i].fechaRetiro = curriculum.experienciaLaboral[i].fechaRetiro?.$d;
+            }
+        }
+    }
+}
