@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import file from "../../../../cv-format.pdf";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
-import { Curriculum, FormacionSuperior, Idioma } from "../../../../models/Curriculum";
+import { Curriculum, ExperienciaLaboral, FormacionSuperior, Idioma } from "../../../../models/Curriculum";
 import { getDoubleSpacedYear, getSpacedDay, getSpacedMonth, getSpacedYear } from "../../../../helpers/DateHelper";
 
 const drawText = (page: any, font: any, text: any, x: number, y: number, fontSize = 11) => {
@@ -279,76 +279,113 @@ export default function CurriculumPreview() {
         }
         printIdiomas(curriculum.idiomas);
 
-        // PAGE 2
-        // empresa actual
-        // drawText(page2, helveticaFont, "SOFTSERVE", 65, 550);
-        // drawText(page2, helveticaFont, "X", 394, 550);
-        // drawText(page2, helveticaFont, "ESTADOS UNIDOS", 428, 550);
-        // drawText(page2, helveticaFont, "TEXAS", 65, 520);
-        // drawText(page2, helveticaFont, "HOUSTON", 242, 520);
-        // drawText(page2, helveticaFont, "softserveinc@info.com", 416, 520);
-        // drawText(page2, helveticaFont, "555 880 4023", 65, 491.5);
-        // drawText(page2, helveticaFont, "0 1", 261.5, 491.5);
-        // drawText(page2, helveticaFont, "0 8", 311.5, 491.5);
-        // drawText(page2, helveticaFont, "2 0 2 2", 359, 491.5);
-        // drawText(page2, helveticaFont, "INGENIERO DE SOFTWARE", 65, 461);
-        // drawText(page2, helveticaFont, "TI", 242, 461);
-        // drawText(page2, helveticaFont, "CALLE 27 #55-44", 410, 461);
+        function printExoerienciaLaboral(experienciaLaboral: ExperienciaLaboral[]) {
+            if (experienciaLaboral[0]) {
+                drawText(page2, helveticaFont, experienciaLaboral[0].empresa, 65, 550.5);
+                
+                switch(experienciaLaboral[0].tipoEmpresa) {
+                    case "publica": drawText(page2, helveticaFont, "X", 344, 550.5); break;
+                    case "privada": drawText(page2, helveticaFont, "X", 390, 550.5); break;
+                }
+                drawText(page2, helveticaFont, experienciaLaboral[0].pais, 428, 550.5);
+                drawText(page2, helveticaFont, experienciaLaboral[0].departamento, 65, 520);
+                drawText(page2, helveticaFont, experienciaLaboral[0].municipio, 242, 520);
+                drawText(page2, helveticaFont, experienciaLaboral[0].email, 416, 520);
+                drawText(page2, helveticaFont, experienciaLaboral[0].telefono, 65, 491.5);
 
-        // experiencia 1
-        // drawText(page2, helveticaFont, "MAS GLOBAL CONSULTING", 65, 419);
-        // drawText(page2, helveticaFont, "X", 344, 419);
-        // drawText(page2, helveticaFont, "COLOMBIA", 428, 419);
-        // drawText(page2, helveticaFont, "ANTIOQUIA", 65, 390);
-        // drawText(page2, helveticaFont, "MEDELLIN", 242, 390);
-        // drawText(page2, helveticaFont, "masglobalconsulting@info.com", 414, 390);
-        // drawText(page2, helveticaFont, "555 880 4023", 65, 359);
-        // drawText(page2, helveticaFont, "0 4", 262, 361);
-        // drawText(page2, helveticaFont, "1 0", 311.5, 361);
-        // drawText(page2, helveticaFont, "2 0 2 1", 359, 361);
-        // drawText(page2, helveticaFont, "3 0", 429, 361);
-        // drawText(page2, helveticaFont, "0 7", 478, 361);
-        // drawText(page2, helveticaFont, "2 0 2 2", 526, 361);
-        // drawText(page2, helveticaFont, "INGENIERO DE SOFTWARE", 65, 331);
-        // drawText(page2, helveticaFont, "TI", 242, 331);
-        // drawText(page2, helveticaFont, "CALLE 27 #55-44", 410, 331);
+                drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[0].fechaIngreso), 261.5, 491.5);
+                drawText(page2, helveticaFont, getSpacedMonth(experienciaLaboral[0].fechaIngreso), 311.5, 491.5);
+                drawText(page2, helveticaFont, getSpacedYear(experienciaLaboral[0].fechaIngreso), 359, 491.5);
 
-        // experiencia 2
-        // drawText(page2, helveticaFont, "DIGITALWARE", 65, 290);
-        // drawText(page2, helveticaFont, "X", 344, 290);
-        // drawText(page2, helveticaFont, "COLOMBIA", 428, 290);
-        // drawText(page2, helveticaFont, "CUNDINAMARCA", 65, 260);
-        // drawText(page2, helveticaFont, "BOGOTÁ", 242, 260);
-        // drawText(page2, helveticaFont, "digitalware@info.com", 414, 260);
-        // drawText(page2, helveticaFont, "555 880 4023", 65, 230);
-        // drawText(page2, helveticaFont, "1 7", 262, 231);
-        // drawText(page2, helveticaFont, "0 7", 311.5, 231);
-        // drawText(page2, helveticaFont, "2 0 2 1", 359, 231);
-        // drawText(page2, helveticaFont, "0 4", 429, 231);
-        // drawText(page2, helveticaFont, "1 0", 478, 231);
-        // drawText(page2, helveticaFont, "2 0 2 1", 526, 231);
-        // drawText(page2, helveticaFont, "INGENIERO DE SOFTWARE", 65, 201);
-        // drawText(page2, helveticaFont, "TI", 242, 201);
-        // drawText(page2, helveticaFont, "CALLE 27 #55-44", 410, 201);
+                drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[0].fechaRetiro), 428.7, 491.5);
+                drawText(page2, helveticaFont, getSpacedMonth(experienciaLaboral[0].fechaRetiro), 478.3, 491.5);
+                drawText(page2, helveticaFont, getSpacedYear(experienciaLaboral[0].fechaRetiro), 525.7, 491.5);
 
-        // experiencia 3
-        // drawText(page2, helveticaFont, "ASESOFTWARE", 65, 160);
-        // drawText(page2, helveticaFont, "X", 344, 160);
-        // drawText(page2, helveticaFont, "COLOMBIA", 428, 160);
-        // drawText(page2, helveticaFont, "CUNDINAMARCA", 65, 129);
-        // drawText(page2, helveticaFont, "BOGOTÁ", 242, 129);
-        // drawText(page2, helveticaFont, "asesoftware@info.com", 414, 129);
-        // drawText(page2, helveticaFont, "555 880 4023", 65, 99);
-        // drawText(page2, helveticaFont, "1 6", 262, 101);
-        // drawText(page2, helveticaFont, "1 2", 311.5, 101);
-        // drawText(page2, helveticaFont, "2 0 2 0", 359, 101);
-        // drawText(page2, helveticaFont, "1 7", 429, 101);
-        // drawText(page2, helveticaFont, "0 7", 478, 101);
-        // drawText(page2, helveticaFont, "2 0 2 1", 526, 101);
-        // drawText(page2, helveticaFont, "INGENIERO DE SOFTWARE", 65, 70);
-        // drawText(page2, helveticaFont, "TI", 242, 70);
-        // drawText(page2, helveticaFont, "CALLE 27 #55-44", 410, 70);
+                drawText(page2, helveticaFont, experienciaLaboral[0].cargo, 65, 461);
+                drawText(page2, helveticaFont, experienciaLaboral[0].dependencia, 242, 461);
+                drawText(page2, helveticaFont, experienciaLaboral[0].direccion, 410, 461);
+            }
+            
+            if (experienciaLaboral[1]) {
+                drawText(page2, helveticaFont, experienciaLaboral[1].empresa, 65, 419);
+                
+                switch(experienciaLaboral[1].tipoEmpresa) {
+                    case "publica": drawText(page2, helveticaFont, "X", 344, 419); break;
+                    case "privada": drawText(page2, helveticaFont, "X", 390, 419); break;
+                }
+                drawText(page2, helveticaFont, experienciaLaboral[1].pais, 428, 419);
+                drawText(page2, helveticaFont, experienciaLaboral[1].departamento, 65, 390);
+                drawText(page2, helveticaFont, experienciaLaboral[1].municipio, 242, 390);
+                drawText(page2, helveticaFont, experienciaLaboral[1].email, 414, 390);
+                drawText(page2, helveticaFont, experienciaLaboral[1].telefono, 65, 359);
 
+                drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[1].fechaIngreso), 262, 361);
+                drawText(page2, helveticaFont, getSpacedMonth(experienciaLaboral[1].fechaIngreso), 311.5, 361);
+                drawText(page2, helveticaFont, getSpacedYear(experienciaLaboral[1].fechaIngreso), 359, 361);
+
+                drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[1].fechaRetiro), 429, 361);
+                drawText(page2, helveticaFont, getSpacedMonth(experienciaLaboral[1].fechaRetiro), 478, 361);
+                drawText(page2, helveticaFont, getSpacedYear(experienciaLaboral[1].fechaRetiro), 526, 361);
+
+                drawText(page2, helveticaFont, experienciaLaboral[1].cargo, 65, 331);
+                drawText(page2, helveticaFont, experienciaLaboral[1].dependencia, 242, 331);
+                drawText(page2, helveticaFont, experienciaLaboral[1].direccion, 410, 331);
+            }
+
+            if (experienciaLaboral[2]) {
+                drawText(page2, helveticaFont, experienciaLaboral[2].empresa, 65, 290);
+                
+                switch(experienciaLaboral[2].tipoEmpresa) {
+                    case "publica": drawText(page2, helveticaFont, "X", 344, 290); break;
+                    case "privada": drawText(page2, helveticaFont, "X", 390, 290); break;
+                }
+                drawText(page2, helveticaFont, experienciaLaboral[2].pais, 428, 290);
+                drawText(page2, helveticaFont, experienciaLaboral[2].departamento, 65, 260);
+                drawText(page2, helveticaFont, experienciaLaboral[2].municipio, 242, 260);
+                drawText(page2, helveticaFont, experienciaLaboral[2].email, 414, 260);
+                drawText(page2, helveticaFont, experienciaLaboral[2].telefono, 65, 230);
+
+                drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[2].fechaIngreso), 262, 231);
+                drawText(page2, helveticaFont, getSpacedMonth(experienciaLaboral[2].fechaIngreso), 311.5, 231);
+                drawText(page2, helveticaFont, getSpacedYear(experienciaLaboral[2].fechaIngreso), 359, 231);
+
+                drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[2].fechaRetiro), 429, 231);
+                drawText(page2, helveticaFont, getSpacedMonth(experienciaLaboral[2].fechaRetiro), 478, 231);
+                drawText(page2, helveticaFont, getSpacedYear(experienciaLaboral[2].fechaRetiro), 526, 231);
+
+                drawText(page2, helveticaFont, experienciaLaboral[2].cargo, 65, 201);
+                drawText(page2, helveticaFont, experienciaLaboral[2].dependencia, 242, 201);
+                drawText(page2, helveticaFont, experienciaLaboral[2].direccion, 410, 201);
+            }
+
+            if (experienciaLaboral[3]) {
+                drawText(page2, helveticaFont, experienciaLaboral[3].empresa, 65, 160);
+                
+                switch(experienciaLaboral[3].tipoEmpresa) {
+                    case "publica": drawText(page2, helveticaFont, "X", 344, 160); break;
+                    case "privada": drawText(page2, helveticaFont, "X", 390, 160); break;
+                }
+                drawText(page2, helveticaFont, experienciaLaboral[3].pais, 428, 160);
+                drawText(page2, helveticaFont, experienciaLaboral[3].departamento, 65, 129);
+                drawText(page2, helveticaFont, experienciaLaboral[3].municipio, 242, 129);
+                drawText(page2, helveticaFont, experienciaLaboral[3].email, 414, 129);
+                drawText(page2, helveticaFont, experienciaLaboral[3].telefono, 65, 99);
+
+                drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[3].fechaIngreso), 262, 101);
+                drawText(page2, helveticaFont, getSpacedMonth(experienciaLaboral[3].fechaIngreso), 311.5, 101);
+                drawText(page2, helveticaFont, getSpacedYear(experienciaLaboral[3].fechaIngreso), 359, 101);
+
+                drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[3].fechaRetiro), 429, 101);
+                drawText(page2, helveticaFont, getSpacedMonth(experienciaLaboral[3].fechaRetiro), 478, 101);
+                drawText(page2, helveticaFont, getSpacedYear(experienciaLaboral[3].fechaRetiro), 526, 101);
+
+                drawText(page2, helveticaFont, experienciaLaboral[3].cargo, 65, 70);
+                drawText(page2, helveticaFont, experienciaLaboral[3].dependencia, 242, 70);
+                drawText(page2, helveticaFont, experienciaLaboral[3].direccion, 410, 70);
+            }
+        }
+        printExoerienciaLaboral(curriculum.experienciaLaboral);
+        
         // PAGE 3
         // experiencia sector publico
         // drawText(page3, helveticaFont, "5", 388, 592);
