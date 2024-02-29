@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { Curriculum } from "../models/Curriculum";
+import { Curriculum, ExperienciaLaboral } from "../models/Curriculum";
 
 export function getSpacedDay(firestoreTimestamp: any) {
     const jsDateObject = dayjs.unix(firestoreTimestamp.seconds).$d;
@@ -104,4 +104,24 @@ export function fromM2ToDate(curriculum: Curriculum) {
             }
         }
     }
+}
+
+export function getTotalYearsOfExperience(experienciaLaboral: ExperienciaLaboral[]) {
+    let daysOfExperienceArr = [];
+    for (let i=0; i<experienciaLaboral.length; i++) {
+        const exp = experienciaLaboral[i];
+        const daysOfExp = differenceInDays(exp.fechaIngreso, exp.fechaRetiro)
+        daysOfExperienceArr.push(daysOfExp);
+    }
+    const days = daysOfExperienceArr.reduce((acc, current) => acc + current, 0);
+    const totalMonths = Math.floor(days / 30);
+    const years = Math.floor(totalMonths / 12);
+    const remainingMonths = totalMonths % 12;
+    return [years, remainingMonths];
+}
+
+export function differenceInDays(startDate, endDate) {
+    const difference = getJsDate(endDate) - getJsDate(startDate);
+    const result = Math.ceil(difference / (1000 * 3600 * 24));
+    return result;
 }

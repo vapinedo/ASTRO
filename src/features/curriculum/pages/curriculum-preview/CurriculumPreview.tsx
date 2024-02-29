@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import file from "../../../../cv-format.pdf";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import { Curriculum, ExperienciaLaboral, FormacionSuperior, Idioma } from "../../../../models/Curriculum";
-import { getDoubleSpacedYear, getSpacedDay, getSpacedMonth, getSpacedYear } from "../../../../helpers/DateHelper";
+import { differenceInDays, differenceInYears, getDoubleSpacedYear, getJsDate, getSpacedDay, getSpacedMonth, getSpacedYear, getTotalYearsOfExperience } from "../../../../helpers/DateHelper";
 
 const drawText = (page: any, font: any, text: any, x: number, y: number, fontSize = 11) => {
     page.drawText(text, {
@@ -14,11 +14,16 @@ const drawText = (page: any, font: any, text: any, x: number, y: number, fontSiz
     })
 };
 
+interface TotalExperiencia {
+    monthsPrivadas: number;
+    monthsPublicas: number;
+    yearsPrivadas: number;
+    yearsPublicas: number;
+}
+
 export default function CurriculumPreview() {
 
     const [pdfInfo, setPdfInfo] = useState([]);
-    // const [loading, setloading] = useState(true);
-    // const [curriculum, setCurriculum] = useState<Curriculum>();
     
     useEffect(() => {
         const data = localStorage.getItem("curriculum");
@@ -388,23 +393,61 @@ export default function CurriculumPreview() {
         
         // PAGE 3
         // experiencia sector publico
-        // drawText(page3, helveticaFont, "5", 388, 592);
-        // drawText(page3, helveticaFont, "4", 458, 592);
+        function printAniosExperiencia(experienciaLaboral: ExperienciaLaboral[]) {
+            let privadas = [];
+            let publicas = [];
 
-        // experiencia sector privado
-        // drawText(page3, helveticaFont, "5", 388, 565);
-        // drawText(page3, helveticaFont, "2", 458, 565);
+            let totalExperiencia: TotalExperiencia = {
+                monthsPrivadas: 0,
+                monthsPublicas: 0,
+                yearsPrivadas: 0,
+                yearsPublicas: 0,
+            };
 
-        // experiencia independiente
-        // drawText(page3, helveticaFont, "5", 388, 535);
-        // drawText(page3, helveticaFont, "2", 458, 535);
+            for (let i=0; i<experienciaLaboral.length; i++) {
+                experienciaLaboral[i].tipoEmpresa === "privada"
+                    ? privadas.push(experienciaLaboral[i])
+                    : publicas.push(experienciaLaboral[i])
+            }
 
-        // total tiempo experiencia
-        // drawText(page3, helveticaFont, "10", 386, 510);
-        // drawText(page3, helveticaFont, "6", 458, 510);
+            // experiencia sector publico
+            if (publicas.length > 0) {
+                const [publicYears, publicMonths] = getTotalYearsOfExperience(publicas);
+                totalExperiencia.yearsPublicas = publicYears;
+                totalExperiencia.monthsPublicas = publicMonths;
+                
+                drawText(page3, helveticaFont, publicYears.toString(), 388, 592);
+                drawText(page3, helveticaFont, publicMonths.toString(), 458, 592);
+            }
+
+            // experiencia sector privado
+            if (privadas.length > 0) {
+                const [privateYears, privateMonths] = getTotalYearsOfExperience(privadas);
+                totalExperiencia.yearsPrivadas = privateYears;
+                totalExperiencia.monthsPrivadas = privateMonths;
+
+                drawText(page3, helveticaFont, privateYears.toString(), 388, 565);
+                drawText(page3, helveticaFont, privateMonths.toString(), 458, 565);
+            }
+
+            const [fullYears, fullMonths] = printTotalAniosExperiencia(totalExperiencia);
+            drawText(page3, helveticaFont, fullYears.toString(), 388, 511);
+            drawText(page3, helveticaFont, fullMonths.toString(), 458, 511);
+        }
+        printAniosExperiencia(curriculum.experienciaLaboral);
+
+        function printTotalAniosExperiencia(exp: TotalExperiencia) {
+            let totalExp = {
+                totalAnios: exp.yearsPrivadas + exp.yearsPublicas,
+                totalMonths: exp.monthsPrivadas + exp.monthsPublicas
+            };
+            let years = totalExp.totalAnios + Math.floor(totalExp.totalMonths / 12);
+            let months = totalExp.totalMonths % 12;
+            return [years, months];
+        }
 
         // acepta terminos
-        // drawText(page3, helveticaFont, "X", 268.5, 418.5, 13);
+        drawText(page3, helveticaFont, "X", 268.5, 418.5, 13);
 
         // ciudad y fecha de digilenciamiento
         // drawText(page3, helveticaFont, "URIBIA, LA GUAJIRA. Junio 10 de 2023", 220, 337);
