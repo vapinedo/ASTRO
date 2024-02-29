@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import file from "../../../../cv-format.pdf";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import { Curriculum, ExperienciaLaboral, FormacionSuperior, Idioma } from "../../../../models/Curriculum";
-import { differenceInDays, differenceInYears, getDoubleSpacedYear, getJsDate, getSpacedDay, getSpacedMonth, getSpacedYear, getTotalYearsOfExperience } from "../../../../helpers/DateHelper";
+import { getDoubleSpacedYear, getSpacedDay, getSpacedMonth, getSpacedYear, getTotalYearsOfExperience } from "../../../../helpers/DateHelper";
 
 const drawText = (page: any, font: any, text: any, x: number, y: number, fontSize = 11) => {
     page.drawText(text, {
@@ -38,7 +38,7 @@ export default function CurriculumPreview() {
             .then((res) => res.arrayBuffer());
 
         const pdfDoc = await PDFDocument.load(existingPdfBytes);
-        const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
+        const helveticaFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
         const pages = pdfDoc.getPages();
         const page1 = pages[0];
