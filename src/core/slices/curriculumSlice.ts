@@ -3,6 +3,7 @@ import { StoreInitialState } from "../../models/StoreInitialState";
 import { curriculumReadCases } from "../cases/curriculumReadCases";
 import { curriculumCreateCases } from "../cases/curriculumCreateCases";
 import { curriculumUpdateCases } from "../cases/curriculumUpdateCases";
+import { curriculumDeleteCases } from "../cases/curriculumDeleteCases";
 
 const initialState: StoreInitialState = {
     loading: false,
@@ -17,7 +18,8 @@ const curriculumSlice = createSlice({
     extraReducers: function (builder) {
         curriculumReadCases(builder),
         curriculumCreateCases(builder),
-        curriculumUpdateCases(builder)
+        curriculumUpdateCases(builder),
+        curriculumDeleteCases(builder)
     },
 })
 

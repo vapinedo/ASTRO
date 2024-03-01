@@ -6,8 +6,9 @@ import Box from "../../../../shared/containers/Box/Box"
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { Curriculum } from "../../../../models/Curriculum";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useAppDispatch, useAppSelector } from "../../../../core/hooks"
-import { readCurriculums } from "../../../../core/actions/curriculumActions";
+import { deleteCurriculum, readCurriculums } from "../../../../core/actions/curriculumActions";
 
 export default function CurriculumAdmin() {
 
@@ -27,6 +28,10 @@ export default function CurriculumAdmin() {
   function handlePreview(curriculum: Curriculum) {
     localStorage.setItem("curriculum", JSON.stringify(curriculum));
     navigate("/curriculum-preview");
+  }
+
+  function handleDelete(curriculum: Curriculum) {
+    dispatch(deleteCurriculum(curriculum));
   }
 
   return (
@@ -58,9 +63,8 @@ export default function CurriculumAdmin() {
           </thead>
 
           <tbody>
-            {
-              curriculums?.curriculums.map((curriculum, index) => (
-                <tr key={curriculum.datosPersonales.numeroIdentificacion}>
+            {curriculums?.curriculums.map((curriculum, index) => (
+                <tr key={curriculum?.documentId}>
                   <th scope="row">{index + 1}</th>
                   <td>{curriculum.datosPersonales.nombres}</td>
                   <td>{curriculum.datosPersonales.primerApellido}</td>
@@ -69,10 +73,10 @@ export default function CurriculumAdmin() {
                   <td>
                     <ModeEditIcon onClick={() => handleEdit(curriculum)} sx={{ marginRight: 2 }} titleAccess="Editar" />
                     <VisibilityIcon onClick={() => handlePreview(curriculum)} titleAccess="Vista previa" />
+                    <DeleteOutlineIcon onClick={() => handleDelete(curriculum)} titleAccess="Eliminar" />
                   </td>
                 </tr>
-              ))
-            }
+              ))}
           </tbody>
         </table>
       </Box>
