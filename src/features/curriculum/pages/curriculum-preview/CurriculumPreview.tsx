@@ -107,7 +107,9 @@ export default function CurriculumPreview() {
         drawText(page1, helveticaFont, curriculum.datosPersonales.paisCorrespondencia, 320, 492);
         drawText(page1, helveticaFont, curriculum.datosPersonales.departamentoCorrespondencia, 474, 492);
         drawText(page1, helveticaFont, curriculum.datosPersonales.municipioCorrespondencia, 348, 475);
-        drawText(page1, helveticaFont, curriculum.datosPersonales.email, 472, 455.8, 8);
+
+        const charCount = curriculum.datosPersonales.email.length;
+        drawText(page1, helveticaFont, curriculum.datosPersonales.email, 472, 455.8, 7);
 
         // formacion básica
         switch(curriculum?.formacionBasica.educacionBasica) {
@@ -215,7 +217,7 @@ export default function CurriculumPreview() {
                 drawText(page1, helveticaFont, formacionSuperior[3].tituloObtenido, 230, 148.5);
                 drawText(page1, helveticaFont, getSpacedMonth(formacionSuperior[3].fechaTerminacion), 427, 148.5);
                 drawText(page1, helveticaFont, getDoubleSpacedYear(formacionSuperior[3].fechaTerminacion), 453, 148.5);
-                drawText(page1, helveticaFont, formacionSuperior[3].numeroTarjetaProfesional, 503.5, 149);
+                drawText(page1, helveticaFont, formacionSuperior[3].numeroTarjetaProfesional, 503.5, 149, 9);
             }
             if (formacionSuperior[4]) {
                 switch(formacionSuperior[4].modalidadAcademica) {
@@ -236,7 +238,7 @@ export default function CurriculumPreview() {
                 drawText(page1, helveticaFont, formacionSuperior[4].tituloObtenido, 230, 131);
                 drawText(page1, helveticaFont, getSpacedMonth(formacionSuperior[4].fechaTerminacion), 427, 131);
                 drawText(page1, helveticaFont, getDoubleSpacedYear(formacionSuperior[4].fechaTerminacion), 453, 131);
-                drawText(page1, helveticaFont, formacionSuperior[4].numeroTarjetaProfesional, 503.5, 132);
+                drawText(page1, helveticaFont, formacionSuperior[4].numeroTarjetaProfesional, 503.5, 132, 9);
             }
         }
         printFormacionSuperior(curriculum.formacionSuperior);
@@ -295,7 +297,7 @@ export default function CurriculumPreview() {
                 drawText(page2, helveticaFont, experienciaLaboral[0].pais, 428, 550.5);
                 drawText(page2, helveticaFont, experienciaLaboral[0].departamento, 65, 520);
                 drawText(page2, helveticaFont, experienciaLaboral[0].municipio, 242, 520);
-                drawText(page2, helveticaFont, experienciaLaboral[0].email, 416, 520);
+                drawText(page2, helveticaFont, experienciaLaboral[0].email, 416, 520, 9);
                 drawText(page2, helveticaFont, experienciaLaboral[0].telefono, 65, 491.5);
 
                 drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[0].fechaIngreso), 261.5, 491.5);
@@ -321,7 +323,7 @@ export default function CurriculumPreview() {
                 drawText(page2, helveticaFont, experienciaLaboral[1].pais, 428, 419);
                 drawText(page2, helveticaFont, experienciaLaboral[1].departamento, 65, 390);
                 drawText(page2, helveticaFont, experienciaLaboral[1].municipio, 242, 390);
-                drawText(page2, helveticaFont, experienciaLaboral[1].email, 414, 390);
+                drawText(page2, helveticaFont, experienciaLaboral[1].email, 414, 390, 9);
                 drawText(page2, helveticaFont, experienciaLaboral[1].telefono, 65, 359);
 
                 drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[1].fechaIngreso), 262, 361);
@@ -347,7 +349,7 @@ export default function CurriculumPreview() {
                 drawText(page2, helveticaFont, experienciaLaboral[2].pais, 428, 290);
                 drawText(page2, helveticaFont, experienciaLaboral[2].departamento, 65, 260);
                 drawText(page2, helveticaFont, experienciaLaboral[2].municipio, 242, 260);
-                drawText(page2, helveticaFont, experienciaLaboral[2].email, 414, 260);
+                drawText(page2, helveticaFont, experienciaLaboral[2].email, 414, 260, 9);
                 drawText(page2, helveticaFont, experienciaLaboral[2].telefono, 65, 230);
 
                 drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[2].fechaIngreso), 262, 231);
@@ -373,7 +375,7 @@ export default function CurriculumPreview() {
                 drawText(page2, helveticaFont, experienciaLaboral[3].pais, 428, 160);
                 drawText(page2, helveticaFont, experienciaLaboral[3].departamento, 65, 129);
                 drawText(page2, helveticaFont, experienciaLaboral[3].municipio, 242, 129);
-                drawText(page2, helveticaFont, experienciaLaboral[3].email, 414, 129);
+                drawText(page2, helveticaFont, experienciaLaboral[3].email, 414, 129, 9);
                 drawText(page2, helveticaFont, experienciaLaboral[3].telefono, 65, 99);
 
                 drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[3].fechaIngreso), 262, 101);
