@@ -24,8 +24,8 @@ let defaultValues: Curriculum = {
 const validationSchema = yup.object().shape({
     datosPersonales: datosPersonalesSchema,
     formacionBasica: formacionBasicaSchema,
-    formacionSuperior: yup.array().of(formacionSuperiorSchema),
-    experienciaLaboral: yup.array().of(experienciaLaboralSchema)
+    // formacionSuperior: yup.array().of(formacionSuperiorSchema),
+    // experienciaLaboral: yup.array().of(experienciaLaboralSchema)
 });
 
 export default function CurriculumNuevo() {

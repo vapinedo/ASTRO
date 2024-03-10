@@ -151,8 +151,10 @@ export default function CurriculumPreview() {
                     case "no": drawText(page1, helveticaFont, "X", 207, 200); break;
                 }
                 drawText(page1, helveticaFont, formacionSuperior[0].tituloObtenido, 230, 200);
-                drawText(page1, helveticaFont, getSpacedMonth(formacionSuperior[0].fechaTerminacion), 427, 200);
-                drawText(page1, helveticaFont, getDoubleSpacedYear(formacionSuperior[0].fechaTerminacion), 453, 200);
+                if (formacionSuperior[0].fechaTerminacion) {
+                    drawText(page1, helveticaFont, getSpacedMonth(formacionSuperior[0].fechaTerminacion), 427, 200);
+                    drawText(page1, helveticaFont, getDoubleSpacedYear(formacionSuperior[0].fechaTerminacion), 453, 200);
+                }
                 drawText(page1, helveticaFont, formacionSuperior[0].numeroTarjetaProfesional, 503.5, 200, 9);
             }
 
@@ -300,9 +302,9 @@ export default function CurriculumPreview() {
                 drawText(page2, helveticaFont, experienciaLaboral[0].email, 416, 520, 9);
                 drawText(page2, helveticaFont, experienciaLaboral[0].telefono, 65, 491.5);
 
-                drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[0].fechaIngreso), 261.5, 491.5);
-                drawText(page2, helveticaFont, getSpacedMonth(experienciaLaboral[0].fechaIngreso), 311.5, 491.5);
-                drawText(page2, helveticaFont, getSpacedYear(experienciaLaboral[0].fechaIngreso), 359, 491.5);
+                // drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[0].fechaIngreso), 261.5, 491.5);
+                // drawText(page2, helveticaFont, getSpacedMonth(experienciaLaboral[0].fechaIngreso), 311.5, 491.5);
+                // drawText(page2, helveticaFont, getSpacedYear(experienciaLaboral[0].fechaIngreso), 359, 491.5);
 
                 // if (experienciaLaboral[0].fechaIngreso) {
                 //     drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[0].fechaRetiro), 428.7, 491.5);
@@ -393,7 +395,9 @@ export default function CurriculumPreview() {
                 drawText(page2, helveticaFont, experienciaLaboral[3].direccion, 410, 70);
             }
         }
-        printExoerienciaLaboral(curriculum.experienciaLaboral);
+        if (curriculum.experienciaLaboral) {
+            printExoerienciaLaboral(curriculum.experienciaLaboral);
+        }
         
         // PAGE 3
         // experiencia sector publico
