@@ -6,6 +6,7 @@ import Box from "../../../../shared/containers/Box/Box"
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { Curriculum } from "../../../../models/Curriculum";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import dialogConfirm from "../../../../helpers/DialogConfirm";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useAppDispatch, useAppSelector } from "../../../../core/hooks"
 import { deleteCurriculum, readCurriculums } from "../../../../core/actions/curriculumActions";
@@ -18,7 +19,7 @@ export default function CurriculumAdmin() {
 
   useEffect(() => {
     dispatch(readCurriculums());
-  }, []);
+  }, [dispatch]);
 
   function handleEdit(curriculum: Curriculum) {
     localStorage.setItem("curriculum-edit", JSON.stringify(curriculum));
@@ -30,8 +31,9 @@ export default function CurriculumAdmin() {
     navigate("/curriculum-preview");
   }
 
-  function handleDelete(curriculum: Curriculum) {
-    dispatch(deleteCurriculum(curriculum));
+  async function handleDelete(curriculum: Curriculum) {
+    const result = await dialogConfirm();
+    result.isConfirmed && dispatch(deleteCurriculum(curriculum));
   }
 
   return (
