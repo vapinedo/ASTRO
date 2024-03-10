@@ -11,6 +11,7 @@ import DatosPersonalesForm, { datosPersonalesDefaultValues, datosPersonalesSchem
 import FormacionBasicaForm, { formacionBasicaDefaultValues, formacionBasicaSchema } from "../../components/FormacionBasicaForm";
 import FormacionSuperiorForm, { formacionSuperiorDefaultValues, formacionSuperiorSchema } from "../../components/FormacionSuperiorForm";
 import ExperienciaLaboralForm, { experienciaLaboralDefaultValues, experienciaLaboralSchema } from "../../components/ExperienciaLaboralForm";
+import { success, swalSuccess } from "../../../../helpers/SwalAlerts";
 
 let defaultValues: Curriculum = {
     datosPersonales: datosPersonalesDefaultValues,
@@ -47,6 +48,7 @@ export default function CurriculumNuevo() {
 
     function onSubmit(curriculum: Curriculum) {
         dispatch(createCurriculum(curriculum));
+        swalSuccess("Curriculum creado exitosamente!");
         navigate("/curriculums");
     }
 

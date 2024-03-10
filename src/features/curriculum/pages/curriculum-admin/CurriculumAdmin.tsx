@@ -6,7 +6,7 @@ import Box from "../../../../shared/containers/Box/Box";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { Curriculum } from "../../../../models/Curriculum";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import dialogConfirm from "../../../../helpers/DialogConfirm";
+import { swalConfirm } from "../../../../helpers/SwalAlerts";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useAppDispatch, useAppSelector } from "../../../../core/hooks";
 import {
@@ -34,7 +34,7 @@ export default function CurriculumAdmin() {
   }
 
   async function handleDelete(curriculum: Curriculum) {
-    const result = await dialogConfirm();
+    const result = await swalConfirm();
     result.isConfirmed && dispatch(deleteCurriculum(curriculum));
   }
 

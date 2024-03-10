@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Curriculum } from "../../models/Curriculum";
-import { collection, getDocs, addDoc, updateDoc, getFirestore, doc, deleteDoc } from "firebase/firestore";
+import { collection, getDocs, addDoc, updateDoc, getFirestore, doc, deleteDoc, DocumentReference, DocumentData } from "firebase/firestore";
 
 const COLLECTION_NAME = "curriculums";
 const CREATE = "curriculum/createCurriculums";
@@ -56,7 +56,7 @@ export const deleteCurriculum = createAsyncThunk(DELETE, (curriculum: Curriculum
         const db = getFirestore();
         if (curriculum.documentId) {
             const docRef = doc(db, COLLECTION_NAME, curriculum.documentId);
-            const deleteToFirestore = async (docRef: any) => {
+            const deleteToFirestore = async (docRef: DocumentReference<DocumentData, DocumentData>) => {
                 const document = await deleteDoc(docRef);
                 console.log({document});
             };

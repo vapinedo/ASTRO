@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2'
 
-export default function dialogConfirm() {
+export function swalConfirm() {
     return Swal.fire({
         title: "Estás seguro?",
         text: "Eliminarás este Curriculum",
@@ -12,3 +12,13 @@ export default function dialogConfirm() {
         cancelButtonText: "Cancelar"
     });
 }
+
+export function swalSuccess(message: string) {
+    return Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: message,
+        showConfirmButton: false,
+        timer: 2500
+    });
+} 
