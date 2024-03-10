@@ -1,5 +1,6 @@
 import * as yup from "yup";
 import Button from '@mui/material/Button';
+import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldErrors, useForm } from "react-hook-form";
 import { useAppDispatch } from "../../../../core/hooks";
@@ -28,6 +29,7 @@ const validationSchema = yup.object().shape({
 
 export default function CurriculumNuevo() {
 
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     const form = useForm<Curriculum>({
@@ -45,6 +47,7 @@ export default function CurriculumNuevo() {
 
     function onSubmit(curriculum: Curriculum) {
         dispatch(createCurriculum(curriculum));
+        navigate("/curriculums");
     }
 
     return (
