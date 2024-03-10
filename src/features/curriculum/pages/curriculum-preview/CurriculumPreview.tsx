@@ -304,9 +304,11 @@ export default function CurriculumPreview() {
                 drawText(page2, helveticaFont, getSpacedMonth(experienciaLaboral[0].fechaIngreso), 311.5, 491.5);
                 drawText(page2, helveticaFont, getSpacedYear(experienciaLaboral[0].fechaIngreso), 359, 491.5);
 
-                drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[0].fechaRetiro), 428.7, 491.5);
-                drawText(page2, helveticaFont, getSpacedMonth(experienciaLaboral[0].fechaRetiro), 478.3, 491.5);
-                drawText(page2, helveticaFont, getSpacedYear(experienciaLaboral[0].fechaRetiro), 525.7, 491.5);
+                // if (experienciaLaboral[0].fechaIngreso) {
+                //     drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[0].fechaRetiro), 428.7, 491.5);
+                //     drawText(page2, helveticaFont, getSpacedMonth(experienciaLaboral[0].fechaRetiro), 478.3, 491.5);
+                //     drawText(page2, helveticaFont, getSpacedYear(experienciaLaboral[0].fechaRetiro), 525.7, 491.5);
+                // }
 
                 drawText(page2, helveticaFont, experienciaLaboral[0].cargo, 65, 461);
                 drawText(page2, helveticaFont, experienciaLaboral[0].dependencia, 242, 461);
@@ -396,10 +398,10 @@ export default function CurriculumPreview() {
         // PAGE 3
         // experiencia sector publico
         function printAniosExperiencia(experienciaLaboral: ExperienciaLaboral[]) {
-            let privadas = [];
-            let publicas = [];
+            const privadas = [];
+            const publicas = [];
 
-            let totalExperiencia: TotalExperiencia = {
+            const totalExperiencia: TotalExperiencia = {
                 monthsPrivadas: 0,
                 monthsPublicas: 0,
                 yearsPrivadas: 0,
@@ -413,14 +415,14 @@ export default function CurriculumPreview() {
             }
 
             // experiencia sector publico
-            if (publicas.length > 0) {
-                const [publicYears, publicMonths] = getTotalYearsOfExperience(publicas);
-                totalExperiencia.yearsPublicas = publicYears;
-                totalExperiencia.monthsPublicas = publicMonths;
+            // if (publicas.length > 0) {
+            //     const [publicYears, publicMonths] = getTotalYearsOfExperience(publicas);
+            //     totalExperiencia.yearsPublicas = publicYears;
+            //     totalExperiencia.monthsPublicas = publicMonths;
                 
-                drawText(page3, helveticaFont, publicYears.toString(), 388, 592);
-                drawText(page3, helveticaFont, publicMonths.toString(), 458, 592);
-            }
+            //     drawText(page3, helveticaFont, publicYears.toString(), 388, 592);
+            //     drawText(page3, helveticaFont, publicMonths.toString(), 458, 592);
+            // }
 
             // experiencia sector privado
             if (privadas.length > 0) {
@@ -439,12 +441,12 @@ export default function CurriculumPreview() {
         printAniosExperiencia(curriculum.experienciaLaboral);
 
         function printTotalAniosExperiencia(exp: TotalExperiencia) {
-            let totalExp = {
+            const totalExp = {
                 totalAnios: exp.yearsPrivadas + exp.yearsPublicas,
                 totalMonths: exp.monthsPrivadas + exp.monthsPublicas
             };
-            let years = totalExp.totalAnios + Math.floor(totalExp.totalMonths / 12);
-            let months = totalExp.totalMonths % 12;
+            const years = totalExp.totalAnios + Math.floor(totalExp.totalMonths / 12);
+            const months = totalExp.totalMonths % 12;
             return [years, months];
         }
 

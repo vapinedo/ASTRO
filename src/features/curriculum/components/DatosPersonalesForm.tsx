@@ -155,17 +155,6 @@ interface InputProps {
 export default function DatosPersonalesForm(props: InputProps): ReactNode {
     const { errors, control, setValue, register, watch } = props;
 
-    function testDate(date) {
-        if (date instanceof Date) {
-            console.log("Si");
-            return dayjs(date);
-        } else {
-            console.log("No");
-            console.log(date?.$d);
-            return date?.$d;
-        }
-    }
-
     return (
         <Box>
             <header className="section-header">
@@ -222,6 +211,13 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                         )}
                     />
                 </FormControl>
+                <InputField
+                    type="text"
+                    label="Número de identificación"
+                    register={register}
+                    name="datosPersonales.numeroIdentificacion"
+                    error={errors.datosPersonales?.numeroIdentificacion?.message}
+                />
                 <FormControl sx={{ m: 1, width: '100%' }}>
                     <InputLabel>Sexo</InputLabel>
                     <Controller
@@ -286,7 +282,6 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                         fieldState: { error }
                     }) => (
                         <DatePickerField 
-                            // value={testDate(value)}
                             value={dayjs(value)}
                             onChange={onChange}
                             label="Fecha de nacimiento"

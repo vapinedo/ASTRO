@@ -36,7 +36,7 @@ export default function CurriculumNuevo() {
     const form = useForm<Curriculum>({
         defaultValues,
         mode: "onTouched",
-        // resolver: yupResolver(validationSchema)
+        resolver: yupResolver(validationSchema)
     });
 
     const { register, formState, handleSubmit, control, setValue, watch } = form;

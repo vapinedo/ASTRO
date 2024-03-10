@@ -78,9 +78,6 @@ export const experienciaLaboralSchema = yup.object().shape({
     fechaIngreso: yup
         .date()
         .required("Fecha ingreso es requerido"),
-    fechaRetiro: yup
-        .date()
-        .required("Fecha retiro es requerido"),
     cargo: yup
         .string()
         .min(6, "Mínimo 6 caracteres")
