@@ -57,8 +57,7 @@ export const deleteCurriculum = createAsyncThunk(DELETE, (curriculum: Curriculum
         if (curriculum.documentId) {
             const docRef = doc(db, COLLECTION_NAME, curriculum.documentId);
             const deleteToFirestore = async (docRef: DocumentReference<DocumentData, DocumentData>) => {
-                const document = await deleteDoc(docRef);
-                console.log({document});
+                await deleteDoc(docRef);
             };
             deleteToFirestore(docRef);
         }
