@@ -1,18 +1,20 @@
-import "./CurriculumAdmin.css"
+import "./CurriculumAdmin.css";
 import { useEffect } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import Box from "../../../../shared/containers/Box/Box"
+import Box from "../../../../shared/containers/Box/Box";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { Curriculum } from "../../../../models/Curriculum";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import dialogConfirm from "../../../../helpers/DialogConfirm";
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { useAppDispatch, useAppSelector } from "../../../../core/hooks"
-import { deleteCurriculum, readCurriculums } from "../../../../core/actions/curriculumActions";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { useAppDispatch, useAppSelector } from "../../../../core/hooks";
+import {
+  deleteCurriculum,
+  readCurriculums,
+} from "../../../../core/actions/curriculumActions";
 
 export default function CurriculumAdmin() {
-
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const curriculums = useAppSelector((state) => state.curriculum);
@@ -66,22 +68,32 @@ export default function CurriculumAdmin() {
 
           <tbody>
             {curriculums?.curriculums.map((curriculum, index) => (
-                <tr key={curriculum?.documentId}>
-                  <th scope="row">{index + 1}</th>
-                  <td>{curriculum.datosPersonales.nombres}</td>
-                  <td>{curriculum.datosPersonales.primerApellido}</td>
-                  <td>{curriculum.datosPersonales.segundoApellido}</td>
-                  <td>{curriculum.datosPersonales.tipoIdentificacion}</td>
-                  <td>
-                    <ModeEditIcon onClick={() => handleEdit(curriculum)} sx={{ marginRight: 2 }} titleAccess="Editar" />
-                    <VisibilityIcon onClick={() => handlePreview(curriculum)} titleAccess="Vista previa" />
-                    <DeleteOutlineIcon onClick={() => handleDelete(curriculum)} titleAccess="Eliminar" />
-                  </td>
-                </tr>
-              ))}
+              <tr key={curriculum?.documentId}>
+                <th scope="row">{index + 1}</th>
+                <td>{curriculum.datosPersonales.nombres}</td>
+                <td>{curriculum.datosPersonales.primerApellido}</td>
+                <td>{curriculum.datosPersonales.segundoApellido}</td>
+                <td>{curriculum.datosPersonales.tipoIdentificacion}</td>
+                <td>
+                  <ModeEditIcon
+                    onClick={() => handleEdit(curriculum)}
+                    sx={{ marginRight: 2 }}
+                    titleAccess="Editar"
+                  />
+                  <VisibilityIcon
+                    onClick={() => handlePreview(curriculum)}
+                    titleAccess="Vista previa"
+                  />
+                  <DeleteOutlineIcon
+                    onClick={() => handleDelete(curriculum)}
+                    titleAccess="Eliminar"
+                  />
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </Box>
     </>
-  )
+  );
 }

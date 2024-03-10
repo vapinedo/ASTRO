@@ -11,13 +11,4 @@ export default function dialogConfirm() {
         confirmButtonText: "Eliminar",
         cancelButtonText: "Cancelar"
     });
-
-    // .then((result) => {
-    //     /* Read more about isConfirmed, isDenied below */
-    //     if (result.isConfirmed) {
-    //         Swal.fire("Saved!", "", "success");
-    //     } else if (result.isDenied) {
-    //         Swal.fire("Changes are not saved", "", "info");
-    //     }
-    // })
 }
