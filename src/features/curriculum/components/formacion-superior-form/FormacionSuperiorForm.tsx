@@ -1,35 +1,14 @@
 import dayjs from "dayjs";
 import * as yup from "yup";
-import "./FormComponents.css";
+import "../FormComponents.css";
 import { ReactNode } from "react";
 import { FormControl, InputLabel, Stack } from "@mui/material";
-import Box from "../../../shared/containers/Box/Box";
+import Box from "../../../../shared/containers/Box/Box";
 import { Controller, useFieldArray } from "react-hook-form";
-import { FormacionSuperior } from "../../../models/Curriculum";
-import InputField from "../../../shared/components/form/InputField";
-import SelectField from "../../../shared/components/form/SelectField";
-import DatePickerField from "../../../shared/components/form/DatePickerField";
-
-const modalidadAcademicaOptions = [
-    { key: "tecnica", value: "Técnica" },
-    { key: "tecnologica", value: "Tecnológica" },
-    { key: "tecnologa", value: "Tecnológica Especializada" },
-    { key: "unversitaria", value: "Universitaria" },
-    { key: "especializacion", value: "Especialiación" },
-    { key: "maestria", value: "Maestría o Magíster" },
-    { key: "doctorado", value: "Doctorado o PHD" },
-];
-const SiNoOptions = [
-    { key: "si", value: "Si" },
-    { key: "no", value: "No" },
-];
-
-interface InputProps {
-    errors: any;
-    control: any;
-    setValue: any;
-    register: any;
-}
+import { FormacionSuperior } from "../../../../models/Curriculum";
+import InputField from "../../../../shared/components/form/InputField";
+import SelectField from "../../../../shared/components/form/SelectField";
+import DatePickerField from "../../../../shared/components/form/DatePickerField";
 
 const MAXIMUM_INSTANCES = 5;
 

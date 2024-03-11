@@ -3,21 +3,23 @@ import { useEffect } from "react";
 import Button from '@mui/material/Button';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldErrors, useForm } from "react-hook-form";
-import { useAppDispatch } from "../../../../core/hooks";
+import { useAppDispatch } from "../../../../redux/hooks";
+import { FormacionSuperiorForm } from "../../components";
 import { Curriculum } from "../../../../models/Curriculum";
+import { updateCurriculum } from "../../../../redux/actions/curriculumActions";
+import IdiomaForm, { idiomasDefaultValues } from "../../components/idioma-form/IdiomaForm";
 import { allFStimestampToDateObj, fromM2ToDate } from "../../../../helpers/DateHelper";
-import { updateCurriculum } from "../../../../core/actions/curriculumActions";
-import IdiomaForm, { idiomasDefaultValues } from "../../components/IdiomaForm";
-import DatosPersonalesForm, { datosPersonalesDefaultValues, datosPersonalesSchema } from "../../components/DatosPersonalesForm";
-import FormacionBasicaForm, { formacionBasicaDefaultValues, formacionBasicaSchema } from "../../components/FormacionBasicaForm";
-import FormacionSuperiorForm, { formacionSuperiorDefaultValues, formacionSuperiorSchema } from "../../components/FormacionSuperiorForm";
-import ExperienciaLaboralForm, { experienciaLaboralDefaultValues, experienciaLaboralSchema } from "../../components/ExperienciaLaboralForm";
+import { DatosPersonalesForm, ExperienciaLaboralForm, FormacionBasicaForm } from "../../components";
+import { datosPersonalesDefaultValues, datosPersonalesSchema } from "../../constants/DatosPersonalesForm";
+import { experienciaLaboralDefaultValues, experienciaLaboralSchema } from "../../constants/ExperienciaLaboralForm";
+import { formacionBasicaDefaultValues, formacionBasicaSchema } from "../../components/formacion-basica-form/FormacionBasicaForm";
+import { formacionSuperiorDefaultValues, formacionSuperiorSchema } from "../../components/formacion-superior-form/FormacionSuperiorForm";
 
 let defaultValues: Curriculum = {
+    idiomas: [idiomasDefaultValues],
     datosPersonales: datosPersonalesDefaultValues,
     formacionBasica: formacionBasicaDefaultValues,
     formacionSuperior: [formacionSuperiorDefaultValues],
-    idiomas: [idiomasDefaultValues],
     experienciaLaboral: [experienciaLaboralDefaultValues],
 };
 
@@ -46,10 +48,23 @@ export default function CurriculumEditar() {
             const curriculum: Curriculum = JSON.parse(data);
             allFStimestampToDateObj(curriculum);
             setValue("datosPersonales", curriculum.datosPersonales, { shouldValidate: false });
-            setValue("formacionBasica", curriculum.formacionBasica, { shouldValidate: false });
-            setValue("formacionSuperior", curriculum.formacionSuperior, { shouldValidate: false });
-            setValue("idiomas", curriculum.idiomas, { shouldValidate: false });
-            setValue("experienciaLaboral", curriculum.experienciaLaboral, { shouldValidate: false });
+
+            if (curriculum.formacionBasica) {
+                setValue("formacionBasica", curriculum.formacionBasica, { shouldValidate: false });
+            }
+
+            if (curriculum.formacionBasica) {
+                setValue("formacionSuperior", curriculum.formacionSuperior, { shouldValidate: false });
+            }
+
+            if (curriculum.idiomas) {
+                setValue("idiomas", curriculum.idiomas, { shouldValidate: false });
+            }
+
+            if (curriculum.experienciaLaboral) {
+                setValue("experienciaLaboral", curriculum.experienciaLaboral, { shouldValidate: false });
+            }
+            
             documentId = curriculum.documentId;
         }   
     }, []);

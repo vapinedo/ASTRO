@@ -73,7 +73,9 @@ export function allFStimestampToDateObj(curriculum: Curriculum) {
     if (curriculum.experienciaLaboral) {
         for (let i=0; i<curriculum.experienciaLaboral.length; i++) {
             curriculum.experienciaLaboral[i].fechaIngreso = getJsDate(curriculum.experienciaLaboral[i].fechaIngreso);
-            curriculum.experienciaLaboral[i].fechaRetiro = getJsDate(curriculum.experienciaLaboral[i].fechaRetiro);
+            if (curriculum.experienciaLaboral[i].fechaRetiro) {
+                curriculum.experienciaLaboral[i].fechaRetiro = getJsDate(curriculum.experienciaLaboral[i].fechaRetiro);
+            }
         }
     }
     

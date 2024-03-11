@@ -3,32 +3,12 @@ import * as yup from "yup";
 import { ReactNode } from "react";
 import { FormControl, InputLabel, Stack } from "@mui/material";
 import { Controller } from "react-hook-form";
-import Box from "../../../shared/containers/Box/Box";
-import { FormacionBasica } from "../../../models/Curriculum";
-import InputField from "../../../shared/components/form/InputField";
-import SelectField from "../../../shared/components/form/SelectField";
-import DatePickerField from "../../../shared/components/form/DatePickerField";
-
-const educacionBasicaOptions = [
-    { key: "1", value: "Primero" },
-    { key: "2", value: "Segundo" },
-    { key: "3", value: "Tercero" },
-    { key: "4", value: "Cuarto" },
-    { key: "5", value: "Quinto" },
-    { key: "6", value: "Sexto" },
-    { key: "7", value: "Séptimo" },
-    { key: "8", value: "Octavo" },
-    { key: "9", value: "Noveno" },
-    { key: "10", value: "Décimo" },
-    { key: "11", value: "Once" },
-];
-
-interface InputProps {
-    errors: any;
-    control: any;
-    setValue: any;
-    register: any;
-}
+import Box from "../../../../shared/containers/Box/Box";
+import { FormacionBasica } from "../../../../models/Curriculum";
+import InputField from "../../../../shared/components/form/InputField";
+import SelectField from "../../../../shared/components/form/SelectField";
+import DatePickerField from "../../../../shared/components/form/DatePickerField";
+import { InputProps } from "../../interfaces/InputProps";
 
 export const formacionBasicaDefaultValues: FormacionBasica = {
     educacionBasica: "",

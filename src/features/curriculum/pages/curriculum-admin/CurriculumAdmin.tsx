@@ -8,11 +8,11 @@ import { Curriculum } from "../../../../models/Curriculum";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { swalConfirm, swalSuccess } from "../../../../helpers/SwalAlerts";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { useAppDispatch, useAppSelector } from "../../../../core/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import {
   deleteCurriculum,
   readCurriculums,
-} from "../../../../core/actions/curriculumActions";
+} from "../../../../redux/actions/curriculumActions";
 
 export default function CurriculumAdmin() {
   const navigate = useNavigate();

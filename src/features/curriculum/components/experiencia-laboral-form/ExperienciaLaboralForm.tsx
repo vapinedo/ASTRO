@@ -1,96 +1,15 @@
-import * as yup from "yup";
-import "./FormComponents.css";
+import "../FormComponents.css";
 import { ReactNode } from "react";
 import { FormControl, InputLabel, Stack } from "@mui/material";
 import { Controller, useFieldArray } from "react-hook-form";
-import Box from "../../../shared/containers/Box/Box";
-import { ExperienciaLaboral } from "../../../models/Curriculum";
-import InputField from "../../../shared/components/form/InputField";
-import SelectField from "../../../shared/components/form/SelectField";
-import DatePickerField from "../../../shared/components/form/DatePickerField";
+import Box from "../../../../shared/containers/Box/Box";
+import InputField from "../../../../shared/components/form/InputField";
+import SelectField from "../../../../shared/components/form/SelectField";
+import DatePickerField from "../../../../shared/components/form/DatePickerField";
 import dayjs from "dayjs";
-
-const paisOptions = [
-    { key: "Colombia", value: "Colombia" },
-    { key: "Venezuela", value: "Venezuela" },
-];
-const departamentoOptions = [
-    { key: "La Guajira", value: "La Guajira" },
-    { key: "Atlantico", value: "Atlantico" },
-];
-const municipioOptions = [
-    { key: "Uribia", value: "Uribia" },
-    { key: "Manure", value: "Manaure" },
-    { key: "Soledad", value: "Soledad" },
-];
-const tipoEmpresaOptions = [
-    { key: "publica", value: "Pública" },
-    { key: "privada", value: "Privada" },
-];
-
-interface InputProps {
-    errors: any;
-    control: any;
-    setValue: any;
-    register: any;
-}
+import { InputProps } from "../../interfaces/InputProps";
 
 const MAXIMUM_INSTANCES = 4;
-
-export const experienciaLaboralDefaultValues: ExperienciaLaboral = {
-    empresa: "",
-    tipoEmpresa: "",
-    pais: "",
-    departamento: "",
-    municipio: "",
-    email: "",
-    telefono: "",
-    fechaIngreso: null,
-    fechaRetiro: null,
-    cargo: "",
-    dependencia: "",
-    direccion: "",
-};
-
-export const experienciaLaboralSchema = yup.object().shape({
-    empresa: yup
-        .string()
-        .min(3, "Mínimo 3 caracteres")
-        .required("Empresa es requerido"),
-    tipoEmpresa: yup
-        .string()
-        .required("Tipo empresa es requerido"),
-    pais: yup
-        .string()
-        .required("País es requerido"),
-    departamento: yup
-        .string()
-        .required("Departamento es requerido"),
-    municipio: yup
-        .string()
-        .required("Municipio es requerido"),
-    email: yup
-        .string()
-        .required("Email es requerido"),
-    telefono: yup
-        .string()
-        .required("Teléfono es requerido"),
-    fechaIngreso: yup
-        .date()
-        .required("Fecha ingreso es requerido"),
-    cargo: yup
-        .string()
-        .min(6, "Mínimo 6 caracteres")
-        .required("Cargo es requerido"),
-    dependencia: yup
-        .string()
-        .min(4, "Mínimo 4 caracteres")
-        .required("Dependencia es requerido"),
-    direccion: yup
-        .string()
-        .min(4, "Mínimo 4 caracteres")
-        .required("Dirección es requerido"),
-});
 
 export default function experienciaLaboralForm(props: InputProps): ReactNode {
 

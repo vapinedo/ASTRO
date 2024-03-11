@@ -1,23 +1,11 @@
-import "./FormComponents.css";
+import "../FormComponents.css";
 import { ReactNode } from "react";
 import { FormControl, InputLabel, Stack } from "@mui/material";
 import { Controller, useFieldArray } from "react-hook-form";
-import { Idioma } from "../../../models/Curriculum";
-import Box from "../../../shared/containers/Box/Box";
-import InputField from "../../../shared/components/form/InputField";
-import SelectField from "../../../shared/components/form/SelectField";
-
-const idiomaOptions = [
-    { key: "r", value: "Regular" },
-    { key: "b", value: "Bien" },
-    { key: "mb", value: "Muy bien" },
-];
-
-interface InputProps {
-    errors: any;
-    control: any;
-    register: any;
-}
+import { Idioma } from "../../../../models/Curriculum";
+import Box from "../../../../shared/containers/Box/Box";
+import InputField from "../../../../shared/components/form/InputField";
+import SelectField from "../../../../shared/components/form/SelectField";
 
 const MAXIMUM_INSTANCES = 2;
 

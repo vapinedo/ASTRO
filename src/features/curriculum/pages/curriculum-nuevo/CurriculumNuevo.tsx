@@ -3,15 +3,16 @@ import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldErrors, useForm } from "react-hook-form";
-import { useAppDispatch } from "../../../../core/hooks";
+import { useAppDispatch } from "../../../../redux/hooks";
 import { Curriculum } from "../../../../models/Curriculum";
-import { createCurriculum } from "../../../../core/actions/curriculumActions";
-import IdiomaForm, { idiomasDefaultValues } from "../../components/IdiomaForm";
-import DatosPersonalesForm, { datosPersonalesDefaultValues, datosPersonalesSchema } from "../../components/DatosPersonalesForm";
-import FormacionBasicaForm, { formacionBasicaDefaultValues, formacionBasicaSchema } from "../../components/FormacionBasicaForm";
-import FormacionSuperiorForm, { formacionSuperiorDefaultValues, formacionSuperiorSchema } from "../../components/FormacionSuperiorForm";
-import ExperienciaLaboralForm, { experienciaLaboralDefaultValues, experienciaLaboralSchema } from "../../components/ExperienciaLaboralForm";
-import { success, swalSuccess } from "../../../../helpers/SwalAlerts";
+import { swalSuccess } from "../../../../helpers/SwalAlerts";
+import { createCurriculum } from "../../../../redux/actions/curriculumActions";
+import { DatosPersonalesForm, ExperienciaLaboralForm } from "../../components";
+import { experienciaLaboralDefaultValues } from "../../constants/ExperienciaLaboralForm";
+import IdiomaForm, { idiomasDefaultValues } from "../../components/idioma-form/IdiomaForm";
+import { datosPersonalesDefaultValues, datosPersonalesSchema } from "../../constants/DatosPersonalesForm";
+import FormacionSuperiorForm, { formacionSuperiorDefaultValues } from "../../components/formacion-superior-form/FormacionSuperiorForm";
+import FormacionBasicaForm, { formacionBasicaDefaultValues, formacionBasicaSchema } from "../../components/formacion-basica-form/FormacionBasicaForm";
 
 let defaultValues: Curriculum = {
     datosPersonales: datosPersonalesDefaultValues,
@@ -96,4 +97,4 @@ export default function CurriculumNuevo() {
             </form>
         </>
     );
-};
+}
