@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit"
-import curriculumReducer from "./slices/curriculumSlice"
+import { curriculum } from "./slices"
 
 const store = configureStore({
     reducer: {
-        curriculum: curriculumReducer,
+        curriculum: curriculum.reducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false,

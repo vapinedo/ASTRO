@@ -1,9 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { StoreInitialState } from "../../models/StoreInitialState";
+import { Curriculum } from "../../models/Curriculum";
 import { curriculumReadCases } from "../cases/curriculumReadCases";
 import { curriculumCreateCases } from "../cases/curriculumCreateCases";
 import { curriculumUpdateCases } from "../cases/curriculumUpdateCases";
 import { curriculumDeleteCases } from "../cases/curriculumDeleteCases";
+
+type StoreInitialState = {
+    loading: boolean,
+    curriculums: Curriculum[],
+    error: string
+};
 
 const initialState: StoreInitialState = {
     loading: false,
@@ -23,4 +29,4 @@ const curriculumSlice = createSlice({
     },
 })
 
-export default curriculumSlice.reducer
+export default curriculumSlice
