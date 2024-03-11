@@ -5,7 +5,7 @@ export interface Curriculum {
     formacionSuperior: FormacionSuperior[];
     idiomas: Idioma[];
     experienciaLaboral: ExperienciaLaboral[];
-};
+}
 
 export interface DatosPersonales {
     primerApellido: string;
@@ -28,7 +28,7 @@ export interface DatosPersonales {
     departamentoCorrespondencia: string;
     municipioCorrespondencia: string;
     email: string;
-};
+}
 
 export interface FormacionBasica {
     educacionBasica: string;

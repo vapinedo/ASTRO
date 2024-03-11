@@ -3,10 +3,8 @@ import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldErrors, useForm } from "react-hook-form";
-import { useAppDispatch } from "../../../../redux/hooks";
 import { Curriculum } from "../../../../models/Curriculum";
 import { swalSuccess } from "../../../../helpers/SwalAlerts";
-import { createCurriculum } from "../../../../redux/actions/curriculumActions";
 import { DatosPersonalesForm, ExperienciaLaboralForm } from "../../components";
 import { experienciaLaboralDefaultValues } from "../../constants/ExperienciaLaboralForm";
 import IdiomaForm, { idiomasDefaultValues } from "../../components/idioma-form/IdiomaForm";
@@ -32,7 +30,6 @@ const validationSchema = yup.object().shape({
 export default function CurriculumNuevo() {
 
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
 
     const form = useForm<Curriculum>({
         defaultValues,
@@ -48,7 +45,6 @@ export default function CurriculumNuevo() {
     }
 
     function onSubmit(curriculum: Curriculum) {
-        dispatch(createCurriculum(curriculum));
         swalSuccess("Curriculum creado exitosamente!");
         navigate("/curriculums");
     }

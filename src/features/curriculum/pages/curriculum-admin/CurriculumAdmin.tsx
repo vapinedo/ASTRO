@@ -1,5 +1,4 @@
 import "./CurriculumAdmin.css";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Box from "../../../../shared/containers/Box/Box";
@@ -7,22 +6,13 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { Curriculum } from "../../../../models/Curriculum";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { swalConfirm, swalSuccess } from "../../../../helpers/SwalAlerts";
-import {
-  deleteCurriculum,
-  readCurriculums,
-} from "../../../../redux/actions/curriculumActions";
+import { useCurriculumListQuery } from "../../../../main";
 
 export default function CurriculumAdmin() {
 
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const curriculums = useAppSelector((state) => state.curriculum);
-
-  useEffect(() => {
-    dispatch(readCurriculums());
-  }, [dispatch]);
+  const { data, isLoading, isError, isSuccess } = useCurriculumListQuery();
 
   function handleEdit(curriculum: Curriculum) {
     localStorage.setItem("curriculum-edit", JSON.stringify(curriculum));
@@ -37,68 +27,77 @@ export default function CurriculumAdmin() {
   async function handleDelete(curriculum: Curriculum) {
     const confirmAction = await swalConfirm();
     if (confirmAction.isConfirmed) {
-      dispatch(deleteCurriculum(curriculum));
-      dispatch(readCurriculums());
       swalSuccess("Curriculum eliminado exitosamente!");
     }
   }
 
-  return (
-    <>
-      <header className="page-header">
-        <h2>Curriculums</h2>
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
 
-        <div>
-          <Link to="/curriculum-nuevo">
-            <button className="btn btn-primary mx-3">
-              <span>Crear nuevo</span>
-            </button>
-          </Link>
-          <button className="btn btn-outline-danger">Ir Atrás</button>
-        </div>
-      </header>
+  if (isError) {
+    return <p>Something went wrong</p>
+  }
 
-      <Box>
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nombres</th>
-              <th scope="col">Primer Apellido</th>
-              <th scope="col">Segundo Apellido</th>
-              <th scope="col">Tipo de identidad</th>
-              <th scope="col">Actions</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {curriculums?.curriculums.map((curriculum, index) => (
-              <tr key={curriculum?.documentId}>
-                <th scope="row">{index + 1}</th>
-                <td>{curriculum.datosPersonales.nombres}</td>
-                <td>{curriculum.datosPersonales.primerApellido}</td>
-                <td>{curriculum.datosPersonales.segundoApellido}</td>
-                <td>{curriculum.datosPersonales.tipoIdentificacion}</td>
-                <td>
-                  <ModeEditIcon
-                    onClick={() => handleEdit(curriculum)}
-                    sx={{ marginRight: 2 }}
-                    titleAccess="Editar"
-                  />
-                  <VisibilityIcon
-                    onClick={() => handlePreview(curriculum)}
-                    titleAccess="Vista previa"
-                  />
-                  <DeleteOutlineIcon
-                    onClick={() => handleDelete(curriculum)}
-                    titleAccess="Eliminar"
-                  />
-                </td>
+  if (isSuccess) {
+    return (
+      <>
+        <header className="page-header">
+          <h2>Curriculums</h2>
+  
+          <div>
+            <Link to="/curriculum-nuevo">
+              <button className="btn btn-primary mx-3">
+                <span>Crear nuevo</span>
+              </button>
+            </Link>
+            <button className="btn btn-outline-danger">Ir Atrás</button>
+          </div>
+        </header>
+  
+        <Box>
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombres</th>
+                <th scope="col">Primer Apellido</th>
+                <th scope="col">Segundo Apellido</th>
+                <th scope="col">Tipo de identidad</th>
+                <th scope="col">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </Box>
-    </>
-  );
+            </thead>
+  
+            <tbody>
+              {data.map((curriculum, index) => (
+                <tr key={curriculum?.documentId}>
+                  <th scope="row">{index + 1}</th>
+                  <td>{curriculum.datosPersonales.nombres}</td>
+                  <td>{curriculum.datosPersonales.primerApellido}</td>
+                  <td>{curriculum.datosPersonales.segundoApellido}</td>
+                  <td>{curriculum.datosPersonales.tipoIdentificacion}</td>
+                  <td>
+                    <ModeEditIcon
+                      onClick={() => handleEdit(curriculum)}
+                      sx={{ marginRight: 2 }}
+                      titleAccess="Editar"
+                    />
+                    <VisibilityIcon
+                      onClick={() => handlePreview(curriculum)}
+                      titleAccess="Vista previa"
+                    />
+                    <DeleteOutlineIcon
+                      onClick={() => handleDelete(curriculum)}
+                      titleAccess="Eliminar"
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Box>
+      </>
+    );
+  }
+
 }

@@ -3,10 +3,8 @@ import { useEffect } from "react";
 import Button from '@mui/material/Button';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldErrors, useForm } from "react-hook-form";
-import { useAppDispatch } from "../../../../redux/hooks";
 import { FormacionSuperiorForm } from "../../components";
 import { Curriculum } from "../../../../models/Curriculum";
-import { updateCurriculum } from "../../../../redux/actions/curriculumActions";
 import IdiomaForm, { idiomasDefaultValues } from "../../components/idioma-form/IdiomaForm";
 import { allFStimestampToDateObj, fromM2ToDate } from "../../../../helpers/DateHelper";
 import { DatosPersonalesForm, ExperienciaLaboralForm, FormacionBasicaForm } from "../../components";
@@ -33,8 +31,6 @@ const validationSchema = yup.object().shape({
 let documentId: string | undefined = "";
 
 export default function CurriculumEditar() {
-
-    const dispatch = useAppDispatch();
 
     const form = useForm<Curriculum>({
         defaultValues,
@@ -79,8 +75,6 @@ export default function CurriculumEditar() {
     function onSubmit(curriculum: Curriculum) {
         curriculum.documentId = documentId;
         fromM2ToDate(curriculum);
-        console.log({curriculum});
-        dispatch(updateCurriculum(curriculum));
     }
 
     return (
