@@ -6,15 +6,16 @@ import Box from "../../../../shared/containers/Box/Box";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { Curriculum } from "../../../../models/Curriculum";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { swalConfirm, swalSuccess } from "../../../../helpers/SwalAlerts";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { swalConfirm, swalSuccess } from "../../../../helpers/SwalAlerts";
 import {
   deleteCurriculum,
   readCurriculums,
 } from "../../../../redux/actions/curriculumActions";
 
 export default function CurriculumAdmin() {
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const curriculums = useAppSelector((state) => state.curriculum);
@@ -34,8 +35,8 @@ export default function CurriculumAdmin() {
   }
 
   async function handleDelete(curriculum: Curriculum) {
-    const result = await swalConfirm();
-    if (result.isConfirmed) {
+    const confirmAction = await swalConfirm();
+    if (confirmAction.isConfirmed) {
       dispatch(deleteCurriculum(curriculum));
       dispatch(readCurriculums());
       swalSuccess("Curriculum eliminado exitosamente!");
