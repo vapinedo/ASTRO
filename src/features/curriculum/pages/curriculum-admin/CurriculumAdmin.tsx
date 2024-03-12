@@ -7,12 +7,12 @@ import { Curriculum } from "../../../../models/Curriculum";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { swalConfirm, swalSuccess } from "../../../../helpers/SwalAlerts";
-import { useCurriculumListQuery } from "../../../../main";
+import { useGetCurriculumsQuery } from "../../../../redux/api";
 
 export default function CurriculumAdmin() {
 
   const navigate = useNavigate();
-  const { data, isLoading, isError, isSuccess } = useCurriculumListQuery();
+  const { data, isLoading, isError, isSuccess } = useGetCurriculumsQuery();
 
   function handleEdit(curriculum: Curriculum) {
     localStorage.setItem("curriculum-edit", JSON.stringify(curriculum));
