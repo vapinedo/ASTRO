@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { read } from "./actions/curriculum";
 
-export const api = createApi({
+export const firebaseApi = createApi({
     baseQuery: () => {},
     endpoints: (build) => ({
       getCurriculums: build.query({
@@ -17,4 +17,4 @@ export const api = createApi({
     }),
   });
   
-export const { useGetCurriculumsQuery } = api;
+export const { useGetCurriculumsQuery } = firebaseApi;

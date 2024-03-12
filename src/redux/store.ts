@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit"
-import { api } from "./api"
+import { firebaseApi } from "./firebaseApi"
 
 const store = configureStore({
     reducer: {
-      [api.reducerPath]: api.reducer
+      [firebaseApi.reducerPath]: firebaseApi.reducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false,
-    }).concat(api.middleware),
+    }).concat(firebaseApi.middleware),
 })
 
 export default store

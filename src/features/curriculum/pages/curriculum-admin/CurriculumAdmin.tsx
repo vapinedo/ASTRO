@@ -7,7 +7,7 @@ import { Curriculum } from "../../../../models/Curriculum";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { swalConfirm, swalSuccess } from "../../../../helpers/SwalAlerts";
-import { useGetCurriculumsQuery } from "../../../../redux/api";
+import { useGetCurriculumsQuery } from "../../../../redux/firebaseApi";
 
 export default function CurriculumAdmin() {
 
