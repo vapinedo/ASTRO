@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { Curriculum } from "@models/Curriculum";
-import { readCurriculums } from "@redux/curriculum/curriculumActionCreators";
+import { readCurriculums } from "@redux/curriculum/actionCreators";
 
 export function readCase(builder: any) {
   builder.addCase(readCurriculums.pending, (state) => {

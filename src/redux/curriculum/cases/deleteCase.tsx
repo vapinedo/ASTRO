@@ -1,4 +1,4 @@
-import { deleteCurriculum } from "@redux/curriculum/curriculumActionCreators";
+import { deleteCurriculum } from "@redux/curriculum/actionCreators";
 
 export function deleteCase(builder: any) {
   builder.addCase(deleteCurriculum.pending, (state) => {

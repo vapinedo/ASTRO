@@ -16,7 +16,7 @@ import {
   DELETE_CURRICULUM,
   READ_CURRICULUM,
   UPDATE_CURRICULUM,
-} from "@redux/curriculum/curriculumActions";
+} from "@redux/curriculum/actions";
 
 const COLLECTION_NAME = "curriculums";
 

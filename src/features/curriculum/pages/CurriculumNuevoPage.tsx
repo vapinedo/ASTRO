@@ -6,7 +6,7 @@ import { Curriculum } from "@models/Curriculum";
 import { swalSuccess } from "@helpers/SwalAlerts";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldErrors, useForm } from "react-hook-form";
-import { createCurriculum } from "@redux/curriculum/curriculumActionCreators";
+import { createCurriculum } from "@redux/curriculum/actionCreators";
 import { idiomasDefaultValues } from "@features/curriculum/constants/idioma";
 import { formacionSuperiorDefaultValues } from "@features/curriculum/constants/formacionSuperior";
 import { experienciaLaboralDefaultValues } from "@features/curriculum/constants/experienciaLaboral";

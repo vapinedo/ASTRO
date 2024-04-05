@@ -12,7 +12,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import {
   deleteCurriculum,
   readCurriculums,
-} from "@redux/curriculum/curriculumActionCreators";
+} from "@redux/curriculum/actionCreators";
 
 export default function CurriculumAdminPage() {
   const navigate = useNavigate();

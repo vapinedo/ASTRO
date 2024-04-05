@@ -1,4 +1,4 @@
-import { updateCurriculum } from "@redux/curriculum/curriculumActionCreators";
+import { updateCurriculum } from "@redux/curriculum/actionCreators";
 
 export function updateCase(builder: any) {
   builder.addCase(updateCurriculum.pending, (state) => {

@@ -9,7 +9,7 @@ import {
   IdiomaForm,
 } from "@features/curriculum/components";
 import { Curriculum } from "@models/Curriculum";
-import { updateCurriculum } from "@redux/curriculum/curriculumActionCreators";
+import { updateCurriculum } from "@redux/curriculum/actionCreators";
 import { allFStimestampToDateObj, fromM2ToDate } from "@helpers/DateHelper";
 import {
   DatosPersonalesForm,
