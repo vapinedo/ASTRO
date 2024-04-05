@@ -1,13 +1,13 @@
 import dayjs from "dayjs";
-import "../styles/formComponents.css";
 import { ReactNode } from "react";
-import { FormControl, InputLabel, Stack } from "@mui/material";
-import Box from "../../../shared/containers/Box/Box";
+import Box from "@shared/containers/Box/Box";
+import "@features/curriculum/styles/formComponents.css";
 import { Controller, useFieldArray } from "react-hook-form";
-import InputField from "../../../shared/components/form/InputField";
-import SelectField from "../../../shared/components/form/SelectField";
-import DatePickerField from "../../../shared/components/form/DatePickerField";
-import { InputProps } from "../interfaces/InputProps";
+import InputField from "@shared/components/form/InputField";
+import SelectField from "@shared/components/form/SelectField";
+import { FormControl, InputLabel, Stack } from "@mui/material";
+import DatePickerField from "@shared/components/form/DatePickerField";
+import { InputProps } from "@features/curriculum/interfaces/InputProps";
 import { SiNoOptions, modalidadAcademicaOptions } from "../constants/general";
 
 const MAXIMUM_INSTANCES = 5;

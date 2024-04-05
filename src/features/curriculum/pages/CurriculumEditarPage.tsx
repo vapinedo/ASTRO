@@ -3,36 +3,36 @@ import { useEffect } from "react";
 import Button from "@mui/material/Button";
 // import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldErrors, useForm } from "react-hook-form";
-import { useAppDispatch } from "../../../redux/hooks";
-import { FormacionSuperiorForm, IdiomaForm } from "../components";
-import { Curriculum } from "../../../models/Curriculum";
-import { updateCurriculum } from "../../../redux/actions/curriculumActions";
+import { useAppDispatch } from "@redux/hooks";
 import {
-  allFStimestampToDateObj,
-  fromM2ToDate,
-} from "../../../helpers/DateHelper";
+  FormacionSuperiorForm,
+  IdiomaForm,
+} from "@features/curriculum/components";
+import { Curriculum } from "@models/Curriculum";
+import { updateCurriculum } from "@redux/curriculum/curriculumActionCreators";
+import { allFStimestampToDateObj, fromM2ToDate } from "@helpers/DateHelper";
 import {
   DatosPersonalesForm,
   ExperienciaLaboralForm,
   FormacionBasicaForm,
-} from "../components";
+} from "@features/curriculum/components";
 import {
   datosPersonalesDefaultValues,
   datosPersonalesSchema,
-} from "../constants/datosPersonales";
+} from "@features/curriculum/constants/datosPersonales";
 import {
   experienciaLaboralDefaultValues,
   experienciaLaboralSchema,
-} from "../constants/experienciaLaboral";
+} from "@features/curriculum/constants/experienciaLaboral";
 import { idiomasDefaultValues } from "../constants/idioma";
 import {
   formacionBasicaDefaultValues,
   formacionBasicaSchema,
-} from "../constants/formacionBasica";
+} from "@features/curriculum/constants/formacionBasica";
 import {
   formacionSuperiorDefaultValues,
   formacionSuperiorSchema,
-} from "../constants/formacionSuperior";
+} from "@features/curriculum/constants/formacionSuperior";
 
 let defaultValues: Curriculum = {
   idiomas: [idiomasDefaultValues],

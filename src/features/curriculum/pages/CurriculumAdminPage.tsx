@@ -1,18 +1,18 @@
-import "../styles/curriculumAdminPage.css";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import Box from "@shared/containers/Box/Box";
 import { useNavigate } from "react-router-dom";
-import Box from "../../../shared/containers/Box/Box";
+import { Curriculum } from "@models/Curriculum";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import { Curriculum } from "../../../models/Curriculum";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import "@features/curriculum/styles/curriculumAdminPage.css";
+import { useAppDispatch, useAppSelector } from "@redux/hooks";
+import { swalConfirm, swalSuccess } from "@helpers/SwalAlerts";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { swalConfirm, swalSuccess } from "../../../helpers/SwalAlerts";
 import {
   deleteCurriculum,
   readCurriculums,
-} from "../../../redux/actions/curriculumActions";
+} from "@redux/curriculum/curriculumActionCreators";
 
 export default function CurriculumAdminPage() {
   const navigate = useNavigate();

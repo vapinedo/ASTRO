@@ -1,30 +1,30 @@
 import * as yup from "yup";
 import Button from "@mui/material/Button";
+import { useAppDispatch } from "@redux/hooks";
 import { useNavigate } from "react-router-dom";
+import { Curriculum } from "@models/Curriculum";
+import { swalSuccess } from "@helpers/SwalAlerts";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldErrors, useForm } from "react-hook-form";
-import { useAppDispatch } from "../../../redux/hooks";
-import { Curriculum } from "../../../models/Curriculum";
-import { swalSuccess } from "../../../helpers/SwalAlerts";
-import { createCurriculum } from "../../../redux/actions/curriculumActions";
+import { createCurriculum } from "@redux/curriculum/curriculumActionCreators";
+import { idiomasDefaultValues } from "@features/curriculum/constants/idioma";
+import { formacionSuperiorDefaultValues } from "@features/curriculum/constants/formacionSuperior";
+import { experienciaLaboralDefaultValues } from "@features/curriculum/constants/experienciaLaboral";
 import {
   DatosPersonalesForm,
   ExperienciaLaboralForm,
   FormacionBasicaForm,
   FormacionSuperiorForm,
   IdiomaForm,
-} from "../components";
-import { experienciaLaboralDefaultValues } from "../constants/experienciaLaboral";
+} from "@features/curriculum/components";
 import {
   datosPersonalesDefaultValues,
   datosPersonalesSchema,
-} from "../constants/datosPersonales";
+} from "@features/curriculum/constants/datosPersonales";
 import {
   formacionBasicaDefaultValues,
   formacionBasicaSchema,
-} from "../constants/formacionBasica";
-import { formacionSuperiorDefaultValues } from "../constants/formacionSuperior";
-import { idiomasDefaultValues } from "../constants/idioma";
+} from "@features/curriculum/constants/formacionBasica";
 
 let defaultValues: Curriculum = {
   datosPersonales: datosPersonalesDefaultValues,

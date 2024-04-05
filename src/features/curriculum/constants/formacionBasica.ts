@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { FormacionBasica } from "../../../models/Curriculum";
+import { FormacionBasica } from "@models/Curriculum";
 
 export const formacionBasicaDefaultValues: FormacionBasica = {
   educacionBasica: "",
