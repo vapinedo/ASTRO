@@ -1,21 +1,20 @@
-import "./CurriculumAdmin.css";
+import "../styles/curriculumAdminPage.css";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import Box from "../../../../shared/containers/Box/Box";
+import Box from "../../../shared/containers/Box/Box";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import { Curriculum } from "../../../../models/Curriculum";
+import { Curriculum } from "../../../models/Curriculum";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
-import { swalConfirm, swalSuccess } from "../../../../helpers/SwalAlerts";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { swalConfirm, swalSuccess } from "../../../helpers/SwalAlerts";
 import {
   deleteCurriculum,
   readCurriculums,
-} from "../../../../redux/actions/curriculumActions";
+} from "../../../redux/actions/curriculumActions";
 
-export default function CurriculumAdmin() {
-
+export default function CurriculumAdminPage() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const curriculums = useAppSelector((state) => state.curriculum);
