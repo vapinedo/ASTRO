@@ -1,4 +1,4 @@
-export { default as CurriculumAdmin } from "./curriculum-admin/CurriculumAdmin";
-export { default as CurriculumEditar } from "./curriculum-editar/CurriculumEditar";
-export { default as CurriculumNuevo } from "./curriculum-nuevo/CurriculumNuevo";
-export { default as CurriculumPreview } from "./curriculum-preview/CurriculumPreview";
+export { default as CurriculumAdminPage } from "./CurriculumAdminPage";
+export { default as CurriculumEditarPage } from "./CurriculumEditarPage";
+export { default as CurriculumNuevoPage } from "./CurriculumNuevoPage";
+export { default as CurriculumPreviewPage } from "./CurriculumPreviewPage";

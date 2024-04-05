@@ -1,12 +1,12 @@
 import dayjs from "dayjs";
 import { ReactNode } from "react";
 import { Controller } from "react-hook-form";
-import Box from "../../../../shared/containers/Box/Box";
-import { InputProps } from "../../interfaces/InputProps";
+import Box from "../../../shared/containers/Box/Box";
+import { InputProps } from "../interfaces/InputProps";
 import { FormControl, InputLabel, Stack } from "@mui/material";
-import InputField from "../../../../shared/components/form/InputField";
-import SelectField from "../../../../shared/components/form/SelectField";
-import DatePickerField from "../../../../shared/components/form/DatePickerField";
+import InputField from "../../../shared/components/form/InputField";
+import SelectField from "../../../shared/components/form/SelectField";
+import DatePickerField from "../../../shared/components/form/DatePickerField";
 import {
   departamentoOptions,
   sexoOptions,
@@ -15,7 +15,7 @@ import {
   paisOptions,
   tipoIdentificacionOptions,
   tipoLibretaOptions,
-} from "../../constants/General";
+} from "../constants/general";
 
 export default function DatosPersonalesForm(props: InputProps): ReactNode {
   const { errors, control, register, watch } = props;
