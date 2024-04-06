@@ -1,68 +1,68 @@
 export interface CV {
-  documentId?: string;
   datosPersonales: DatosPersonales;
+  documentId?: string;
+  experienciaLaboral: ExperienciaLaboral[];
   formacionBasica: FormacionBasica;
   formacionSuperior: FormacionSuperior[];
   idiomas: Idioma[];
-  experienciaLaboral: ExperienciaLaboral[];
 }
 
 export interface DatosPersonales {
+  departamentoCorrespondencia: string;
+  departamentoNacimiento: string;
+  direccionCorrespondencia: string;
+  distritoLibretaMilitar: string;
+  email: string;
+  fechaNacimiento: Date | null;
+  municipioCorrespondencia: string;
+  municipioNacimiento: string;
+  nacionalidad: string;
+  nombres: string;
+  numeroIdentificacion: string;
+  numeroLibretaMilitar: string;
+  pais: string;
+  paisCorrespondencia: string;
+  paisNacimiento: string;
   primerApellido: string;
   segundoApellido: string;
-  nombres: string;
-  tipoIdentificacion: string;
-  numeroIdentificacion: string;
   sexo: string;
-  nacionalidad: string;
-  pais: string;
+  tipoIdentificacion: string;
   tipolibretaMilitar: string;
-  numeroLibretaMilitar: string;
-  distritoLibretaMilitar: string;
-  fechaNacimiento: Date | null;
-  paisNacimiento: string;
-  departamentoNacimiento: string;
-  municipioNacimiento: string;
-  direccionCorrespondencia: string;
-  paisCorrespondencia: string;
-  departamentoCorrespondencia: string;
-  municipioCorrespondencia: string;
-  email: string;
 }
 
 export interface FormacionBasica {
   educacionBasica: string;
-  tituloObtenido: string;
   fechaGraduacion: Date | null;
+  tituloObtenido: string;
 }
 
 export interface FormacionSuperior {
+  fechaTerminacion: Date | null;
+  graduado: string;
   modalidadAcademica: string;
   numeroSemestresAprobados: string;
-  graduado: string;
-  tituloObtenido: string;
-  fechaTerminacion: Date | null;
   numeroTarjetaProfesional: string;
+  tituloObtenido: string;
 }
 
 export interface Idioma {
   idioma: string;
+  loEscribe: string;
   loHabla: string;
   loLee: string;
-  loEscribe: string;
 }
 
 export interface ExperienciaLaboral {
-  empresa: string;
-  tipoEmpresa: string;
-  pais: string;
-  departamento: string;
-  municipio: string;
-  email: string;
-  telefono: string;
-  fechaIngreso: Date | null;
-  fechaRetiro: Date | null;
   cargo: string;
+  departamento: string;
   dependencia: string;
   direccion: string;
+  email: string;
+  empresa: string;
+  fechaIngreso: Date | null;
+  fechaRetiro: Date | null;
+  municipio: string;
+  pais: string;
+  telefono: string;
+  tipoEmpresa: string;
 }
