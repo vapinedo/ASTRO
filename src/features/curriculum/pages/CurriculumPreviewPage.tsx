@@ -1,19 +1,19 @@
+import file from "@assets/cv-format.pdf";
 import { useState, useEffect } from "react";
-import file from "../../../cv-format.pdf";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import {
   Curriculum,
   ExperienciaLaboral,
   FormacionSuperior,
   Idioma,
-} from "../../../models/Curriculum";
+} from "@models/Curriculum";
 import {
   getDoubleSpacedYear,
   getSpacedDay,
   getSpacedMonth,
   getSpacedYear,
   getTotalYearsOfExperience,
-} from "../../../helpers/DateHelper";
+} from "@helpers/DateHelper";
 
 const drawText = (
   page: any,

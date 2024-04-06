@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { FormacionSuperior } from "../../../models/Curriculum";
+import { FormacionSuperior } from "@models/Curriculum";
 
 export const formacionSuperiorDefaultValues: FormacionSuperior = {
   modalidadAcademica: "",

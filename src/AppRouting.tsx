@@ -1,8 +1,8 @@
 import { Container } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./shared/components/navbar/Navbar";
-import MatchAllRoutes from "./shared/components/match-all-routes/MatchAllRoutes";
-import { CurriculumAdminPage } from "./features/curriculum/pages";
+import Navbar from "@shared/components/navbar/Navbar";
+import { CurriculumAdminPage } from "@features/curriculum/pages";
+import MatchAllRoutes from "@shared/components/match-all-routes/MatchAllRoutes";
 // import { CurriculumNuevoPage } from "./features/curriculum/pages";
 // import { CurriculumEditarPage } from "./features/curriculum/pages";
 // import { CurriculumPreviewPage } from "./features/curriculum/pages";
