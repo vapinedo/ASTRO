@@ -1,5 +1,5 @@
+import * as type from "@models/CV";
 import file from "@assets/cv-format.pdf";
-import * as type from "@models/Curriculum";
 import { useState, useEffect } from "react";
 import * as DateHelper from "@helpers/DateHelper";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
@@ -31,14 +31,14 @@ export default function CVPreviewPage() {
   const [pdfInfo, setPdfInfo] = useState([]);
 
   useEffect(() => {
-    const data = localStorage.getItem("curriculum");
+    const data = localStorage.getItem("cv");
     if (data !== null) {
-      const curriculum = JSON.parse(data);
-      modifyPdf(curriculum);
+      const cv = JSON.parse(data);
+      modifyPdf(cv);
     }
   }, []);
 
-  const modifyPdf = async (curriculum: type.Curriculum) => {
+  const modifyPdf = async (cv: type.CV) => {
     const existingPdfBytes = await fetch(file).then((res) => res.arrayBuffer());
 
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
@@ -55,27 +55,21 @@ export default function CVPreviewPage() {
     drawText(
       page1,
       helveticaFont,
-      curriculum?.datosPersonales?.primerApellido,
+      cv?.datosPersonales?.primerApellido,
       65,
       602
     );
     drawText(
       page1,
       helveticaFont,
-      curriculum?.datosPersonales?.segundoApellido,
+      cv?.datosPersonales?.segundoApellido,
       231,
       602
     );
-    drawText(
-      page1,
-      helveticaFont,
-      curriculum?.datosPersonales?.nombres,
-      400,
-      602
-    );
+    drawText(page1, helveticaFont, cv?.datosPersonales?.nombres, 400, 602);
 
     // identificacion
-    switch (curriculum?.datosPersonales?.tipoIdentificacion) {
+    switch (cv?.datosPersonales?.tipoIdentificacion) {
       case "cc":
         drawText(page1, helveticaFont, "X", 82.5, 574);
         break;
@@ -89,13 +83,13 @@ export default function CVPreviewPage() {
     drawText(
       page1,
       helveticaFont,
-      curriculum?.datosPersonales?.numeroIdentificacion,
+      cv?.datosPersonales?.numeroIdentificacion,
       185,
       574.8
     );
 
     // sexo
-    switch (curriculum?.datosPersonales?.sexo) {
+    switch (cv?.datosPersonales?.sexo) {
       case "f":
         drawText(page1, helveticaFont, "X", 316.5, 573.4);
         break;
@@ -105,7 +99,7 @@ export default function CVPreviewPage() {
     }
 
     // nacionalidad
-    switch (curriculum?.datosPersonales?.nacionalidad) {
+    switch (cv?.datosPersonales?.nacionalidad) {
       case "col":
         drawText(page1, helveticaFont, "X", 383.6, 573.4);
         break;
@@ -115,15 +109,9 @@ export default function CVPreviewPage() {
     }
 
     // pais
-    switch (curriculum?.datosPersonales?.nacionalidad) {
+    switch (cv?.datosPersonales?.nacionalidad) {
       case "col":
-        drawText(
-          page1,
-          helveticaFont,
-          curriculum?.datosPersonales?.pais,
-          478,
-          574.8
-        );
+        drawText(page1, helveticaFont, cv?.datosPersonales?.pais, 478, 574.8);
         break;
       case "ext":
         drawText(page1, helveticaFont, "X", 456.3, 573.4);
@@ -131,7 +119,7 @@ export default function CVPreviewPage() {
     }
 
     // libreta militar tipo
-    switch (curriculum?.datosPersonales?.tipolibretaMilitar) {
+    switch (cv?.datosPersonales?.tipolibretaMilitar) {
       case "primera":
         drawText(page1, helveticaFont, "X", 145.6, 543.2);
         break;
@@ -144,7 +132,7 @@ export default function CVPreviewPage() {
     drawText(
       page1,
       helveticaFont,
-      curriculum?.datosPersonales?.numeroLibretaMilitar,
+      cv?.datosPersonales?.numeroLibretaMilitar,
       340,
       545
     );
@@ -153,7 +141,7 @@ export default function CVPreviewPage() {
     drawText(
       page1,
       helveticaFont,
-      curriculum?.datosPersonales?.distritoLibretaMilitar,
+      cv?.datosPersonales?.distritoLibretaMilitar,
       500,
       545
     );
@@ -162,7 +150,7 @@ export default function CVPreviewPage() {
     drawText(
       page1,
       helveticaFont,
-      DateHelper.getSpacedDay(curriculum.datosPersonales.fechaNacimiento),
+      DateHelper.getSpacedDay(cv.datosPersonales.fechaNacimiento),
       137.4,
       507
     );
@@ -170,7 +158,7 @@ export default function CVPreviewPage() {
     drawText(
       page1,
       helveticaFont,
-      DateHelper.getSpacedMonth(curriculum.datosPersonales.fechaNacimiento),
+      DateHelper.getSpacedMonth(cv.datosPersonales.fechaNacimiento),
       187,
       507
     );
@@ -178,30 +166,24 @@ export default function CVPreviewPage() {
     drawText(
       page1,
       helveticaFont,
-      DateHelper.getSpacedYear(curriculum.datosPersonales.fechaNacimiento),
+      DateHelper.getSpacedYear(cv.datosPersonales.fechaNacimiento),
       237.2,
       507
     );
 
     // Pais, Departamento y municipio de nacimiento
+    drawText(page1, helveticaFont, cv.datosPersonales.paisNacimiento, 120, 491);
     drawText(
       page1,
       helveticaFont,
-      curriculum.datosPersonales.paisNacimiento,
-      120,
-      491
-    );
-    drawText(
-      page1,
-      helveticaFont,
-      curriculum.datosPersonales.departamentoNacimiento,
+      cv.datosPersonales.departamentoNacimiento,
       120,
       474
     );
     drawText(
       page1,
       helveticaFont,
-      curriculum.datosPersonales.municipioNacimiento,
+      cv.datosPersonales.municipioNacimiento,
       120,
       455.7
     );
@@ -210,44 +192,37 @@ export default function CVPreviewPage() {
     drawText(
       page1,
       helveticaFont,
-      curriculum.datosPersonales.direccionCorrespondencia,
+      cv.datosPersonales.direccionCorrespondencia,
       295,
       509
     );
     drawText(
       page1,
       helveticaFont,
-      curriculum.datosPersonales.paisCorrespondencia,
+      cv.datosPersonales.paisCorrespondencia,
       320,
       492
     );
     drawText(
       page1,
       helveticaFont,
-      curriculum.datosPersonales.departamentoCorrespondencia,
+      cv.datosPersonales.departamentoCorrespondencia,
       474,
       492
     );
     drawText(
       page1,
       helveticaFont,
-      curriculum.datosPersonales.municipioCorrespondencia,
+      cv.datosPersonales.municipioCorrespondencia,
       348,
       475
     );
 
-    const charCount = curriculum.datosPersonales.email.length;
-    drawText(
-      page1,
-      helveticaFont,
-      curriculum.datosPersonales.email,
-      472,
-      455.8,
-      7
-    );
+    const charCount = cv.datosPersonales.email.length;
+    drawText(page1, helveticaFont, cv.datosPersonales.email, 472, 455.8, 7);
 
     // formacion básica
-    switch (curriculum?.formacionBasica.educacionBasica) {
+    switch (cv?.formacionBasica.educacionBasica) {
       case "1":
         drawText(page1, helveticaFont, "X", 100, 317, 18);
         break;
@@ -286,7 +261,7 @@ export default function CVPreviewPage() {
     drawText(
       page1,
       helveticaFont,
-      curriculum.formacionBasica.tituloObtenido,
+      cv.formacionBasica.tituloObtenido,
       363,
       349.8
     );
@@ -294,7 +269,7 @@ export default function CVPreviewPage() {
     drawText(
       page1,
       helveticaFont,
-      DateHelper.getSpacedMonth(curriculum.formacionBasica.fechaGraduacion),
+      DateHelper.getSpacedMonth(cv.formacionBasica.fechaGraduacion),
       351.5,
       319.8
     );
@@ -302,7 +277,7 @@ export default function CVPreviewPage() {
     drawText(
       page1,
       helveticaFont,
-      DateHelper.getSpacedYear(curriculum.formacionBasica.fechaGraduacion),
+      DateHelper.getSpacedYear(cv.formacionBasica.fechaGraduacion),
       412,
       319.8
     );
@@ -667,12 +642,12 @@ export default function CVPreviewPage() {
         );
       }
     }
-    printFormacionSuperior(curriculum.formacionSuperior);
+    printFormacionSuperior(cv.formacionSuperior);
 
     // Idiomas
     function printIdiomas(idiomas: type.Idioma[]) {
       if (idiomas[0]) {
-        drawText(page1, helveticaFont, curriculum.idiomas[0].idioma, 160, 71);
+        drawText(page1, helveticaFont, cv.idiomas[0].idioma, 160, 71);
 
         switch (idiomas[0].loHabla) {
           case "r":
@@ -709,7 +684,7 @@ export default function CVPreviewPage() {
         }
       }
       if (idiomas[1]) {
-        drawText(page1, helveticaFont, curriculum.idiomas[1].idioma, 160, 53.6);
+        drawText(page1, helveticaFont, cv.idiomas[1].idioma, 160, 53.6);
 
         switch (idiomas[1].loHabla) {
           case "r":
@@ -746,7 +721,7 @@ export default function CVPreviewPage() {
         }
       }
     }
-    printIdiomas(curriculum.idiomas);
+    printIdiomas(cv.idiomas);
 
     function printExoerienciaLaboral(
       experienciaLaboral: type.ExperienciaLaboral[]
@@ -1117,8 +1092,8 @@ export default function CVPreviewPage() {
         );
       }
     }
-    if (curriculum.experienciaLaboral) {
-      printExoerienciaLaboral(curriculum.experienciaLaboral);
+    if (cv.experienciaLaboral) {
+      printExoerienciaLaboral(cv.experienciaLaboral);
     }
 
     // PAGE 3
@@ -1168,7 +1143,7 @@ export default function CVPreviewPage() {
       drawText(page3, helveticaFont, fullYears.toString(), 388, 511);
       drawText(page3, helveticaFont, fullMonths.toString(), 458, 511);
     }
-    printAniosExperiencia(curriculum.experienciaLaboral);
+    printAniosExperiencia(cv.experienciaLaboral);
 
     function printTotalAniosExperiencia(exp: TotalExperiencia) {
       const totalExp = {

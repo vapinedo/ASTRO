@@ -4,41 +4,26 @@ import Button from "@mui/material/Button";
 import { useAppDispatch } from "@redux/hooks";
 import { useNavigate } from "react-router-dom";
 import { swalSuccess } from "@helpers/SwalAlerts";
-import { yupResolver } from "@hookform/resolvers/yup";
+// import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldErrors, useForm } from "react-hook-form";
 import { createCV } from "@redux/curriculum/cvActionCreators";
-import { idiomasDefaultValues } from "@features/curriculum/constants/idioma";
-import { formacionSuperiorDefaultValues } from "@features/curriculum/constants/formacionSuperior";
-import { experienciaLaboralDefaultValues } from "@features/curriculum/constants/experienciaLaboral";
-import {
-  DatosPersonalesForm,
-  ExperienciaLaboralForm,
-  FormacionBasicaForm,
-  FormacionSuperiorForm,
-  IdiomaForm,
-} from "@features/curriculum/components";
-import {
-  datosPersonalesDefaultValues,
-  datosPersonalesSchema,
-} from "@features/curriculum/constants/datosPersonales";
-import {
-  formacionBasicaDefaultValues,
-  formacionBasicaSchema,
-} from "@features/curriculum/constants/formacionBasica";
+import * as cvComponents from "@features/curriculum/components";
+import * as cvSchemas from "@features/curriculum/validationSchemas";
+import * as cvDefaultValues from "@features/curriculum/defaultValues";
 
-let defaultValues: CV = {
-  datosPersonales: datosPersonalesDefaultValues,
-  formacionBasica: formacionBasicaDefaultValues,
-  formacionSuperior: [formacionSuperiorDefaultValues],
-  idiomas: [idiomasDefaultValues],
-  experienciaLaboral: [experienciaLaboralDefaultValues],
+const defaultValues: CV = {
+  datosPersonales: cvDefaultValues.datosPersonales,
+  experienciaLaboral: [cvDefaultValues.experienciaLaboral],
+  formacionBasica: cvDefaultValues.formacionBasica,
+  formacionSuperior: [cvDefaultValues.formacionSuperior],
+  idiomas: [cvDefaultValues.idiomas],
 };
 
 const validationSchema = yup.object().shape({
-  datosPersonales: datosPersonalesSchema,
-  formacionBasica: formacionBasicaSchema,
-  // formacionSuperior: yup.array().of(formacionSuperiorSchema),
-  // experienciaLaboral: yup.array().of(experienciaLaboralSchema)
+  datosPersonales: cvSchemas.datosPersonales,
+  experienciaLaboral: yup.array().of(cvSchemas.experienciaLaboral),
+  formacionBasica: cvSchemas.formacionBasica,
+  formacionSuperior: yup.array().of(cvSchemas.formacionSuperior),
 });
 
 export default function CVNewPage() {
@@ -48,7 +33,7 @@ export default function CVNewPage() {
   const form = useForm<CV>({
     defaultValues,
     mode: "onTouched",
-    resolver: yupResolver(validationSchema),
+    // resolver: yupResolver(validationSchema),
   });
 
   const { register, formState, handleSubmit, control, setValue, watch } = form;
@@ -67,39 +52,39 @@ export default function CVNewPage() {
   return (
     <>
       <header className="page-header">
-        <h2>Curriculum nuevo</h2>
+        <h2>Hoja de Vida - nueva</h2>
         <div>
           <button className="btn btn-outline-danger">Ir Atrás</button>
         </div>
       </header>
 
       <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
-        <DatosPersonalesForm
+        <cvComponents.DatosPersonalesForm
           watch={watch}
           errors={errors}
           control={control}
           register={register}
           setValue={setValue}
         />
-        <FormacionBasicaForm
+        <cvComponents.FormacionBasicaForm
           errors={errors}
           control={control}
           register={register}
           setValue={setValue}
         />
-        <FormacionSuperiorForm
+        <cvComponents.FormacionSuperiorForm
           errors={errors}
           control={control}
           register={register}
           setValue={setValue}
         />
-        <IdiomaForm
+        <cvComponents.IdiomaForm
           setValue={setValue}
           errors={errors}
           control={control}
           register={register}
         />
-        <ExperienciaLaboralForm
+        <cvComponents.ExperienciaLaboralForm
           errors={errors}
           control={control}
           register={register}

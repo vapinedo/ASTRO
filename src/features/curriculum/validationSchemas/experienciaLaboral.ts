@@ -1,22 +1,6 @@
 import * as yup from "yup";
-import { ExperienciaLaboral } from "@models/Curriculum";
 
-export const experienciaLaboralDefaultValues: ExperienciaLaboral = {
-  empresa: "",
-  tipoEmpresa: "",
-  pais: "",
-  departamento: "",
-  municipio: "",
-  email: "",
-  telefono: "",
-  fechaIngreso: null,
-  fechaRetiro: null,
-  cargo: "",
-  dependencia: "",
-  direccion: "",
-};
-
-export const experienciaLaboralSchema = yup.object().shape({
+const experienciaLaboral = yup.object().shape({
   empresa: yup
     .string()
     .min(3, "Mínimo 3 caracteres")
@@ -41,3 +25,4 @@ export const experienciaLaboralSchema = yup.object().shape({
     .min(4, "Mínimo 4 caracteres")
     .required("Dirección es requerido"),
 });
+export default experienciaLaboral;

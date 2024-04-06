@@ -1,30 +1,6 @@
 import * as yup from "yup";
-import { DatosPersonales } from "@models/Curriculum";
 
-export const datosPersonalesDefaultValues: DatosPersonales = {
-  primerApellido: "",
-  segundoApellido: "",
-  nombres: "",
-  tipoIdentificacion: "",
-  numeroIdentificacion: "",
-  sexo: "",
-  nacionalidad: "",
-  pais: "",
-  tipolibretaMilitar: "",
-  numeroLibretaMilitar: "",
-  distritoLibretaMilitar: "",
-  fechaNacimiento: null,
-  paisNacimiento: "",
-  departamentoNacimiento: "",
-  municipioNacimiento: "",
-  direccionCorrespondencia: "",
-  paisCorrespondencia: "",
-  departamentoCorrespondencia: "",
-  municipioCorrespondencia: "",
-  email: "",
-};
-
-export const datosPersonalesSchema = yup.object().shape({
+const datosPersonales = yup.object().shape({
   primerApellido: yup
     .string()
     .min(3, "Mínimo 3 caracteres")
@@ -46,23 +22,22 @@ export const datosPersonalesSchema = yup.object().shape({
   nacionalidad: yup.string().required("Nacionalidad es requerido"),
   pais: yup.string().when("nacionalidad", {
     is: "ext",
-    then: (datosPersonalesSchema) =>
-      datosPersonalesSchema.required("País es requerido"),
+    then: (datosPersonales) => datosPersonales.required("País es requerido"),
   }),
   tipolibretaMilitar: yup.string().when("sexo", {
     is: "m",
-    then: (datosPersonalesSchema) =>
-      datosPersonalesSchema.required("Tipo libreta es requerido"),
+    then: (datosPersonales) =>
+      datosPersonales.required("Tipo libreta es requerido"),
   }),
   numeroLibretaMilitar: yup.string().when("sexo", {
     is: "m",
-    then: (datosPersonalesSchema) =>
-      datosPersonalesSchema.required("Número libreta es requerido"),
+    then: (datosPersonales) =>
+      datosPersonales.required("Número libreta es requerido"),
   }),
   distritoLibretaMilitar: yup.string().when("sexo", {
     is: "m",
-    then: (datosPersonalesSchema) =>
-      datosPersonalesSchema.required("Distrito libreta es requerido"),
+    then: (datosPersonales) =>
+      datosPersonales.required("Distrito libreta es requerido"),
   }),
   fechaNacimiento: yup.date().required("Fecha es requerido"),
   paisNacimiento: yup.string().required("País es requerido"),
@@ -79,3 +54,4 @@ export const datosPersonalesSchema = yup.object().shape({
   municipioCorrespondencia: yup.string().required("município es requerido"),
   email: yup.string().email("Email es inválido").required("Email es requerido"),
 });
+export default datosPersonales;

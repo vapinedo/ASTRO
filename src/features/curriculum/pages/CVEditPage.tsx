@@ -2,51 +2,28 @@ import * as yup from "yup";
 import { CV } from "@models/CV";
 import { useEffect } from "react";
 import Button from "@mui/material/Button";
-// import { yupResolver } from "@hookform/resolvers/yup";
-import { FieldErrors, useForm } from "react-hook-form";
 import { useAppDispatch } from "@redux/hooks";
-import {
-  FormacionSuperiorForm,
-  IdiomaForm,
-} from "@features/curriculum/components";
+import * as DateHelper from "@helpers/DateHelper";
+import { FieldErrors, useForm } from "react-hook-form";
+// import { yupResolver } from "@hookform/resolvers/yup";
 import { updateCV } from "@redux/curriculum/cvActionCreators";
-import { allFStimestampToDateObj, fromM2ToDate } from "@helpers/DateHelper";
-import {
-  DatosPersonalesForm,
-  ExperienciaLaboralForm,
-  FormacionBasicaForm,
-} from "@features/curriculum/components";
-import {
-  datosPersonalesDefaultValues,
-  datosPersonalesSchema,
-} from "@features/curriculum/constants/datosPersonales";
-import {
-  experienciaLaboralDefaultValues,
-  experienciaLaboralSchema,
-} from "@features/curriculum/constants/experienciaLaboral";
-import { idiomasDefaultValues } from "../constants/idioma";
-import {
-  formacionBasicaDefaultValues,
-  formacionBasicaSchema,
-} from "@features/curriculum/constants/formacionBasica";
-import {
-  formacionSuperiorDefaultValues,
-  formacionSuperiorSchema,
-} from "@features/curriculum/constants/formacionSuperior";
+import * as cvComponents from "@features/curriculum/components";
+import * as cvSchemas from "@features/curriculum/validationSchemas";
+import * as cvDefaultValues from "@features/curriculum/defaultValues";
 
 const defaultValues: CV = {
-  idiomas: [idiomasDefaultValues],
-  datosPersonales: datosPersonalesDefaultValues,
-  formacionBasica: formacionBasicaDefaultValues,
-  formacionSuperior: [formacionSuperiorDefaultValues],
-  experienciaLaboral: [experienciaLaboralDefaultValues],
+  datosPersonales: cvDefaultValues.datosPersonales,
+  experienciaLaboral: [cvDefaultValues.experienciaLaboral],
+  formacionBasica: cvDefaultValues.formacionBasica,
+  formacionSuperior: [cvDefaultValues.formacionSuperior],
+  idiomas: [cvDefaultValues.idiomas],
 };
 
 const validationSchema = yup.object().shape({
-  datosPersonales: datosPersonalesSchema,
-  formacionBasica: formacionBasicaSchema,
-  formacionSuperior: yup.array().of(formacionSuperiorSchema),
-  experienciaLaboral: yup.array().of(experienciaLaboralSchema),
+  datosPersonales: cvSchemas.datosPersonales,
+  experienciaLaboral: yup.array().of(cvSchemas.experienciaLaboral),
+  formacionBasica: cvSchemas.formacionBasica,
+  formacionSuperior: yup.array().of(cvSchemas.formacionSuperior),
 });
 
 let documentId: string | undefined = "";
@@ -64,7 +41,7 @@ export default function CVEditPage() {
     const data = localStorage.getItem("curriculum-edit");
     if (data !== null) {
       const curriculum: CV = JSON.parse(data);
-      allFStimestampToDateObj(curriculum);
+      DateHelper.allFStimestampToDateObj(curriculum);
       setValue("datosPersonales", curriculum.datosPersonales, {
         shouldValidate: false,
       });
@@ -104,7 +81,7 @@ export default function CVEditPage() {
 
   function onSubmit(curriculum: CV) {
     curriculum.documentId = documentId;
-    fromM2ToDate(curriculum);
+    DateHelper.fromM2ToDate(curriculum);
     console.log({ curriculum });
     dispatch(updateCV(curriculum));
   }
@@ -112,39 +89,39 @@ export default function CVEditPage() {
   return (
     <>
       <header className="page-header">
-        <h2>Curriculum editar</h2>
+        <h2>Hoja de Vida editar</h2>
         <div>
           <button className="btn btn-outline-danger">Ir Atrás</button>
         </div>
       </header>
 
       <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
-        <DatosPersonalesForm
+        <cvComponents.DatosPersonalesForm
           watch={watch}
           errors={errors}
           control={control}
           register={register}
           setValue={setValue}
         />
-        <FormacionBasicaForm
+        <cvComponents.FormacionBasicaForm
           errors={errors}
           control={control}
           register={register}
           setValue={setValue}
         />
-        <FormacionSuperiorForm
+        <cvComponents.FormacionSuperiorForm
           errors={errors}
           control={control}
           register={register}
           setValue={setValue}
         />
-        <IdiomaForm
+        <cvComponents.IdiomaForm
           setValue={setValue}
           errors={errors}
           control={control}
           register={register}
         />
-        <ExperienciaLaboralForm
+        <cvComponents.ExperienciaLaboralForm
           errors={errors}
           control={control}
           register={register}

@@ -1,16 +1,6 @@
 import * as yup from "yup";
-import { FormacionSuperior } from "@models/Curriculum";
 
-export const formacionSuperiorDefaultValues: FormacionSuperior = {
-  modalidadAcademica: "",
-  numeroSemestresAprobados: "",
-  graduado: "",
-  tituloObtenido: "",
-  fechaTerminacion: null,
-  numeroTarjetaProfesional: "",
-};
-
-export const formacionSuperiorSchema = yup.object().shape({
+const formacionSuperior = yup.object().shape({
   modalidadAcademica: yup.string().required("Modalidad académica es requerido"),
   numeroSemestresAprobados: yup
     .string()
@@ -22,3 +12,4 @@ export const formacionSuperiorSchema = yup.object().shape({
     .required("Título obtenido es requerido"),
   fechaTerminacion: yup.date().required("Fecha terminación es requerido"),
 });
+export default formacionSuperior;
