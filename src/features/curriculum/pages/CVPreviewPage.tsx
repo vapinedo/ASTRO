@@ -1,20 +1,8 @@
 import file from "@assets/cv-format.pdf";
+import * as type from "@models/Curriculum";
 import { useState, useEffect } from "react";
+import * as DateHelper from "@helpers/DateHelper";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
-import {
-  Curriculum,
-  ExperienciaLaboral,
-  FormacionSuperior,
-  Idioma,
-} from "@models/Curriculum";
-import {
-  getDoubleSpacedYear,
-  getSpacedDay,
-  getSpacedMonth,
-  getSpacedYear,
-  getTotalYearsOfExperience,
-} from "@helpers/DateHelper";
-
 const drawText = (
   page: any,
   font: any,
@@ -39,7 +27,7 @@ interface TotalExperiencia {
   yearsPublicas: number;
 }
 
-export default function CurriculumPreviewPage() {
+export default function CVPreviewPage() {
   const [pdfInfo, setPdfInfo] = useState([]);
 
   useEffect(() => {
@@ -50,7 +38,7 @@ export default function CurriculumPreviewPage() {
     }
   }, []);
 
-  const modifyPdf = async (curriculum: Curriculum) => {
+  const modifyPdf = async (curriculum: type.Curriculum) => {
     const existingPdfBytes = await fetch(file).then((res) => res.arrayBuffer());
 
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
@@ -174,7 +162,7 @@ export default function CurriculumPreviewPage() {
     drawText(
       page1,
       helveticaFont,
-      getSpacedDay(curriculum.datosPersonales.fechaNacimiento),
+      DateHelper.getSpacedDay(curriculum.datosPersonales.fechaNacimiento),
       137.4,
       507
     );
@@ -182,7 +170,7 @@ export default function CurriculumPreviewPage() {
     drawText(
       page1,
       helveticaFont,
-      getSpacedMonth(curriculum.datosPersonales.fechaNacimiento),
+      DateHelper.getSpacedMonth(curriculum.datosPersonales.fechaNacimiento),
       187,
       507
     );
@@ -190,7 +178,7 @@ export default function CurriculumPreviewPage() {
     drawText(
       page1,
       helveticaFont,
-      getSpacedYear(curriculum.datosPersonales.fechaNacimiento),
+      DateHelper.getSpacedYear(curriculum.datosPersonales.fechaNacimiento),
       237.2,
       507
     );
@@ -306,7 +294,7 @@ export default function CurriculumPreviewPage() {
     drawText(
       page1,
       helveticaFont,
-      getSpacedMonth(curriculum.formacionBasica.fechaGraduacion),
+      DateHelper.getSpacedMonth(curriculum.formacionBasica.fechaGraduacion),
       351.5,
       319.8
     );
@@ -314,13 +302,15 @@ export default function CurriculumPreviewPage() {
     drawText(
       page1,
       helveticaFont,
-      getSpacedYear(curriculum.formacionBasica.fechaGraduacion),
+      DateHelper.getSpacedYear(curriculum.formacionBasica.fechaGraduacion),
       412,
       319.8
     );
 
     // formacion superior 1
-    function printFormacionSuperior(formacionSuperior: FormacionSuperior[]) {
+    function printFormacionSuperior(
+      formacionSuperior: type.FormacionSuperior[]
+    ) {
       if (formacionSuperior[0]) {
         switch (formacionSuperior[0].modalidadAcademica) {
           case "tecnica":
@@ -372,14 +362,16 @@ export default function CurriculumPreviewPage() {
           drawText(
             page1,
             helveticaFont,
-            getSpacedMonth(formacionSuperior[0].fechaTerminacion),
+            DateHelper.getSpacedMonth(formacionSuperior[0].fechaTerminacion),
             427,
             200
           );
           drawText(
             page1,
             helveticaFont,
-            getDoubleSpacedYear(formacionSuperior[0].fechaTerminacion),
+            DateHelper.getDoubleSpacedYear(
+              formacionSuperior[0].fechaTerminacion
+            ),
             453,
             200
           );
@@ -444,14 +436,14 @@ export default function CurriculumPreviewPage() {
         drawText(
           page1,
           helveticaFont,
-          getSpacedMonth(formacionSuperior[1].fechaTerminacion),
+          DateHelper.getSpacedMonth(formacionSuperior[1].fechaTerminacion),
           427,
           182.5
         );
         drawText(
           page1,
           helveticaFont,
-          getDoubleSpacedYear(formacionSuperior[1].fechaTerminacion),
+          DateHelper.getDoubleSpacedYear(formacionSuperior[1].fechaTerminacion),
           453,
           182.5
         );
@@ -514,14 +506,14 @@ export default function CurriculumPreviewPage() {
         drawText(
           page1,
           helveticaFont,
-          getSpacedMonth(formacionSuperior[2].fechaTerminacion),
+          DateHelper.getSpacedMonth(formacionSuperior[2].fechaTerminacion),
           427,
           166
         );
         drawText(
           page1,
           helveticaFont,
-          getDoubleSpacedYear(formacionSuperior[2].fechaTerminacion),
+          DateHelper.getDoubleSpacedYear(formacionSuperior[2].fechaTerminacion),
           453,
           166
         );
@@ -584,14 +576,14 @@ export default function CurriculumPreviewPage() {
         drawText(
           page1,
           helveticaFont,
-          getSpacedMonth(formacionSuperior[3].fechaTerminacion),
+          DateHelper.getSpacedMonth(formacionSuperior[3].fechaTerminacion),
           427,
           148.5
         );
         drawText(
           page1,
           helveticaFont,
-          getDoubleSpacedYear(formacionSuperior[3].fechaTerminacion),
+          DateHelper.getDoubleSpacedYear(formacionSuperior[3].fechaTerminacion),
           453,
           148.5
         );
@@ -654,14 +646,14 @@ export default function CurriculumPreviewPage() {
         drawText(
           page1,
           helveticaFont,
-          getSpacedMonth(formacionSuperior[4].fechaTerminacion),
+          DateHelper.getSpacedMonth(formacionSuperior[4].fechaTerminacion),
           427,
           131
         );
         drawText(
           page1,
           helveticaFont,
-          getDoubleSpacedYear(formacionSuperior[4].fechaTerminacion),
+          DateHelper.getDoubleSpacedYear(formacionSuperior[4].fechaTerminacion),
           453,
           131
         );
@@ -678,7 +670,7 @@ export default function CurriculumPreviewPage() {
     printFormacionSuperior(curriculum.formacionSuperior);
 
     // Idiomas
-    function printIdiomas(idiomas: Idioma[]) {
+    function printIdiomas(idiomas: type.Idioma[]) {
       if (idiomas[0]) {
         drawText(page1, helveticaFont, curriculum.idiomas[0].idioma, 160, 71);
 
@@ -756,7 +748,9 @@ export default function CurriculumPreviewPage() {
     }
     printIdiomas(curriculum.idiomas);
 
-    function printExoerienciaLaboral(experienciaLaboral: ExperienciaLaboral[]) {
+    function printExoerienciaLaboral(
+      experienciaLaboral: type.ExperienciaLaboral[]
+    ) {
       if (experienciaLaboral[0]) {
         drawText(
           page2,
@@ -805,14 +799,14 @@ export default function CurriculumPreviewPage() {
           491.5
         );
 
-        // drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[0].fechaIngreso), 261.5, 491.5);
-        // drawText(page2, helveticaFont, getSpacedMonth(experienciaLaboral[0].fechaIngreso), 311.5, 491.5);
-        // drawText(page2, helveticaFont, getSpacedYear(experienciaLaboral[0].fechaIngreso), 359, 491.5);
+        // drawText(page2, helveticaFont, DateHelper.getSpacedDay(experienciaLaboral[0].fechaIngreso), 261.5, 491.5);
+        // drawText(page2, helveticaFont, DateHelper.getSpacedMonth(experienciaLaboral[0].fechaIngreso), 311.5, 491.5);
+        // drawText(page2, helveticaFont, DateHelper.getSpacedYear(experienciaLaboral[0].fechaIngreso), 359, 491.5);
 
         // if (experienciaLaboral[0].fechaIngreso) {
-        //     drawText(page2, helveticaFont, getSpacedDay(experienciaLaboral[0].fechaRetiro), 428.7, 491.5);
-        //     drawText(page2, helveticaFont, getSpacedMonth(experienciaLaboral[0].fechaRetiro), 478.3, 491.5);
-        //     drawText(page2, helveticaFont, getSpacedYear(experienciaLaboral[0].fechaRetiro), 525.7, 491.5);
+        //     drawText(page2, helveticaFont, DateHelper.getSpacedDay(experienciaLaboral[0].fechaRetiro), 428.7, 491.5);
+        //     drawText(page2, helveticaFont, DateHelper.getSpacedMonth(experienciaLaboral[0].fechaRetiro), 478.3, 491.5);
+        //     drawText(page2, helveticaFont, DateHelper.getSpacedYear(experienciaLaboral[0].fechaRetiro), 525.7, 491.5);
         // }
 
         drawText(page2, helveticaFont, experienciaLaboral[0].cargo, 65, 461);
@@ -871,21 +865,21 @@ export default function CurriculumPreviewPage() {
         drawText(
           page2,
           helveticaFont,
-          getSpacedDay(experienciaLaboral[1].fechaIngreso),
+          DateHelper.getSpacedDay(experienciaLaboral[1].fechaIngreso),
           262,
           361
         );
         drawText(
           page2,
           helveticaFont,
-          getSpacedMonth(experienciaLaboral[1].fechaIngreso),
+          DateHelper.getSpacedMonth(experienciaLaboral[1].fechaIngreso),
           311.5,
           361
         );
         drawText(
           page2,
           helveticaFont,
-          getSpacedYear(experienciaLaboral[1].fechaIngreso),
+          DateHelper.getSpacedYear(experienciaLaboral[1].fechaIngreso),
           359,
           361
         );
@@ -893,21 +887,21 @@ export default function CurriculumPreviewPage() {
         drawText(
           page2,
           helveticaFont,
-          getSpacedDay(experienciaLaboral[1].fechaRetiro),
+          DateHelper.getSpacedDay(experienciaLaboral[1].fechaRetiro),
           429,
           361
         );
         drawText(
           page2,
           helveticaFont,
-          getSpacedMonth(experienciaLaboral[1].fechaRetiro),
+          DateHelper.getSpacedMonth(experienciaLaboral[1].fechaRetiro),
           478,
           361
         );
         drawText(
           page2,
           helveticaFont,
-          getSpacedYear(experienciaLaboral[1].fechaRetiro),
+          DateHelper.getSpacedYear(experienciaLaboral[1].fechaRetiro),
           526,
           361
         );
@@ -968,21 +962,21 @@ export default function CurriculumPreviewPage() {
         drawText(
           page2,
           helveticaFont,
-          getSpacedDay(experienciaLaboral[2].fechaIngreso),
+          DateHelper.getSpacedDay(experienciaLaboral[2].fechaIngreso),
           262,
           231
         );
         drawText(
           page2,
           helveticaFont,
-          getSpacedMonth(experienciaLaboral[2].fechaIngreso),
+          DateHelper.getSpacedMonth(experienciaLaboral[2].fechaIngreso),
           311.5,
           231
         );
         drawText(
           page2,
           helveticaFont,
-          getSpacedYear(experienciaLaboral[2].fechaIngreso),
+          DateHelper.getSpacedYear(experienciaLaboral[2].fechaIngreso),
           359,
           231
         );
@@ -990,21 +984,21 @@ export default function CurriculumPreviewPage() {
         drawText(
           page2,
           helveticaFont,
-          getSpacedDay(experienciaLaboral[2].fechaRetiro),
+          DateHelper.getSpacedDay(experienciaLaboral[2].fechaRetiro),
           429,
           231
         );
         drawText(
           page2,
           helveticaFont,
-          getSpacedMonth(experienciaLaboral[2].fechaRetiro),
+          DateHelper.getSpacedMonth(experienciaLaboral[2].fechaRetiro),
           478,
           231
         );
         drawText(
           page2,
           helveticaFont,
-          getSpacedYear(experienciaLaboral[2].fechaRetiro),
+          DateHelper.getSpacedYear(experienciaLaboral[2].fechaRetiro),
           526,
           231
         );
@@ -1065,21 +1059,21 @@ export default function CurriculumPreviewPage() {
         drawText(
           page2,
           helveticaFont,
-          getSpacedDay(experienciaLaboral[3].fechaIngreso),
+          DateHelper.getSpacedDay(experienciaLaboral[3].fechaIngreso),
           262,
           101
         );
         drawText(
           page2,
           helveticaFont,
-          getSpacedMonth(experienciaLaboral[3].fechaIngreso),
+          DateHelper.getSpacedMonth(experienciaLaboral[3].fechaIngreso),
           311.5,
           101
         );
         drawText(
           page2,
           helveticaFont,
-          getSpacedYear(experienciaLaboral[3].fechaIngreso),
+          DateHelper.getSpacedYear(experienciaLaboral[3].fechaIngreso),
           359,
           101
         );
@@ -1087,21 +1081,21 @@ export default function CurriculumPreviewPage() {
         drawText(
           page2,
           helveticaFont,
-          getSpacedDay(experienciaLaboral[3].fechaRetiro),
+          DateHelper.getSpacedDay(experienciaLaboral[3].fechaRetiro),
           429,
           101
         );
         drawText(
           page2,
           helveticaFont,
-          getSpacedMonth(experienciaLaboral[3].fechaRetiro),
+          DateHelper.getSpacedMonth(experienciaLaboral[3].fechaRetiro),
           478,
           101
         );
         drawText(
           page2,
           helveticaFont,
-          getSpacedYear(experienciaLaboral[3].fechaRetiro),
+          DateHelper.getSpacedYear(experienciaLaboral[3].fechaRetiro),
           526,
           101
         );
@@ -1129,7 +1123,9 @@ export default function CurriculumPreviewPage() {
 
     // PAGE 3
     // experiencia sector publico
-    function printAniosExperiencia(experienciaLaboral: ExperienciaLaboral[]) {
+    function printAniosExperiencia(
+      experienciaLaboral: type.ExperienciaLaboral[]
+    ) {
       const privadas = [];
       const publicas = [];
 
@@ -1159,7 +1155,7 @@ export default function CurriculumPreviewPage() {
       // experiencia sector privado
       if (privadas.length > 0) {
         const [privateYears, privateMonths] =
-          getTotalYearsOfExperience(privadas);
+          DateHelper.getTotalYearsOfExperience(privadas);
         totalExperiencia.yearsPrivadas = privateYears;
         totalExperiencia.monthsPrivadas = privateMonths;
 

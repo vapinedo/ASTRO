@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { CV } from "@models/CV";
 import { useEffect } from "react";
 import Button from "@mui/material/Button";
 // import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,8 +9,7 @@ import {
   FormacionSuperiorForm,
   IdiomaForm,
 } from "@features/curriculum/components";
-import { Curriculum } from "@models/Curriculum";
-import { updateCurriculum } from "@redux/curriculum/curriculumActionCreators";
+import { updateCV } from "@redux/curriculum/cvActionCreators";
 import { allFStimestampToDateObj, fromM2ToDate } from "@helpers/DateHelper";
 import {
   DatosPersonalesForm,
@@ -34,7 +34,7 @@ import {
   formacionSuperiorSchema,
 } from "@features/curriculum/constants/formacionSuperior";
 
-let defaultValues: Curriculum = {
+const defaultValues: CV = {
   idiomas: [idiomasDefaultValues],
   datosPersonales: datosPersonalesDefaultValues,
   formacionBasica: formacionBasicaDefaultValues,
@@ -51,10 +51,10 @@ const validationSchema = yup.object().shape({
 
 let documentId: string | undefined = "";
 
-export default function CurriculumEditarPage() {
+export default function CVEditPage() {
   const dispatch = useAppDispatch();
 
-  const form = useForm<Curriculum>({
+  const form = useForm<CV>({
     defaultValues,
     mode: "onTouched",
     // resolver: yupResolver(validationSchema)
@@ -63,7 +63,7 @@ export default function CurriculumEditarPage() {
   useEffect(() => {
     const data = localStorage.getItem("curriculum-edit");
     if (data !== null) {
-      const curriculum: Curriculum = JSON.parse(data);
+      const curriculum: CV = JSON.parse(data);
       allFStimestampToDateObj(curriculum);
       setValue("datosPersonales", curriculum.datosPersonales, {
         shouldValidate: false,
@@ -98,15 +98,15 @@ export default function CurriculumEditarPage() {
   const { register, formState, handleSubmit, control, setValue, watch } = form;
   const { errors } = formState;
 
-  function onError(errors: FieldErrors<Curriculum>) {
+  function onError(errors: FieldErrors<CV>) {
     console.log(errors);
   }
 
-  function onSubmit(curriculum: Curriculum) {
+  function onSubmit(curriculum: CV) {
     curriculum.documentId = documentId;
     fromM2ToDate(curriculum);
     console.log({ curriculum });
-    dispatch(updateCurriculum(curriculum));
+    dispatch(updateCV(curriculum));
   }
 
   return (

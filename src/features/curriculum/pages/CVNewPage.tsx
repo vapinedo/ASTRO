@@ -1,12 +1,12 @@
 import * as yup from "yup";
+import { CV } from "@models/CV";
 import Button from "@mui/material/Button";
 import { useAppDispatch } from "@redux/hooks";
 import { useNavigate } from "react-router-dom";
-import { Curriculum } from "@models/Curriculum";
 import { swalSuccess } from "@helpers/SwalAlerts";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldErrors, useForm } from "react-hook-form";
-import { createCurriculum } from "@redux/curriculum/curriculumActionCreators";
+import { createCV } from "@redux/curriculum/cvActionCreators";
 import { idiomasDefaultValues } from "@features/curriculum/constants/idioma";
 import { formacionSuperiorDefaultValues } from "@features/curriculum/constants/formacionSuperior";
 import { experienciaLaboralDefaultValues } from "@features/curriculum/constants/experienciaLaboral";
@@ -26,7 +26,7 @@ import {
   formacionBasicaSchema,
 } from "@features/curriculum/constants/formacionBasica";
 
-let defaultValues: Curriculum = {
+let defaultValues: CV = {
   datosPersonales: datosPersonalesDefaultValues,
   formacionBasica: formacionBasicaDefaultValues,
   formacionSuperior: [formacionSuperiorDefaultValues],
@@ -41,11 +41,11 @@ const validationSchema = yup.object().shape({
   // experienciaLaboral: yup.array().of(experienciaLaboralSchema)
 });
 
-export default function CurriculumNuevoPage() {
+export default function CVNewPage() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const form = useForm<Curriculum>({
+  const form = useForm<CV>({
     defaultValues,
     mode: "onTouched",
     resolver: yupResolver(validationSchema),
@@ -54,12 +54,12 @@ export default function CurriculumNuevoPage() {
   const { register, formState, handleSubmit, control, setValue, watch } = form;
   const { errors } = formState;
 
-  function onError(errors: FieldErrors<Curriculum>) {
+  function onError(errors: FieldErrors<CV>) {
     console.log(errors);
   }
 
-  function onSubmit(curriculum: Curriculum) {
-    dispatch(createCurriculum(curriculum));
+  function onSubmit(curriculum: CV) {
+    dispatch(createCV(curriculum));
     swalSuccess("Curriculum creado exitosamente!");
     navigate("/curriculums");
   }

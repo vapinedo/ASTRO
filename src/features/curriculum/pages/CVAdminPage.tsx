@@ -1,56 +1,53 @@
+import { CV } from "@models/CV";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Box from "@shared/containers/Box/Box";
 import { useNavigate } from "react-router-dom";
-import { Curriculum } from "@models/Curriculum";
+import "@features/curriculum/styles/cvAdminPage.css";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import "@features/curriculum/styles/curriculumAdminPage.css";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import { swalConfirm, swalSuccess } from "@helpers/SwalAlerts";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import {
-  deleteCurriculum,
-  readCurriculums,
-} from "@redux/curriculum/curriculumActionCreators";
+import * as curriculumAction from "@redux/curriculum/cvActionCreators";
 
-export default function CurriculumAdminPage() {
+export default function CVAdminPage() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const curriculums = useAppSelector((state) => state.curriculum);
 
   useEffect(() => {
-    dispatch(readCurriculums());
+    dispatch(curriculumAction.readCV());
   }, [dispatch]);
 
-  function handleEdit(curriculum: Curriculum) {
+  function handleEdit(curriculum: CV) {
     localStorage.setItem("curriculum-edit", JSON.stringify(curriculum));
-    navigate("/curriculum-editar");
+    navigate("/cv-edit");
   }
 
-  function handlePreview(curriculum: Curriculum) {
+  function handlePreview(curriculum: CV) {
     localStorage.setItem("curriculum", JSON.stringify(curriculum));
-    navigate("/curriculum-preview");
+    navigate("/cv-preview");
   }
 
-  async function handleDelete(curriculum: Curriculum) {
+  async function handleDelete(curriculum: CV) {
     const confirmAction = await swalConfirm();
     if (confirmAction.isConfirmed) {
-      dispatch(deleteCurriculum(curriculum));
-      dispatch(readCurriculums());
-      swalSuccess("Curriculum eliminado exitosamente!");
+      dispatch(curriculumAction.deleteCV(curriculum));
+      dispatch(curriculumAction.readCV());
+      swalSuccess("Hola de Vida eliminada exitosamente!");
     }
   }
 
   return (
     <>
       <header className="page-header">
-        <h2>Curriculums</h2>
+        <h2>Hojas de Vida</h2>
 
         <div>
-          <Link to="/curriculum-nuevo">
+          <Link to="/cv-new">
             <button className="btn btn-primary mx-3">
-              <span>Crear nuevo</span>
+              <span>Nueva Hoja de Vida</span>
             </button>
           </Link>
           <button className="btn btn-outline-danger">Ir Atrás</button>

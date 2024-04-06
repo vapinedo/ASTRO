@@ -1,13 +1,13 @@
-import { createCurriculum } from "@redux/curriculum/curriculumActionCreators";
+import { createCV } from "@redux/curriculum/cvActionCreators";
 
 export function createCase(builder: any) {
-  builder.addCase(createCurriculum.pending, (state) => {
+  builder.addCase(createCV.pending, (state) => {
     state.loading = true;
   });
-  builder.addCase(createCurriculum.fulfilled, (state) => {
+  builder.addCase(createCV.fulfilled, (state) => {
     (state.loading = false), (state.error = "");
   });
-  builder.addCase(createCurriculum.rejected, (state, action) => {
+  builder.addCase(createCV.rejected, (state, action) => {
     (state.loading = false),
       (state.curriculums = []),
       (state.error = action.error.message || "Something went wrong");

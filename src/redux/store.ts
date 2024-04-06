@@ -1,4 +1,4 @@
-import curriculum from "@redux/curriculum/curriculumSlice";
+import curriculum from "@redux/curriculum/cvSlice";
 import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({
