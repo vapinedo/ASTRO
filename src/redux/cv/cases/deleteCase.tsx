@@ -1,4 +1,4 @@
-import { deleteCV } from "@redux/curriculum/cvActionCreators";
+import { deleteCV } from "@redux/cv/cvActionCreators";
 
 export function deleteCase(builder: any) {
   builder.addCase(deleteCV.pending, (state) => {
@@ -9,7 +9,7 @@ export function deleteCase(builder: any) {
   });
   builder.addCase(deleteCV.rejected, (state, action) => {
     (state.loading = false),
-      (state.curriculums = []),
+      (state.cvList = []),
       (state.error = action.error.message || "Something went wrong");
   });
 }

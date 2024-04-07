@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
 import Box from "@shared/containers/Box/Box";
-import "@features/curriculum/styles/formComponents.css";
+import "@features/cv/styles/formComponents.css";
 import { Controller, useFieldArray } from "react-hook-form";
 import InputField from "@shared/components/form/InputField";
 import SelectField from "@shared/components/form/SelectField";
 import { FormControl, InputLabel, Stack } from "@mui/material";
-import { InputProps } from "@features/curriculum/interfaces/InputProps";
-import { idiomaOptions } from "@features/curriculum/constants/general";
+import { idiomaOptions } from "@features/cv/constants/general";
+import { InputProps } from "@features/cv/interfaces/InputProps";
 
 const MAXIMUM_INSTANCES = 2;
 

@@ -3,38 +3,38 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Box from "@shared/containers/Box/Box";
 import { useNavigate } from "react-router-dom";
-import "@features/curriculum/styles/cvAdminPage.css";
+import "@features/cv/styles/cvAdminPage.css";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import { swalConfirm, swalSuccess } from "@helpers/SwalAlerts";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import * as curriculumAction from "@redux/curriculum/cvActionCreators";
+import * as cvAction from "@redux/cv/cvActionCreators";
 
 export default function CVAdminPage() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const curriculums = useAppSelector((state) => state.curriculum);
+  const { cvList } = useAppSelector((state) => state.cv);
 
   useEffect(() => {
-    dispatch(curriculumAction.readCV());
+    dispatch(cvAction.readCV());
   }, [dispatch]);
 
-  function handleEdit(curriculum: CV) {
-    localStorage.setItem("curriculum-edit", JSON.stringify(curriculum));
+  function handleEdit(cv: CV) {
+    localStorage.setItem("cv-edit", JSON.stringify(cv));
     navigate("/cv-edit");
   }
 
-  function handlePreview(curriculum: CV) {
-    localStorage.setItem("curriculum", JSON.stringify(curriculum));
+  function handlePreview(cv: CV) {
+    localStorage.setItem("cv", JSON.stringify(cv));
     navigate("/cv-preview");
   }
 
-  async function handleDelete(curriculum: CV) {
+  async function handleDelete(cv: CV) {
     const confirmAction = await swalConfirm();
     if (confirmAction.isConfirmed) {
-      dispatch(curriculumAction.deleteCV(curriculum));
-      dispatch(curriculumAction.readCV());
+      dispatch(cvAction.deleteCV(cv));
+      dispatch(cvAction.readCV());
       swalSuccess("Hola de Vida eliminada exitosamente!");
     }
   }
@@ -68,25 +68,25 @@ export default function CVAdminPage() {
           </thead>
 
           <tbody>
-            {curriculums?.curriculums.map((curriculum, index) => (
-              <tr key={curriculum?.documentId}>
+            {cvList?.map((cv, index) => (
+              <tr key={cv?.documentId}>
                 <th scope="row">{index + 1}</th>
-                <td>{curriculum.datosPersonales.nombres}</td>
-                <td>{curriculum.datosPersonales.primerApellido}</td>
-                <td>{curriculum.datosPersonales.segundoApellido}</td>
-                <td>{curriculum.datosPersonales.tipoIdentificacion}</td>
+                <td>{cv.datosPersonales.nombres}</td>
+                <td>{cv.datosPersonales.primerApellido}</td>
+                <td>{cv.datosPersonales.segundoApellido}</td>
+                <td>{cv.datosPersonales.tipoIdentificacion}</td>
                 <td>
                   <ModeEditIcon
-                    onClick={() => handleEdit(curriculum)}
+                    onClick={() => handleEdit(cv)}
                     sx={{ marginRight: 2 }}
                     titleAccess="Editar"
                   />
                   <VisibilityIcon
-                    onClick={() => handlePreview(curriculum)}
+                    onClick={() => handlePreview(cv)}
                     titleAccess="Vista previa"
                   />
                   <DeleteOutlineIcon
-                    onClick={() => handleDelete(curriculum)}
+                    onClick={() => handleDelete(cv)}
                     titleAccess="Eliminar"
                   />
                 </td>

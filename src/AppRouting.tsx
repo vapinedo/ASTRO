@@ -1,7 +1,7 @@
 import { Container } from "@mui/material";
+import { CVAdminPage } from "@features/cv/pages";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "@shared/components/navbar/Navbar";
-import { CVAdminPage } from "@features/curriculum/pages";
 // import { CVPreviewPage } from "./features/curriculum/pages";
 import MatchAllRoutes from "@shared/components/match-all-routes/MatchAllRoutes";
 

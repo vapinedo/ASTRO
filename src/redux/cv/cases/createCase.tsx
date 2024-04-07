@@ -1,4 +1,4 @@
-import { createCV } from "@redux/curriculum/cvActionCreators";
+import { createCV } from "@redux/cv/cvActionCreators";
 
 export function createCase(builder: any) {
   builder.addCase(createCV.pending, (state) => {
@@ -9,7 +9,7 @@ export function createCase(builder: any) {
   });
   builder.addCase(createCV.rejected, (state, action) => {
     (state.loading = false),
-      (state.curriculums = []),
+      (state.cvList = []),
       (state.error = action.error.message || "Something went wrong");
   });
 }

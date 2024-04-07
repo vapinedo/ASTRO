@@ -5,17 +5,9 @@ import Box from "@shared/containers/Box/Box";
 import { InputProps } from "../interfaces/InputProps";
 import InputField from "@shared/components/form/InputField";
 import SelectField from "@shared/components/form/SelectField";
+import * as cvConstants from "@features/cv/constants/general";
 import { FormControl, InputLabel, Stack } from "@mui/material";
 import DatePickerField from "@shared/components/form/DatePickerField";
-import {
-  departamentoOptions,
-  municipioOptions,
-  nacionalidadOptions,
-  paisOptions,
-  sexoOptions,
-  tipoIdentificacionOptions,
-  tipoLibretaOptions,
-} from "@features/curriculum/constants/general";
 
 export default function DatosPersonalesForm(props: InputProps): ReactNode {
   const { errors, control, register, watch } = props;
@@ -70,7 +62,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 value={value}
                 onChange={onChange}
                 label="Tipo de identificación"
-                options={tipoIdentificacionOptions}
+                options={cvConstants.tipoIdentificacionOptions}
                 error={errors.datosPersonales?.tipoIdentificacion?.message}
               />
             )}
@@ -94,8 +86,8 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 value={value}
                 onChange={onChange}
                 label="Sexo"
-                options={sexoOptions}
-                error={errors.datosPersonales?.sexo?.message}
+                options={cvConstants.sexoOptions}
+                error={errors.cvConstants.datosPersonales?.sexo?.message}
               />
             )}
           />
@@ -111,8 +103,10 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 value={value}
                 onChange={onChange}
                 label="Nacionalidad"
-                options={nacionalidadOptions}
-                error={errors.datosPersonales?.nacionalidad?.message}
+                options={cvConstants.nacionalidadOptions}
+                error={
+                  errors.cvConstants.datosPersonales?.nacionalidad?.message
+                }
               />
             )}
           />
@@ -129,7 +123,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                   value={value}
                   onChange={onChange}
                   label="País"
-                  options={paisOptions}
+                  options={cvConstants.paisOptions}
                   error={errors.datosPersonales?.pais?.message}
                 />
               )}
@@ -161,7 +155,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 value={value}
                 onChange={onChange}
                 label="País de nacimiento"
-                options={paisOptions}
+                options={cvConstants.paisOptions}
                 error={errors.datosPersonales?.paisNacimiento?.message}
               />
             )}
@@ -178,7 +172,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 value={value}
                 onChange={onChange}
                 label="Departamento de nacimiento"
-                options={departamentoOptions}
+                options={cvConstants.departamentoOptions}
                 error={errors.datosPersonales?.departamentoNacimiento?.message}
               />
             )}
@@ -195,7 +189,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 value={value}
                 onChange={onChange}
                 label="Municipio de nacimiento"
-                options={municipioOptions}
+                options={cvConstants.municipioOptions}
                 error={errors.datosPersonales?.municipioNacimiento?.message}
               />
             )}
@@ -222,7 +216,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 value={value}
                 onChange={onChange}
                 label="País de correspondencia"
-                options={paisOptions}
+                options={cvConstants.paisOptions}
                 error={errors.datosPersonales?.paisCorrespondencia?.message}
               />
             )}
@@ -239,7 +233,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 value={value}
                 onChange={onChange}
                 label="Departamento de correspondencia"
-                options={departamentoOptions}
+                options={cvConstants.departamentoOptions}
                 error={
                   errors.datosPersonales?.departamentoCorrespondencia?.message
                 }
@@ -258,7 +252,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                 value={value}
                 onChange={onChange}
                 label="Municipio de correspondencia"
-                options={municipioOptions}
+                options={cvConstants.municipioOptions}
                 error={
                   errors.datosPersonales?.municipioCorrespondencia?.message
                 }
@@ -281,7 +275,7 @@ export default function DatosPersonalesForm(props: InputProps): ReactNode {
                   value={value}
                   onChange={onChange}
                   label="Tipo libreta militar"
-                  options={tipoLibretaOptions}
+                  options={cvConstants.tipoLibretaOptions}
                   error={errors.datosPersonales?.tipolibretaMilitar?.message}
                 />
               )}

@@ -1,19 +1,14 @@
 import dayjs from "dayjs";
 import { ReactNode } from "react";
 import Box from "@shared/containers/Box/Box";
-import "@features/curriculum/styles/formComponents.css";
+import "@features/cv/styles/formComponents.css";
 import InputField from "@shared/components/form/InputField";
 import { Controller, useFieldArray } from "react-hook-form";
 import { FormControl, InputLabel, Stack } from "@mui/material";
+import * as cvConstants from "@features/cv/constants/general";
 import SelectField from "@shared/components/form/SelectField";
+import { InputProps } from "@features/cv/interfaces/InputProps";
 import DatePickerField from "@shared/components/form/DatePickerField";
-import { InputProps } from "@features/curriculum/interfaces/InputProps";
-import {
-  departamentoOptions,
-  municipioOptions,
-  paisOptions,
-  tipoEmpresaOptions,
-} from "../constants/general";
 
 const MAXIMUM_INSTANCES = 4;
 
@@ -82,7 +77,7 @@ export default function ExperienciaLaboralForm(props: InputProps): ReactNode {
                       value={value}
                       onChange={onChange}
                       label="Tipo empresa"
-                      options={tipoEmpresaOptions}
+                      options={cvConstants.tipoEmpresaOptions}
                       error={errors.experienciaLaboral?.tipoEmpresa?.message}
                     />
                   )}
@@ -122,7 +117,7 @@ export default function ExperienciaLaboralForm(props: InputProps): ReactNode {
                       value={value}
                       onChange={onChange}
                       label="País"
-                      options={paisOptions}
+                      options={cvConstants.paisOptions}
                       error={errors.experienciaLaboral?.pais?.message}
                     />
                   )}
@@ -139,7 +134,7 @@ export default function ExperienciaLaboralForm(props: InputProps): ReactNode {
                       value={value}
                       onChange={onChange}
                       label="Departamento"
-                      options={departamentoOptions}
+                      options={cvConstants.departamentoOptions}
                       error={errors.experienciaLaboral?.departamento?.message}
                     />
                   )}
@@ -156,7 +151,7 @@ export default function ExperienciaLaboralForm(props: InputProps): ReactNode {
                       value={value}
                       onChange={onChange}
                       label="Municipio"
-                      options={municipioOptions}
+                      options={cvConstants.municipioOptions}
                       error={errors.experienciaLaboral?.municipio?.message}
                     />
                   )}

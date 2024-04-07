@@ -1,15 +1,15 @@
 import * as yup from "yup";
 import { CV } from "@models/CV";
+import { useEffect } from "react";
 import Button from "@mui/material/Button";
 import { useAppDispatch } from "@redux/hooks";
-import { useNavigate } from "react-router-dom";
-import { swalSuccess } from "@helpers/SwalAlerts";
-// import { yupResolver } from "@hookform/resolvers/yup";
+import * as DateHelper from "@helpers/DateHelper";
 import { FieldErrors, useForm } from "react-hook-form";
-import { createCV } from "@redux/curriculum/cvActionCreators";
-import * as cvComponents from "@features/curriculum/components";
-import * as cvSchemas from "@features/curriculum/validationSchemas";
-import * as cvDefaultValues from "@features/curriculum/defaultValues";
+// import { yupResolver } from "@hookform/resolvers/yup";
+import { updateCV } from "@redux/cv/cvActionCreators";
+import * as cvComponents from "@features/cv/components";
+import * as cvSchemas from "@features/cv/validationSchemas";
+import * as cvDefaultValues from "@features/cv/defaultValues";
 
 const defaultValues: CV = {
   datosPersonales: cvDefaultValues.datosPersonales,
@@ -26,15 +26,51 @@ const validationSchema = yup.object().shape({
   formacionSuperior: yup.array().of(cvSchemas.formacionSuperior),
 });
 
-export default function CVNewPage() {
-  const navigate = useNavigate();
+let documentId: string | undefined = "";
+
+export default function CVEditPage() {
   const dispatch = useAppDispatch();
 
   const form = useForm<CV>({
     defaultValues,
     mode: "onTouched",
-    // resolver: yupResolver(validationSchema),
+    // resolver: yupResolver(validationSchema)
   });
+
+  useEffect(() => {
+    const data = localStorage.getItem("cv-edit");
+    if (data !== null) {
+      const cv: CV = JSON.parse(data);
+      DateHelper.allFStimestampToDateObj(cv);
+      setValue("datosPersonales", cv.datosPersonales, {
+        shouldValidate: false,
+      });
+
+      if (cv.formacionBasica) {
+        setValue("formacionBasica", cv.formacionBasica, {
+          shouldValidate: false,
+        });
+      }
+
+      if (cv.formacionBasica) {
+        setValue("formacionSuperior", cv.formacionSuperior, {
+          shouldValidate: false,
+        });
+      }
+
+      if (cv.idiomas) {
+        setValue("idiomas", cv.idiomas, { shouldValidate: false });
+      }
+
+      if (cv.experienciaLaboral) {
+        setValue("experienciaLaboral", cv.experienciaLaboral, {
+          shouldValidate: false,
+        });
+      }
+
+      documentId = cv.documentId;
+    }
+  }, []);
 
   const { register, formState, handleSubmit, control, setValue, watch } = form;
   const { errors } = formState;
@@ -43,16 +79,17 @@ export default function CVNewPage() {
     console.log(errors);
   }
 
-  function onSubmit(curriculum: CV) {
-    dispatch(createCV(curriculum));
-    swalSuccess("Curriculum creado exitosamente!");
-    navigate("/curriculums");
+  function onSubmit(cv: CV) {
+    cv.documentId = documentId;
+    DateHelper.fromM2ToDate(cv);
+    console.log({ cv });
+    dispatch(updateCV(cv));
   }
 
   return (
     <>
       <header className="page-header">
-        <h2>Hoja de Vida - nueva</h2>
+        <h2>Hoja de Vida editar</h2>
         <div>
           <button className="btn btn-outline-danger">Ir Atrás</button>
         </div>
@@ -91,7 +128,7 @@ export default function CVNewPage() {
           setValue={setValue}
         />
         <Button type="submit" variant="contained">
-          Crear
+          Actualizar
         </Button>
       </form>
     </>

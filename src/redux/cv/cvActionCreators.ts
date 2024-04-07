@@ -1,7 +1,7 @@
 import { CV } from "@models/CV";
 import * as FS from "firebase/firestore";
+import * as cvActions from "@redux/cv/cvActions";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import * as cvActions from "@redux/curriculum/cvActions";
 
 const COLLECTION = "curriculums";
 

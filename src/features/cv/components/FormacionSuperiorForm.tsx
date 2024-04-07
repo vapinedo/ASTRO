@@ -1,14 +1,14 @@
 import dayjs from "dayjs";
 import { ReactNode } from "react";
+import "@features/cv/styles/formComponents.css";
 import Box from "@shared/containers/Box/Box";
-import "@features/curriculum/styles/formComponents.css";
 import { Controller, useFieldArray } from "react-hook-form";
 import InputField from "@shared/components/form/InputField";
+import * as cvConstants from "@features/cv/constants/general";
 import SelectField from "@shared/components/form/SelectField";
 import { FormControl, InputLabel, Stack } from "@mui/material";
+import { InputProps } from "@features/cv/interfaces/InputProps";
 import DatePickerField from "@shared/components/form/DatePickerField";
-import { InputProps } from "@features/curriculum/interfaces/InputProps";
-import { SiNoOptions, modalidadAcademicaOptions } from "../constants/general";
 
 const MAXIMUM_INSTANCES = 5;
 
@@ -61,7 +61,7 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
                       value={value}
                       onChange={onChange}
                       label="Modalidad académica"
-                      options={modalidadAcademicaOptions}
+                      options={cvConstants.modalidadAcademicaOptions}
                       error={
                         errors.formacionSuperior?.modalidadAcademica?.message
                       }
@@ -80,7 +80,7 @@ export default function FormacionSuperiorForm(props: InputProps): ReactNode {
                       value={value}
                       onChange={onChange}
                       label="Graduado"
-                      options={SiNoOptions}
+                      options={cvConstants.SiNoOptions}
                       error={errors.formacionSuperior?.graduado?.message}
                     />
                   )}

@@ -1,13 +1,13 @@
 import dayjs from "dayjs";
 import { ReactNode } from "react";
 import { Controller } from "react-hook-form";
-import Box from "../../../shared/containers/Box/Box";
+import Box from "@shared/containers/Box/Box";
 import { InputProps } from "../interfaces/InputProps";
+import InputField from "@shared/components/form/InputField";
+import SelectField from "@shared/components/form/SelectField";
+import * as cvConstants from "@features/cv/constants/general";
 import { FormControl, InputLabel, Stack } from "@mui/material";
-import { educacionBasicaOptions } from "../constants/general";
-import InputField from "../../../shared/components/form/InputField";
-import SelectField from "../../../shared/components/form/SelectField";
-import DatePickerField from "../../../shared/components/form/DatePickerField";
+import DatePickerField from "@shared/components/form/DatePickerField";
 
 export default function FormacionBasicaForm(props: InputProps): ReactNode {
   const { errors, control, register } = props;
@@ -30,7 +30,7 @@ export default function FormacionBasicaForm(props: InputProps): ReactNode {
                 value={value}
                 onChange={onChange}
                 label="Nacionalidad"
-                options={educacionBasicaOptions}
+                options={cvConstants.educacionBasicaOptions}
                 error={errors.datosPersonales?.educacionBasica?.message}
               />
             )}

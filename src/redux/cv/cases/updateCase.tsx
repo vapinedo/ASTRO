@@ -1,4 +1,4 @@
-import { updateCV } from "@redux/curriculum/cvActionCreators";
+import { updateCV } from "@redux/cv/cvActionCreators";
 
 export function updateCase(builder: any) {
   builder.addCase(updateCV.pending, (state) => {
