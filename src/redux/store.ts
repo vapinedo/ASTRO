@@ -1,9 +1,9 @@
-import curriculum from "@redux/curriculum/curriculumSlice";
+import cv from "@redux/cv/cvSlice";
 import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({
   reducer: {
-    curriculum: curriculum.reducer,
+    cv: cv.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
